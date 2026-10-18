@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "partition": "smoke",
+  "query_ids": [
+    "complete_extraction",
+    "mention_only",
+    "growth",
+    "missing_company",
+    "wrong_period",
+    "mixed_units",
+    "later_disclosure",
+    "conflicting_restatement"
+  ],
+  "not_statistical_splits": true,
+  "files_sha256": {
+    "queries.jsonl": "b6e1ada2290e6662efbc1e0162594955c53cba1231c72e93b47db6385f091dc1",
+    "references.jsonl": "b713602f1b79dba497e8518abf4550d289b28696330c9097ce7c9cd2e8c8cc4a",
+    "documents.jsonl": "6bfa502434be2ebfe45aeee0a023fef236caf24ebb3e2ce30e54aa071968a75a",
+    "diagnostic_specs.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

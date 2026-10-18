@@ -1,0 +1,8 @@
+{"as_of": "2025-03-01", "id": "complete_extraction", "question": "What was Alpha FY2024 revenue?"}
+{"as_of": "2025-03-01", "id": "mention_only", "question": "What was Mention FY2024 revenue?"}
+{"as_of": "2025-03-01", "id": "growth", "question": "What was Gamma FY2024 revenue growth over FY2023?"}
+{"as_of": "2025-03-01", "id": "missing_company", "question": "Rank RankAlpha and RankBeta by FY2024 revenue growth over FY2023."}
+{"as_of": "2025-03-01", "id": "wrong_period", "question": "What was Wrong FY2024 revenue?"}
+{"as_of": "2025-03-01", "id": "mixed_units", "question": "What was Mixed FY2024 revenue growth over FY2023?"}
+{"as_of": "2025-03-01", "id": "later_disclosure", "question": "What was Late FY2024 revenue?"}
+{"as_of": "2025-03-01", "id": "conflicting_restatement", "question": "What was Conflict FY2024 revenue?"}
