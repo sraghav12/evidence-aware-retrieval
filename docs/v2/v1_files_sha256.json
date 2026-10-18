@@ -1,0 +1,98 @@
+[
+  {
+    "path": "data/release/v1/SHA256SUMS",
+    "sha256": "ed2468c9b74c4577f8507cb599660a95847d488f0ea5c664d3b9bdaec7bf15cf"
+  },
+  {
+    "path": "data/release/v1/corpus_150.jsonl.gz",
+    "sha256": "f5ea399da19d8799c169b81024061ae67f7ebdc0dd18499f2735bdfc3d063363"
+  },
+  {
+    "path": "data/release/v1/exclusions.json",
+    "sha256": "d0d148628f4054662996b4e843898457c5e04a248b289a4a04a005e68fb4b08f"
+  },
+  {
+    "path": "data/release/v1/fiscal_year_corrections.json",
+    "sha256": "8ff127e9022159d382514b793f470b342ffa780906c3635f748fd77216556b0d"
+  },
+  {
+    "path": "data/release/v1/gold_answers.json",
+    "sha256": "b1b8952305e9132b1195acfb03efaa69cc5f94e327a6cfa9e199b6f1b94eb3d9"
+  },
+  {
+    "path": "data/release/v1/judge_config.json",
+    "sha256": "13f9d6ab37d7492878d27c222c394ab9274c420a84b36e479d5719db5f1c65d6"
+  },
+  {
+    "path": "data/release/v1/manifest.json",
+    "sha256": "8dcaa7c18d67149dacc7cd5863dbbe3172a70b5d028db21fec970310c497dd9d"
+  },
+  {
+    "path": "data/release/v1/queries.json",
+    "sha256": "5864c59d8afae6f3fe181de1a0beaee237a7f9f4d7ae08985229210690777e12"
+  },
+  {
+    "path": "results/release_v1/comparison.png",
+    "sha256": "c03bc274558cd8f1cae119d7aefa7ed512806fffa3a485281e4d5d2dfaaac145"
+  },
+  {
+    "path": "results/release_v1/comparison.svg",
+    "sha256": "ce8a8b546f600034ce331c8611c4d388fe1f9c0da994b687ab3b77e46eba1684"
+  },
+  {
+    "path": "results/release_v1/cost_report.json",
+    "sha256": "de6450d505d6940d2bfd31ded8e01d5b16cd566af5fb9c7b84c0820e52ce4136"
+  },
+  {
+    "path": "results/release_v1/environment.json",
+    "sha256": "5e182b07bd9400eaa57877a2ac0532a97f5f3a422ee898a419e6f5f0e9d2f8af"
+  },
+  {
+    "path": "results/release_v1/environment_clean.json",
+    "sha256": "cb662a20af08bcbaf01d5fd150a24498ba3dff89919e10e4dd1505b95827360f"
+  },
+  {
+    "path": "results/release_v1/metrics/naive_llm_gpt-4o-mini_150_scored.csv",
+    "sha256": "19be7f8e6470ab5289fdf6fec3565a99c3df402f26c5740f0bb8dd78bb83af7d"
+  },
+  {
+    "path": "results/release_v1/metrics/pageindex_gpt-4o-mini_150_scored.csv",
+    "sha256": "afd8c835122e33c93fac65e35eb039f59027029622f18b5368146780f919df22"
+  },
+  {
+    "path": "results/release_v1/metrics/rlm_gpt-4o-mini_150_scored.csv",
+    "sha256": "742618c9d8fb8fe2cfae39011172a6286c8229496c794f0b2f6db71fd6ce0621"
+  },
+  {
+    "path": "results/release_v1/metrics/summary.csv",
+    "sha256": "5b699d9526ec7a1979647c2ad73d1ecc3ca78606e89b464c32b9a244bb2c5272"
+  },
+  {
+    "path": "results/release_v1/metrics/vector_rag_gpt-4o-mini_150_scored.csv",
+    "sha256": "544058f3c76b744581cc2ee790c8de2f78584663d9d03b43f767f111f2d2e6b6"
+  },
+  {
+    "path": "results/release_v1/raw/naive_llm_gpt-4o-mini_150.jsonl",
+    "sha256": "e460a1403b40dd652e7087cf2c9f9b9037bab5da0c33afac3eae984aaf464eb0"
+  },
+  {
+    "path": "results/release_v1/raw/pageindex_gpt-4o-mini_150.jsonl",
+    "sha256": "f52dc2ab316c7d8747f21efef17a23b075121326ade5f1ee2ce1c934e4562b23"
+  },
+  {
+    "path": "results/release_v1/raw/rlm_gpt-4o-mini_150.jsonl",
+    "sha256": "4c46d43e3a682e634ef10d201ac3558efbe60167347a069d46be4332f47697f9"
+  },
+  {
+    "path": "results/release_v1/raw/vector_rag_gpt-4o-mini_150.jsonl",
+    "sha256": "9ea12390826163033efa4cdf72fb16b12b0c34db4c3a9b13b1edf7e5f9e830ad"
+  },
+  {
+    "path": "results/release_v1/report.json",
+    "sha256": "4ef51432e4a445deac2bf9ce609cf006e3ea6a3ac510a125bda8ad16fe57e967"
+  },
+  {
+    "path": "results/release_v1/spend_estimate.json",
+    "sha256": "5308c9952d1e0083176a5bd7817eba2af7170e593a7ab3b55f2f8fff581f859d"
+  }
+]
