@@ -8,8 +8,16 @@ from .extraction import extract_candidates
 SCALES={'USD':Decimal(1),'USD_thousand':Decimal(1000),'USD_million':Decimal(1000000),'USD_billion':Decimal(1000000000)}
 
 
+def same_quantity(requirement,span):
+    return all(getattr(requirement,k)==getattr(span,k) for k in ('entity_id','metric','period_start','period_end','fiscal_year')) and (requirement.unit==span.unit or requirement.unit in SCALES and span.unit in SCALES)
+
+
 def matches(requirement,span):
-    return all(getattr(requirement,k)==getattr(span,k) for k in ('entity_id','metric','period_start','period_end','fiscal_year','accounting_basis')) and (requirement.unit==span.unit or requirement.unit in SCALES and span.unit in SCALES)
+    return same_quantity(requirement,span) and requirement.accounting_basis==span.accounting_basis
+
+
+def converted(span,requirement):
+    return Decimal(span.value)*SCALES.get(span.unit,Decimal(1))/SCALES.get(requirement.unit,Decimal(1))
 
 
 def audit_coverage(spec,spans,documents):
@@ -23,9 +31,9 @@ def audit_coverage(spec,spans,documents):
         valid.append(s)
     supported=[];missing=[];conflicts=[];audited=[]
     for r in spec.requirements:
-        candidates=[s for s in valid if matches(r,s)]
-        values={Decimal(s.value)*SCALES.get(s.unit,Decimal(1))/SCALES.get(r.unit,Decimal(1)) for s in candidates}
-        if len(values)>1:conflicts.append(r.id);missing.append(r.id)
-        elif values:supported.append(r.id);audited.extend(s.id for s in candidates)
+        # Any eligible basis (reported, restated) for the same quantity can contradict the requested one.
+        related=[s for s in valid if same_quantity(r,s)];candidates=[s for s in related if matches(r,s)]
+        if len({converted(s,r) for s in related})>1:conflicts.append(r.id);missing.append(r.id)
+        elif candidates:supported.append(r.id);audited.extend(s.id for s in candidates)
         else:missing.append(r.id)
     return CoverageResult(not missing and not conflicts,tuple(supported),tuple(missing),tuple(conflicts),tuple(sorted(set(audited))))

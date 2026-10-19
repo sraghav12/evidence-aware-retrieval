@@ -210,6 +210,7 @@ class RunTrace:
     decisions:list=field(default_factory=list)
     coverage_snapshots:list=field(default_factory=list)
     packed_ids:list=field(default_factory=list)
+    packing:list=field(default_factory=list)
     selected_units:list=field(default_factory=list)
     evidence:list=field(default_factory=list)
     answer:AnswerRecord=field(default_factory=lambda:AnswerRecord('error',reason='not_run'))

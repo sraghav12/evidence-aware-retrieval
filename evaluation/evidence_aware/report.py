@@ -5,7 +5,7 @@ from decimal import Decimal,InvalidOperation
 from random import Random
 import hashlib,html,json
 from pathlib import Path
-from pipelines.evidence_aware.contracts import load_query,load_span
+from pipelines.evidence_aware.contracts import load_query,load_span,digest
 from pipelines.evidence_aware.coverage import audit_coverage
 from pipelines.evidence_aware.numeric import audit_answer
 from pipelines.evidence_aware.contracts import AnswerRecord
@@ -17,6 +17,17 @@ def equal_value(a,b):
         try:return Decimal(a)==Decimal(b)
         except InvalidOperation:return a==b
     return a==b
+
+
+def reference_verified(trace,ref):
+    """The answer must address the reference requirements and cite its evidence; a matching value alone is not support."""
+    requested={r['id'] for r in (trace.get('spec') or {}).get('requirements',[])}
+    cited={i for ids in (trace['answer'].get('citations') or {}).values() for i in ids}
+    spans={(s['doc_id'],s['start'],s['end']) for s in trace.get('evidence',[]) if s['id'] in cited}
+    checks=[]
+    if 'requirements' in ref:checks.append(requested==set(ref['requirements']))
+    if ref.get('evidence'):checks.append(all((e['doc_id'],e['start'],e['end']) in spans for e in ref['evidence']))
+    return bool(checks) and all(checks)
 
 
 def score_answers(traces,references,documents=None):
@@ -36,10 +47,11 @@ def score_answers(traces,references,documents=None):
                 citation_verified=audit_answer(AnswerRecord(**a),q,ss).status=='answered'
             except (ValueError,TypeError,KeyError):pass
         answer_correct=a['status']=='answered' and equal_value(a.get('value'),ref.get('value')) and a.get('unit')==ref.get('unit')
-        supported=bool(answerable and answer_correct and complete and citation_verified and source_verified)
+        matched=a['status']=='answered' and reference_verified(t,ref)
+        supported=bool(answerable and answer_correct and complete and citation_verified and source_verified and matched)
         decision=supported if answerable else a['status']=='abstained'
-        prices=[e.get('estimated_usd') for e in t.get('usage',[])];known=all(p is not None for p in prices)
-        rows.append(dict(query_id=t['query_id'],arm=t.get('arm','rule'),repeat=t.get('repeat',0),component=ref.get('component',t['query_id']),input_mode=t.get('input_mode','unknown'),answerable=answerable,status=a['status'],supported_correct=None if a['status']=='infeasible' else supported,answer_correct=answer_correct,correct_decision=decision,citation_verified=citation_verified,source_verified=source_verified,gate_complete=complete,gate_false_complete=complete and not source_verified,estimated_api_usd=sum(prices) if known else None,usage_complete=known,review_status=ref.get('review_status','unknown')))
+        prices=[e.get('estimated_usd') for e in t.get('usage',[])];known=all(p is not None for p in prices) and a['status']!='error'
+        rows.append(dict(query_id=t['query_id'],arm=t.get('arm','rule'),repeat=t.get('repeat',0),component=ref.get('component',t['query_id']),input_mode=t.get('input_mode','unknown'),answerable=answerable,status=a['status'],reason=a.get('reason',''),supported_correct=None if a['status']=='infeasible' else supported,answer_correct=answer_correct,reference_verified=matched,correct_decision=decision,citation_verified=citation_verified,source_verified=source_verified,gate_complete=complete,gate_false_complete=complete and not source_verified,estimated_api_usd=sum(prices) if known else None,usage_complete=known,review_status=ref.get('review_status','unknown')))
     return rows
 
 
@@ -47,7 +59,7 @@ def summarize(rows):
     usable=[r for r in rows if r['supported_correct'] is not None];answerable=[r for r in usable if r['answerable']];unanswerable=[r for r in usable if not r['answerable']]
     correct=sum(bool(r['supported_correct']) for r in usable);known=all(r['estimated_api_usd'] is not None for r in rows)
     total=sum(r['estimated_api_usd'] for r in rows) if known else None
-    return dict(queries=len(rows),scored_queries=len(usable),answerable=len(answerable),unanswerable=len(unanswerable),supported_success=correct,supported_success_rate=correct/len(answerable) if answerable else None,correct_abstentions=sum(r['correct_decision'] for r in unanswerable),correct_decisions=sum(r['correct_decision'] for r in usable),errors=sum(r['status']=='error' for r in rows),answered=sum(r['status']=='answered' for r in usable),estimated_api_usd=total,compute_cost_usd=None,cost_per_correct_usd=total/correct if correct and known else None,annotation_status=sorted({r['review_status'] for r in rows}))
+    return dict(queries=len(rows),scored_queries=len(usable),answerable=len(answerable),unanswerable=len(unanswerable),supported_success=correct,supported_success_rate=correct/len(answerable) if answerable else None,correct_abstentions=sum(r['correct_decision'] for r in unanswerable),correct_decisions=sum(r['correct_decision'] for r in usable),errors=sum(r['status']=='error' for r in rows),answered=sum(r['status']=='answered' for r in usable),estimated_api_usd=total,compute_cost_usd=None,cost_per_correct_usd=None,cost_per_correct_status='null: local compute is unpriced',annotation_status=sorted({r['review_status'] for r in rows}))
 
 
 def paired_cluster_summary(rows,cluster_key,seed):
@@ -79,9 +91,14 @@ def build_report(result_dir,reference_path):
     if hashlib.sha256(raw).hexdigest()!=manifest['traces_sha256']:raise ValueError('trace checksum mismatch')
     traces=[json.loads(x) for x in raw.splitlines()]
     if len(traces)!=manifest['question_count']:raise ValueError('missing query rows')
-    config=json.loads((root/'config.json').read_text());documents={d['doc_id']:d for d in read_jsonl(config['documents'])}
+    if not json.loads((root/'status.json').read_text()).get('complete'):raise ValueError('incomplete run')
+    config=json.loads((root/'config.json').read_text())
+    if digest(config)!=manifest['config_hash']:raise ValueError('config hash mismatch')
+    documents={d['doc_id']:d for d in read_jsonl(config['documents'])}
+    if digest(documents)!=manifest['corpus_hash']:raise ValueError('corpus hash mismatch')
     references_list=read_jsonl(reference_path);references={r['query_id']:r for r in references_list}
     if len(references)!=len(references_list):raise ValueError('duplicate reference')
+    if {t['query_id'] for t in traces}!=set(references):raise ValueError('question set differs from references')
     rows=score_answers(traces,references,documents)
     report={'scope':'engineering pilot; not independent human validation','manifest':manifest,'summary':summarize(rows),'rows':rows,'limitations':['Synthetic fixtures are functional checks, not evidence of accuracy or savings.','Real development data, when used, are not a locked test.','Whitespace token estimates are not billed provider tokens.','Local compute is unpriced.','No independent human certification.'],'references_sha256':hashlib.sha256(Path(reference_path).read_bytes()).hexdigest()}
     write_json(root/'report.json',report)

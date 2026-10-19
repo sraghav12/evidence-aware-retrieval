@@ -11,7 +11,7 @@ def tokens(text):return re.findall(r'\w+',text.casefold())
 
 
 class RetrievalBackend(Protocol):
-    def retrieve(self,spec,missing_ids,token_limit):...
+    def retrieve(self,spec,missing_ids,token_limit,exclude_unit_ids=()):...
 
 
 class BM25Backend:
@@ -24,11 +24,12 @@ class BM25Backend:
         self.df=Counter(t for c in self.counts.values() for t in c)
         self.selected=[];self.inspected_tokens=0
 
-    def retrieve(self,spec,missing_ids,token_limit):
+    def retrieve(self,spec,missing_ids,token_limit,exclude_unit_ids=()):
         requirements=[r for r in spec.requirements if not missing_ids or r.id in missing_ids]
         entities={r.entity_id for r in requirements}
         terms=set(tokens(spec.question)) | {r.metric for r in requirements}
-        eligible=[u for u in self.units if self.documents[u.doc_id]['entity_id'] in entities]
+        # Index statistics are corpus-wide; only cutoff-eligible, not-yet-inspected units are candidates.
+        eligible=[u for u in self.units if self.documents[u.doc_id]['entity_id'] in entities and self.documents[u.doc_id]['disclosed_at']<=spec.as_of and u.id not in exclude_unit_ids]
         if self.stage=='section_search':
             eligible=[u for u in eligible if any(x in u.text.splitlines()[0].casefold() for x in ('income','operations','financial','statement'))]
         def score(u):
