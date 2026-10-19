@@ -106,3 +106,4 @@ Task 10: Observation: run manifest records git_dirty=true because git status is 
 Task 10: Observation: GE Aerospace FY2023 (p036) answered with superseded 67,954 by coverage_rule_v1 and always_maximum_v1 — BM25 never packed the restated 35,348; dense/hybrid/rerank arms abstained. Documented as the main open failure, not tuned.
 Task 10: Published numbers live in examples/evidence_v2/claims.json (35 claims) and are validated against the exported report by test_published_pilot_claims_match_exported_report.
 Final: minor (deferred): runner records git commit/dirty at run end rather than start.
+Task 10: complete (commits ee3c017..7451d96, tests: .venv/bin/python -m pytest -q → 184 passed in 4.01s)

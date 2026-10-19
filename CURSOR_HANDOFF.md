@@ -46,13 +46,20 @@ The eight synthetic cases yielded three supported answers and five correct abste
 - **Pilot:** 114 questions (76 answerable) from an independent inline-XBRL reference reader, with an annotation packet (0 human reviewers). The company-component split has 22 groups, 8 of them locked test (39 questions).
 - **Experiment manifest:** frozen and hash-checked (`data/release/v2/experiment_manifest.json`, `docs/v2/preregistration.md`). Primary comparison is `coverage_rule_v1` vs `always_maximum_v1` at 8,192, chosen on Release B development only. **The pilot has not been run.** 152 tests pass.
 
+- **Review 2 + Task 10 done.** A second fresh review of Tasks 8–9 found 1 Critical (v1 ancestry ignored by the locked test), 3 Important and 9 Minor; all material findings are fixed with regressions (`8f7507a`). Preregistration v2 was frozen (`098db2c…`) and pushed before any pilot run. No locked test survives v1 ancestry, so the pilot is development-only and descriptive.
+- **Pilot result:** `pilot_001`, 1,554 runs, 0 provider calls. The evidence rule matches always-maximum on every question (58/77 supported, 33/34 correct abstentions) with 39% fewer inspected tokens. Dense, hybrid and rerank do not beat BM25. GE FY2023 got a superseded answer (retrieval-bounded conflict check).
+- **Evidence package:** `docs/v2/{results,case_study,interview_walkthrough,reproduction}.md` and `examples/evidence_v2/` (claims validated by tests). 184 tests pass.
+- Note: `experiment_report.py` changed after the run (plot fix), so re-running needs a new freeze version; the executor will refuse the old one by design.
+
 ## Exact next action
 
-1. Fresh whole-branch review of `7693235..HEAD` (Tasks 8–9 are unreviewed).
-2. User decisions: approve the about 224 MB dense and reranker download (or keep those arms unavailable), and human review of the annotation packet if confirmatory labels are wanted.
-3. Task 10: run the frozen manifest exactly (`run_count` 912, executor only, 0 provider requests), then report with paired cluster intervals (descriptive only, 8 test groups). Do not tune on test outcomes.
+Project 2's planned Tasks 1–10 are complete. Candidate next steps, each a user decision:
+1. Independent held-out data: new SEC filings for companies outside v1 and Release B (needs a declared SEC User-Agent with real contact details).
+2. Human review of `data/release/v2/annotation/pilot_packet.csv`.
+3. A bounded post-gate conflict probe to address the GE failure, as a new protocol version.
+4. Publishing or sharing the case study; resume-line drafts are in `docs/v2/interview_walkthrough.md`.
 
-Do not redo Tasks 1–9 or create another repository. Inspect git status and the ledger first.
+Task 10 itself has not had an independent review.
 
 ## Run and inspect
 
