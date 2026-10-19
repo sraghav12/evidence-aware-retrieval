@@ -42,11 +42,17 @@ The eight synthetic cases yielded three supported answers and five correct abste
 - **Task 8 done (`4448255`, docs after).** Stdlib inline-XBRL table extraction with lineage (`pipelines/evidence_aware/html_source.py`), `scripts/prepare_evidence_v2.py`, `configs/evidence_v2_real_dev.json`, 20 public questions over 10 companies, separate AI-authored unreviewed references, source manifest and a 150-filing extraction audit. Run `results/evidence_v2/real_dev_001` (ignored): 12/16 answerable supported and reference-verified, 4/4 correct abstentions, 0 errors, 0 provider calls. Failures and limitations: `docs/v2/extraction_audit.md`.
 - Verification: 122 tests pass; 24/24 v1 hashes unchanged; report regenerates byte-identically; source checkout status unchanged.
 
+- **Task 9 done (`05fe8e7`).** Scheduling arms (`always_cheap_v1`, `coverage_rule_v1`, `complexity_rule_v1`, `always_maximum_v1`) share one gate and audit. RRF hybrid and rerank adapters exist; dense, hybrid and rerank arms are unavailable because no weights were downloaded (`docs/v2/resource_probe.md` pins candidate revisions and sizes).
+- **Pilot:** 114 questions (76 answerable) from an independent inline-XBRL reference reader, with an annotation packet (0 human reviewers). The company-component split has 22 groups, 8 of them locked test (39 questions).
+- **Experiment manifest:** frozen and hash-checked (`data/release/v2/experiment_manifest.json`, `docs/v2/preregistration.md`). Primary comparison is `coverage_rule_v1` vs `always_maximum_v1` at 8,192, chosen on Release B development only. **The pilot has not been run.** 152 tests pass.
+
 ## Exact next action
 
-**Task 9**: strong controls (always-cheap, always-maximum, complexity rule; dense/RRF/reranker only after a resource probe, missing backends marked unavailable), locked-split and experiment manifests, frozen arms. Live provider runs stay disabled at `max_usd=0`. Task 8 itself has not had an independent review; include `7693235..HEAD` in the next whole-branch review. The unresolved three-company ranking miss (rd06) is the first thing the stronger retrieval arms should be tested against.
+1. Fresh whole-branch review of `7693235..HEAD` (Tasks 8–9 are unreviewed).
+2. User decisions: approve the about 224 MB dense and reranker download (or keep those arms unavailable), and human review of the annotation packet if confirmatory labels are wanted.
+3. Task 10: run the frozen manifest exactly (`run_count` 912, executor only, 0 provider requests), then report with paired cluster intervals (descriptive only, 8 test groups). Do not tune on test outcomes.
 
-Do not redo Tasks 1–8 or create another repository. Inspect git status and the ledger first.
+Do not redo Tasks 1–9 or create another repository. Inspect git status and the ledger first.
 
 ## Run and inspect
 

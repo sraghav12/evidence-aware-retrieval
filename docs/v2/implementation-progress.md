@@ -70,3 +70,4 @@ Task 9: Ruling: primary comparison coverage_rule_v1 vs always_maximum_v1 at ctx8
 Task 9: Ruling: the reference fact reader strips inner markup in dei focus facts (found on Deere) — regression test_reference_reader_focus_allows_inner_markup RED→GREEN — cost: none.
 Task 9: Observation: on development, always_maximum_v1 loses rd16 because extra retrieval exposes a 34,124.1 vs 34,124 presentation difference that the exact-value rule treats as a conflict; complexity_rule_v1 loses the two-operand sum rd05.
 Task 9: Mutation check: 19 targeted mutations of policy, engine dispatch, RRF, unavailable arms, manifest matching, answerer identity, split propagation, grammar isolation, pilot conflicts/cutoffs and the reference reader are all caught; one equivalent mutation (redundant len(locked)>=2 guard) noted.
+Task 9: complete (commits 6fdaa9d..05fe8e7, tests: .venv/bin/python -m pytest -q → 152 passed in 1.89s)
