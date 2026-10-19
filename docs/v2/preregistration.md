@@ -95,3 +95,12 @@ The 4,096 budget gave identical results.
 - **Independent test data.** A confirmatory study needs companies or filings outside the v1 and Release B ancestry. That means new SEC collection with a declared User-Agent and rate limits.
 - **Human review** of `data/release/v2/annotation/pilot_packet.csv`.
 - **Any model answerer:** it needs a pinned model revision, prompt hash and decoding, plus separately authorized spend. Live execution is disabled.
+
+## Addendum, October 18, 2026 (after the pilot run; the frozen text above is unchanged)
+
+The open gate "independent test data" was addressed by a separate protocol, version 3 ([preregistration_heldout.md](preregistration_heldout.md)):
+- 16 companies outside all v1, Release B and pilot ancestry;
+- 48 newly collected SEC 10-Ks and 76 locked-test questions in 13 groups;
+- frozen and pushed before its run.
+
+It also added gate v3, a bounded conflict probe designed on this pilot's development data only. The pilot results above were produced with gate v2. Human review remains open.

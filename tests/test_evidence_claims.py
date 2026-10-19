@@ -52,6 +52,8 @@ def test_published_pilot_claims_match_exported_report():
     root=Path(__file__).resolve().parents[1]/'examples/evidence_v2'
     reports={r['run_id']:r for r in (json.loads((root/f).read_text()) for f in ('pilot_001_report.json','heldout_001_report.json'))};claims=json.loads((root/'claims.json').read_text())
     validate_claims(claims,reports);report=reports['pilot_001']
+    pilot=[c for c in reports['pilot_001']['comparisons'] if c['name']=='primary']
+    assert pilot and all(c['discordant_questions']==0 and c['zero_discordance_upper95'] is not None for c in pilot)
     held=[c for c in reports['heldout_001']['comparisons'] if c['name'] in ('primary','secondary')]
     assert held and all(c['discordant_questions']==0 and c['inference_status']!='confirmatory' for c in held)
     with pytest.raises(ValueError,match='degenerate'):validate_claims([dict(kind='noninferiority',run_id='heldout_001',comparison='primary',margin=0.02,input_mode='raw_question')],reports)
