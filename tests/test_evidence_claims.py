@@ -74,3 +74,11 @@ def test_paired_summary_reports_discordant_questions_and_exact_bound():
     rows=[dict(arm=a,query_id=f'q{i}',repeat=0,component=f'c{i}',supported_correct=True) for i in range(60) for a in ('t','c')]
     s=paired_cluster_summary(rows,'component',11,treatment='t')
     assert s['discordant_questions']==0 and s['ci95']==[0.0,0.0] and abs(s['zero_discordance_upper95']-0.0487)<0.001
+
+
+def test_zero_discordance_bound_is_reported_per_cluster():
+    from evaluation.evidence_aware.report import paired_cluster_summary
+    rows=[dict(arm=a,query_id=f'q{i}',repeat=0,component=f'c{i%12}',supported_correct=True) for i in range(60) for a in ('t','c')]
+    s=paired_cluster_summary(rows,'component',11,treatment='t')
+    assert s['independent_clusters']==12 and abs(s['zero_discordance_upper95_by_cluster']-0.2209)<0.001
+    assert s['zero_discordance_bound_note']=='primary bound is per independent cluster; the per-question bound assumes independent questions'

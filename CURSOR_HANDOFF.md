@@ -55,7 +55,7 @@ The eight synthetic cases yielded three supported answers and five correct abste
   - **Gate v3:** a bounded post-gate conflict probe plus displayed-precision compatibility, frozen from development data. It fixed the GE superseded answer.
   - **Held-out collection:** 16 companies outside all development ancestry, 48 10-Ks collected from SEC with the User-Agent from the LLM_Research `.env` (only that key read, never stored).
   - **Protocol v3:** frozen and pushed before running (`3bd1da2`).
-  - **`heldout_001` result:** the evidence rule matches always-maximum on all 76 questions with 52.5% fewer inspected tokens. Gate v3 cost nothing. The paired interval is degenerate (0 discordant questions, exact bound 4.9%), so no noninferiority claim.
+  - **`heldout_001` result:** the evidence rule matches always-maximum on all 76 questions with 52.5% fewer inspected tokens. Gate v3 cost nothing. The paired interval is degenerate (0 discordant questions; cluster-level 95% bound 22%), so no noninferiority claim. A later review found the v3 probe's packed-filing skip; gate v4 fixes it (tested, not run on locked data).
 - Verification: 200 tests pass; 71 published claims are validated against the exported reports.
 
 ## Exact next action

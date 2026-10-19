@@ -61,3 +61,14 @@ def test_collect_reuses_cache_and_retries_throttling(tmp_path):
 def test_unknown_ticker_is_recorded_not_guessed(tmp_path):
     m=collect(client(FakeNet()),['NOPE'],tmp_path,annual=1)
     assert m['filings']==[] and m['missing']==[{'ticker':'NOPE','reason':'ticker_not_in_sec_list'}]
+
+
+def test_frozen_mode_fetches_recorded_accessions_and_verifies_hashes(tmp_path):
+    from evaluation.evidence_aware.sec_collect import collect_frozen,FrozenMismatch
+    first=collect(client(FakeNet()),['ZZZ'],tmp_path/'a',annual=2)
+    net=FakeNet();m=collect_frozen(client(net),first,tmp_path/'b')
+    assert [f['doc_id'] for f in m['filings']]==['ZZZ_10K_2024','ZZZ_10K_2023'] and all(f['status']=='downloaded_verified' for f in m['filings'])
+    assert not any('submissions' in u or 'company_tickers' in u for u,_ in net.calls)
+    again=FakeNet();assert all(f['status']=='verified' for f in collect_frozen(client(again),first,tmp_path/'b')['filings']) and again.calls==[]
+    (tmp_path/'b/ZZZ_10K_2024.html').write_bytes(b'changed')
+    with pytest.raises(FrozenMismatch):collect_frozen(client(FakeNet()),first,tmp_path/'b')

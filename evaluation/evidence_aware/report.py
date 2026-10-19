@@ -89,7 +89,7 @@ def paired_cluster_summary(rows,cluster_key,seed,metric='supported_correct',trea
     boot.sort();values=[x for c in clusters for x in clustered[c]]
     discordant=sum(any(v!=0 for v in vs) for vs in per_query.values())
     # With no discordant question the bootstrap collapses to [0, 0]; the exact one-sided 95% bound on the discordance rate is 1-0.05**(1/n).
-    return dict(arms=arms,questions=len(per_query),discordant_questions=discordant,zero_discordance_upper95=1-0.05**(1/len(per_query)) if not discordant else None,independent_clusters=len(clusters),paired_difference=sum(values)/len(values),ci95=[boot[50],boot[1949]],inference_status='descriptive_only' if len(clusters)<12 else 'pilot_interval_not_confirmatory',resampling_unit=cluster_key,seed=seed,metric=metric,treatment=arms[1],comparator=arms[0])
+    return dict(arms=arms,questions=len(per_query),discordant_questions=discordant,zero_discordance_upper95=1-0.05**(1/len(per_query)) if not discordant else None,zero_discordance_upper95_by_cluster=1-0.05**(1/len(clusters)) if not discordant else None,zero_discordance_bound_note='primary bound is per independent cluster; the per-question bound assumes independent questions',independent_clusters=len(clusters),paired_difference=sum(values)/len(values),ci95=[boot[50],boot[1949]],inference_status='descriptive_only' if len(clusters)<12 else 'pilot_interval_not_confirmatory',resampling_unit=cluster_key,seed=seed,metric=metric,treatment=arms[1],comparator=arms[0])
 
 
 def build_report(result_dir,reference_path):

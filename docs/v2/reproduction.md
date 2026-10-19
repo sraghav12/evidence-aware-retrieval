@@ -71,11 +71,13 @@ Collection needs a real SEC User-Agent ("Name email") in the environment. It is 
 
 ```bash
 export SEC_EDGAR_USER_AGENT="Your Name you@example.org"
-.venv/bin/python -S scripts/collect_heldout_v2.py --config configs/evidence_v2_heldout.json
+.venv/bin/python -S scripts/collect_heldout_v2.py --config configs/evidence_v2_heldout.json   # fetches the recorded accessions and verifies every SHA-256
 .venv/bin/python -S scripts/prepare_evidence_v2.py --config configs/evidence_v2_heldout.json --source-raw-dir data/raw/heldout_v2 --filings-manifest data/release/v2/heldout_filings.json
 .venv/bin/python -S scripts/draft_heldout_v2.py --config configs/evidence_v2_heldout.json
 .venv/bin/python -S scripts/freeze_experiment_v2.py --config configs/evidence_v2_heldout.json --references data/release/v2/references/heldout.jsonl --split-manifest data/release/v2/heldout_split_manifest.json --output data/release/v2/heldout_experiment_manifest.json --dry-run
 .venv/bin/python scripts/run_experiment_v2.py --config configs/evidence_v2_heldout.json --manifest data/release/v2/heldout_experiment_manifest.json --references data/release/v2/references/heldout.jsonl --output results/evidence_v2/<new_run>
 ```
 
-Each collected filing's raw SHA-256 is recorded at download and re-checked during preparation. SEC may later amend or remove filings; the hashes show whether a re-collection matches. Re-running the experiment requires a fresh freeze, because the report code changed after `heldout_001` was run.
+By default the collector reproduces the recorded collection: it fetches exactly the accessions in `data/release/v2/heldout_filings.json` and refuses any file whose SHA-256 differs. `--select-latest NEW_MANIFEST` makes a fresh selection of the latest filings into a new file and never overwrites the tracked manifest.
+
+To reproduce `heldout_001` itself, check out commit `3bd1da2`, where the executor accepts the frozen manifest. Running on later code is a new experiment and needs a new freeze version.

@@ -10,9 +10,9 @@ In a preregistered, hash-frozen pilot (111 development questions, 25 companies, 
 - Pinned dense, hybrid and reranked retrieval did not beat BM25 on these table units.
 - One superseded answer (GE Aerospace FY2023) showed that conflict checks are only as good as retrieval. A bounded post-gate conflict probe (gate v3), designed on development data, fixed it without losing answers.
 
-**Held-out replication:** a publicly preregistered locked test on 16 newly collected companies (48 SEC 10-Ks, 76 questions, 13 independent groups). The evidence rule again matched always-maximum on every question (51/60 supported, 16/16 correct abstentions) with 52.5% fewer inspected retrieval tokens, and gate v3 cost no answers.
+**Held-out replication:** a publicly preregistered locked test on 16 newly collected companies (48 SEC 10-Ks, 76 questions, 13 independent groups). The evidence rule again matched always-maximum on every question (51/60 supported, 16/16 correct abstentions) with 52.5% fewer inspected retrieval tokens, and gate v3 cost no answers. All 16 held-out abstentions occur in every arm (no fiscal calendar yet, or no extracted cells), so they do not separate the arms.
 
-Limits: AI-proposed unreviewed references; zero discordant questions make the paired interval degenerate (exact 95% bound 4.9% > 2-point margin), so no noninferiority, savings or broad generalization claim.
+Limits: AI-proposed unreviewed references; zero discordant questions make the paired interval degenerate. The 95% upper bound on the discordance rate is 22% across 12 independent clusters (4.9% only if the 60 questions were independent), far wider than a 2-point margin, so no noninferiority, savings or broad generalization claim.
 
 [Case study](docs/v2/case_study.md) · [results](docs/v2/results.md) · [5-minute walkthrough](docs/v2/interview_walkthrough.md) · [real-filing traces](examples/evidence_v2/walkthrough.md) · [preregistration](docs/v2/preregistration.md) · [held-out preregistration](docs/v2/preregistration_heldout.md) · [extraction audit](docs/v2/extraction_audit.md) · [reproduction](docs/v2/reproduction.md)
 

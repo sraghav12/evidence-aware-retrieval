@@ -60,3 +60,18 @@ def collect(client,tickers,out_dir,annual=3):
             data=path.read_bytes()
             filings.append(dict(f,doc_id=doc_id,ticker=ticker.upper(),company_name=entry['title'],cik=str(cik),source_url=url,raw_html_bytes=len(data),raw_sha256=hashlib.sha256(data).hexdigest(),status=status))
     return {'schema_version':2,'source':'SEC EDGAR submissions API and Archives','rate_limit':f'min {client.min_interval}s between requests','requests':client.requests,'filings':filings,'missing':missing}
+
+
+class FrozenMismatch(ValueError):pass
+
+
+def collect_frozen(client,manifest,out_dir):
+    """Reproduce a recorded collection: fetch exactly the recorded accessions (or reuse cached files) and require identical raw SHA-256."""
+    out=Path(out_dir);out.mkdir(parents=True,exist_ok=True);filings=[]
+    for f in manifest['filings']:
+        path=out/f'{f["doc_id"]}.html';status='verified'
+        if not path.is_file():path.write_bytes(client.get(f['source_url']));status='downloaded_verified'
+        data=path.read_bytes()
+        if hashlib.sha256(data).hexdigest()!=f['raw_sha256'] or len(data)!=f['raw_html_bytes']:raise FrozenMismatch(f'{f["doc_id"]}: raw HTML differs from the recorded collection')
+        filings.append(dict(f,status='verified' if status=='verified' else status))
+    return dict(manifest,filings=filings,requests=client.requests)

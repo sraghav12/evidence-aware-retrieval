@@ -24,17 +24,26 @@ def pack(spec,units,collected,token_limit,max_sections):
     return packed_units,omitted,count
 
 
-GATES={'audit_coverage_v2','audit_coverage_v3'}
+GATES={'audit_coverage_v2','audit_coverage_v3','audit_coverage_v4'}
 
 
 def conflict_probe(spec,coverage,packed,documents,config,budget):
     """Gate v3: one bounded structured look at later eligible filings of each cited entity for the same quantities.
     Restatements surface as comparative columns in later 10-Ks, which relevance ranking may never retrieve."""
-    cited=[s for s in packed if s.id in coverage.audited_span_ids];packed_docs={s.doc_id for s in packed}
     cap=min(config.get('probe_tokens',2048),budget.retrieval_tokens_remaining,budget.verification_tokens_remaining)
-    later=sorted({d for e in {s.entity_id for s in cited} for d,doc in documents.items() if doc['entity_id']==e and doc['disclosed_at']<=spec.as_of
-                  and doc['disclosed_at']>min(s.disclosed_at for s in cited if s.entity_id==e) and d not in packed_docs},key=lambda d:(documents[d]['disclosed_at'],d))
-    record={'status':'no_later_filings' if not later else 'ran','probed_doc_ids':[],'inspected_tokens':0,'budget_tokens':cap,'spans':[],'conflicts':[]}
+    if config.get('gate')=='audit_coverage_v4':
+        # Gate v4: every eligible filing of each cited entity that has not already supplied a same-quantity cell, earlier or later.
+        same=[s for s in packed if any(same_quantity(r,s) for r in spec.requirements)];supplied={s.doc_id for s in same}
+        entity_docs={d for d,doc in documents.items() if doc['entity_id'] in {s.entity_id for s in same} and doc['disclosed_at']<=spec.as_of}
+        later=sorted(entity_docs-supplied,key=lambda d:(documents[d]['disclosed_at'],d))
+        empty='other_filings_already_packed' if len(entity_docs)>1 else 'no_other_filings'
+    else:
+        # Gate v3 as frozen in protocol v3: later filings only, skipping any filing that contributed any packed cell.
+        cited=[s for s in packed if s.id in coverage.audited_span_ids];packed_docs={s.doc_id for s in packed}
+        later=sorted({d for e in {s.entity_id for s in cited} for d,doc in documents.items() if doc['entity_id']==e and doc['disclosed_at']<=spec.as_of
+                      and doc['disclosed_at']>min(s.disclosed_at for s in cited if s.entity_id==e) and d not in packed_docs},key=lambda d:(documents[d]['disclosed_at'],d))
+        empty='no_later_filings'
+    record={'status':empty if not later else 'ran','probed_doc_ids':[],'inspected_tokens':0,'budget_tokens':cap,'spans':[],'conflicts':[]}
     if not later:return record,[]
     if cap<=0:record['status']='skipped_budget';return record,[]
     found=[]
@@ -94,7 +103,7 @@ def route(spec,backends,documents,config,answerer,budget,trace):
         if count>budget.verification_tokens_remaining:
             trace.answer=abstain('budget_exhausted');trace.decisions.append({'action':'abstain','reason_codes':['verification_budget_exhausted']});return
         budget.verification_tokens_remaining-=count
-        precise=config.get('gate')=='audit_coverage_v3'
+        precise={'audit_coverage_v3':'group','audit_coverage_v4':'pairwise'}.get(config.get('gate'),False)
         before=perf_counter();coverage=audit_coverage(spec,packed,documents,precision_aware=precise)
         trace.usage.append(asdict(UsageEvent(f'{spec.id}:{action}:audit',spec.id,'verification',input_tokens=count,elapsed_ms=(perf_counter()-before)*1000)))
         trace.coverage_snapshots.append(asdict(coverage));trace.evidence=[asdict(s) for s in packed]
@@ -106,7 +115,7 @@ def route(spec,backends,documents,config,answerer,budget,trace):
             budget.retrieval_tokens_remaining-=probe['inspected_tokens'];budget.verification_tokens_remaining-=probe['inspected_tokens']
             if probe['status'] in ('ran','ran_truncated'):
                 trace.usage.append(asdict(UsageEvent(f'{spec.id}:conflict_probe',spec.id,'conflict_probe',input_tokens=probe['inspected_tokens'],elapsed_ms=(perf_counter()-before)*1000)))
-                recheck=audit_coverage(spec,packed+[s for s in extra if s.id not in {p.id for p in packed}],documents,precision_aware=True)
+                recheck=audit_coverage(spec,packed+[s for s in extra if s.id not in {p.id for p in packed}],documents,precision_aware=precise)
                 probe['conflicts']=list(recheck.conflicts)
                 if recheck.conflicts:decision=type(decision)('abstain',('conflicting_evidence',),recheck.missing_requirement_ids)
             trace.conflict_probe=probe

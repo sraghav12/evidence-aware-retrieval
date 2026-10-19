@@ -15,7 +15,7 @@ STAGE_DEFAULTS={'stage_context_tokens':8192,'cheap_context_tokens':8192,'retriev
 POOLS={'cheap_pool':20,'escalated_pool':60}
 SCRIPTS=('scripts/run_evidence_v2.py','scripts/report_evidence_v2.py','scripts/prepare_evidence_v2.py','scripts/draft_pilot_v2.py','scripts/freeze_experiment_v2.py','scripts/run_experiment_v2.py','requirements-evidence-v2-compat.lock')
 STRATEGY={'bm25':(),'dense':('dense',),'hybrid_rrf':('dense',),'hybrid_rrf_rerank':('dense','reranker')}
-GATES={'audit_coverage_v2','audit_coverage_v3'}
+GATES={'audit_coverage_v2','audit_coverage_v3','audit_coverage_v4'}
 PROBE_DEFAULTS={'probe_units_per_filing':3,'probe_tokens':2048}
 MATCHED=('max_context_tokens','max_output_tokens','answer_audit','executor','answerer','model_revision','prompt_hash','decoding','units_hash','stage_limits')
 

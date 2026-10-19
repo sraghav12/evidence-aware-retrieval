@@ -27,8 +27,10 @@ def quantum(span,requirement):
 
 
 def compatible(spans,requirement,precision_aware):
+    """precision_aware: False (exact), 'group'/True (gate v3: coarsest group precision) or 'pairwise' (gate v4: every pair within half its coarser step)."""
     values=[(converted(s,requirement),quantum(s,requirement)) for s in spans]
     if not precision_aware:return len({v for v,_ in values})<=1
+    if precision_aware=='pairwise':return all(abs(a-b)<=max(qa,qb)/2 for i,(a,qa) in enumerate(values) for b,qb in values[i+1:])
     coarse=max((q for _,q in values),default=Decimal(1))
     return len({(v/coarse).quantize(Decimal(1)) for v,_ in values})<=1
 

@@ -347,7 +347,9 @@
       "seed": 11,
       "split": "test",
       "treatment": "coverage_rule_v1@ctx8192",
-      "zero_discordance_upper95": 0.04870291331009746
+      "zero_discordance_bound_note": "primary bound is per independent cluster; the per-question bound assumes independent questions",
+      "zero_discordance_upper95": 0.04870291331009746,
+      "zero_discordance_upper95_by_cluster": 0.22092219194555585
     },
     {
       "arms": [
@@ -370,7 +372,9 @@
       "seed": 11,
       "split": "test",
       "treatment": "coverage_rule_v1@ctx8192",
-      "zero_discordance_upper95": 0.17074972298248092
+      "zero_discordance_bound_note": "primary bound is per independent cluster; the per-question bound assumes independent questions",
+      "zero_discordance_upper95": 0.17074972298248092,
+      "zero_discordance_upper95_by_cluster": 0.20581666518655073
     },
     {
       "arms": [
@@ -393,7 +397,9 @@
       "seed": 11,
       "split": "arm_sensitive",
       "treatment": "coverage_rule_v1@ctx8192",
-      "zero_discordance_upper95": 0.0570479523604428
+      "zero_discordance_bound_note": "primary bound is per independent cluster; the per-question bound assumes independent questions",
+      "zero_discordance_upper95": 0.0570479523604428,
+      "zero_discordance_upper95_by_cluster": 0.2588655508930523
     },
     {
       "arms": [
@@ -416,7 +422,9 @@
       "seed": 11,
       "split": "test",
       "treatment": "coverage_rule_v1@ctx8192",
-      "zero_discordance_upper95": 0.04870291331009746
+      "zero_discordance_bound_note": "primary bound is per independent cluster; the per-question bound assumes independent questions",
+      "zero_discordance_upper95": 0.04870291331009746,
+      "zero_discordance_upper95_by_cluster": 0.22092219194555585
     },
     {
       "arms": [
@@ -439,7 +447,9 @@
       "seed": 11,
       "split": "test",
       "treatment": "coverage_rule_v1@ctx8192",
-      "zero_discordance_upper95": 0.17074972298248092
+      "zero_discordance_bound_note": "primary bound is per independent cluster; the per-question bound assumes independent questions",
+      "zero_discordance_upper95": 0.17074972298248092,
+      "zero_discordance_upper95_by_cluster": 0.20581666518655073
     },
     {
       "arms": [
@@ -462,7 +472,9 @@
       "seed": 11,
       "split": "arm_sensitive",
       "treatment": "coverage_rule_v1@ctx8192",
-      "zero_discordance_upper95": 0.0570479523604428
+      "zero_discordance_bound_note": "primary bound is per independent cluster; the per-question bound assumes independent questions",
+      "zero_discordance_upper95": 0.0570479523604428,
+      "zero_discordance_upper95_by_cluster": 0.2588655508930523
     },
     {
       "arms": [
@@ -485,7 +497,9 @@
       "seed": 11,
       "split": "test",
       "treatment": "always_cheap_v1@ctx8192",
-      "zero_discordance_upper95": null
+      "zero_discordance_bound_note": "primary bound is per independent cluster; the per-question bound assumes independent questions",
+      "zero_discordance_upper95": null,
+      "zero_discordance_upper95_by_cluster": null
     },
     {
       "arms": [
@@ -508,7 +522,9 @@
       "seed": 11,
       "split": "test",
       "treatment": "always_cheap_v1@ctx8192",
-      "zero_discordance_upper95": 0.17074972298248092
+      "zero_discordance_bound_note": "primary bound is per independent cluster; the per-question bound assumes independent questions",
+      "zero_discordance_upper95": 0.17074972298248092,
+      "zero_discordance_upper95_by_cluster": 0.20581666518655073
     },
     {
       "arms": [
@@ -531,7 +547,9 @@
       "seed": 11,
       "split": "arm_sensitive",
       "treatment": "always_cheap_v1@ctx8192",
-      "zero_discordance_upper95": null
+      "zero_discordance_bound_note": "primary bound is per independent cluster; the per-question bound assumes independent questions",
+      "zero_discordance_upper95": null,
+      "zero_discordance_upper95_by_cluster": null
     },
     {
       "arms": [
@@ -554,7 +572,9 @@
       "seed": 11,
       "split": "test",
       "treatment": "complexity_rule_v1@ctx8192",
-      "zero_discordance_upper95": null
+      "zero_discordance_bound_note": "primary bound is per independent cluster; the per-question bound assumes independent questions",
+      "zero_discordance_upper95": null,
+      "zero_discordance_upper95_by_cluster": null
     },
     {
       "arms": [
@@ -577,7 +597,9 @@
       "seed": 11,
       "split": "test",
       "treatment": "complexity_rule_v1@ctx8192",
-      "zero_discordance_upper95": 0.17074972298248092
+      "zero_discordance_bound_note": "primary bound is per independent cluster; the per-question bound assumes independent questions",
+      "zero_discordance_upper95": 0.17074972298248092,
+      "zero_discordance_upper95_by_cluster": 0.20581666518655073
     },
     {
       "arms": [
@@ -600,7 +622,9 @@
       "seed": 11,
       "split": "arm_sensitive",
       "treatment": "complexity_rule_v1@ctx8192",
-      "zero_discordance_upper95": null
+      "zero_discordance_bound_note": "primary bound is per independent cluster; the per-question bound assumes independent questions",
+      "zero_discordance_upper95": null,
+      "zero_discordance_upper95_by_cluster": null
     },
     {
       "arms": [
@@ -623,7 +647,9 @@
       "seed": 11,
       "split": "test",
       "treatment": "coverage_rule_v1_gate_v2@ctx8192",
-      "zero_discordance_upper95": 0.04870291331009746
+      "zero_discordance_bound_note": "primary bound is per independent cluster; the per-question bound assumes independent questions",
+      "zero_discordance_upper95": 0.04870291331009746,
+      "zero_discordance_upper95_by_cluster": 0.22092219194555585
     },
     {
       "arms": [
@@ -646,7 +672,9 @@
       "seed": 11,
       "split": "test",
       "treatment": "coverage_rule_v1_gate_v2@ctx8192",
-      "zero_discordance_upper95": 0.17074972298248092
+      "zero_discordance_bound_note": "primary bound is per independent cluster; the per-question bound assumes independent questions",
+      "zero_discordance_upper95": 0.17074972298248092,
+      "zero_discordance_upper95_by_cluster": 0.20581666518655073
     },
     {
       "arms": [
@@ -669,7 +697,9 @@
       "seed": 11,
       "split": "arm_sensitive",
       "treatment": "coverage_rule_v1_gate_v2@ctx8192",
-      "zero_discordance_upper95": 0.0570479523604428
+      "zero_discordance_bound_note": "primary bound is per independent cluster; the per-question bound assumes independent questions",
+      "zero_discordance_upper95": 0.0570479523604428,
+      "zero_discordance_upper95_by_cluster": 0.2588655508930523
     },
     {
       "arms": [
@@ -692,7 +722,9 @@
       "seed": 11,
       "split": "test",
       "treatment": "hybrid_rrf@ctx8192",
-      "zero_discordance_upper95": 0.04870291331009746
+      "zero_discordance_bound_note": "primary bound is per independent cluster; the per-question bound assumes independent questions",
+      "zero_discordance_upper95": 0.04870291331009746,
+      "zero_discordance_upper95_by_cluster": 0.22092219194555585
     },
     {
       "arms": [
@@ -715,7 +747,9 @@
       "seed": 11,
       "split": "test",
       "treatment": "hybrid_rrf@ctx8192",
-      "zero_discordance_upper95": 0.17074972298248092
+      "zero_discordance_bound_note": "primary bound is per independent cluster; the per-question bound assumes independent questions",
+      "zero_discordance_upper95": 0.17074972298248092,
+      "zero_discordance_upper95_by_cluster": 0.20581666518655073
     },
     {
       "arms": [
@@ -738,7 +772,9 @@
       "seed": 11,
       "split": "arm_sensitive",
       "treatment": "hybrid_rrf@ctx8192",
-      "zero_discordance_upper95": 0.0570479523604428
+      "zero_discordance_bound_note": "primary bound is per independent cluster; the per-question bound assumes independent questions",
+      "zero_discordance_upper95": 0.0570479523604428,
+      "zero_discordance_upper95_by_cluster": 0.2588655508930523
     }
   ],
   "costs": {
@@ -779,7 +815,7 @@
     "ranker_revisions": {
       "dense": "BAAI/bge-small-en-v1.5@5c38ec7c405ec4b44b94cc5a9bb96e735b38267a"
     },
-    "report_note": "report regenerated from saved traces after adding discordant-question fields to the paired summary; run outputs unchanged",
+    "report_note": "report regenerated from saved traces after adding discordant-question, per-cluster bound and probe fields; all previously exported metrics unchanged",
     "run_count": 456,
     "timing_kind": "fresh_local",
     "traces_sha256": "cf334352e35548b71e1d7f1afc52340884887ada1abdf6940b81f374f85dd2a2"
