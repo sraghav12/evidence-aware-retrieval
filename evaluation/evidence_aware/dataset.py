@@ -60,6 +60,23 @@ def build_pilot_manifest(rows,seed,min_locked_groups=1):
     validate_manifest(m);return m
 
 
+def build_heldout_manifest(rows,development_rows):
+    """Every held-out row is locked test; any entity shared with development ancestry is rejected, never re-split."""
+    dev={e for r in development_rows for e in r['entity_ids']}
+    overlap=sorted({e for r in rows for e in r['entity_ids']}&dev)
+    if overlap:raise ValueError(f'held-out entities overlap development ancestry: {overlap}')
+    rows=[dict(r) for r in rows];groups=components(rows)
+    for g in groups:
+        component=digest(sorted(r['query_id'] for r in g['rows']))[:12]
+        for r in g['rows']:r.update(split='test',component=component)
+    templates={}
+    for r in rows:templates[r['template']]=templates.get(r['template'],0)+1
+    n=len(groups)
+    m={'schema_version':2,'rows':sorted(rows,key=lambda r:r['query_id']),'effective_groups':{'total':n,'development':0,'test':n,'informative_eligible':n},'grammar_overlap':templates,
+       'development_entities_checked':len(dev),'locked_test':'feasible' if n>=2 else 'infeasible','inference_status':'descriptive_only' if n<12 else 'pilot_interval_not_confirmatory'}
+    validate_manifest(m);return m
+
+
 def validate_manifest(manifest):
     seen={};ids=set()
     for r in manifest['rows']:

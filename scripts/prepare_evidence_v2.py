@@ -26,9 +26,11 @@ def write_jsonl(path,rows):
 
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--config',required=True);p.add_argument('--source-raw-dir',required=True);p.add_argument('--audit-all',action='store_true');a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--config',required=True);p.add_argument('--source-raw-dir',required=True);p.add_argument('--audit-all',action='store_true');p.add_argument('--filings-manifest',help='collected held-out filings (raw SHA-256 verified) instead of frozen v1 metadata');a=p.parse_args()
     config=json.loads(Path(a.config).read_text());selection=config['source_selection']
-    filings=v1_filings(a.source_raw_dir)
+    if a.filings_manifest:
+        filings=[dict(f,v1_text_sha256=None) for f in json.loads(Path(a.filings_manifest).read_text())['filings']]
+    else:filings=v1_filings(a.source_raw_dir)
     if a.audit_all:
         out=prepare_sources(a.source_raw_dir,filings);m=out['manifest']
         audit={'scope':'all 150 frozen v1 filings; extraction counts only','extractor_version':m['extractor_version'],'status_counts':m['status_counts'],'revenue_spans':m['revenue_spans'],'rejected':m['rejected'],

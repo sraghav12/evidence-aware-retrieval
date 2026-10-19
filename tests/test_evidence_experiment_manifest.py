@@ -148,3 +148,13 @@ def test_gate_ablation_arm_differs_only_by_gate():
     bad=json.loads(json.dumps(m));bad.pop('manifest_sha256');next(x for x in bad['arms'] if x['name']=='always_cheap_v1')['gate']='audit_coverage_v2'
     with pytest.raises(ValueError,match='gate'):validate_experiment(bad)
     with pytest.raises(ValueError):build_experiment_manifest(dict(V3,secondary=[{'name':'x','treatment':'coverage_rule_v1','comparator':'nope','budget':'ctx8192'}]),documents(),QUESTIONS,available_rankers={})
+
+
+def test_heldout_manifest_is_all_locked_test_and_disjoint_from_development():
+    from evaluation.evidence_aware.dataset import build_heldout_manifest
+    dev=[row('rd1',['cik:1'],development_only=True),row('v1:q1',['cik:2'],development_only=True)]
+    held=[row(f'h{i}',[f'cik:{10+i}']) for i in range(12)]+[row('hs',['cik:10','cik:11'],'sum')]
+    m=build_heldout_manifest(held,dev)
+    assert {r['split'] for r in m['rows']}=={'test'} and m['effective_groups']['test']==11 and m['inference_status']=='descriptive_only'
+    assert build_heldout_manifest([row(f'h{i}',[f'cik:{10+i}']) for i in range(12)],dev)['inference_status']=='pilot_interval_not_confirmatory'
+    with pytest.raises(ValueError,match='overlap'):build_heldout_manifest(held+[row('bad',['cik:2'])],dev)

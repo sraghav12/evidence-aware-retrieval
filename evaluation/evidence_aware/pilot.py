@@ -110,7 +110,10 @@ def draft_pilot(filings,spec):
             add('growth',f'What was {n} FY{YEAR} revenue growth over FY{YEAR-1}?',shift(cur,45),[t],YEAR,'growth')
         else:excluded.append({'ticker':t,'template':'extract','fiscal_year':YEAR,'reason':'no_calendar'})
         if late and cur:add('late_disclosure',f'What was {n} FY{YEAR+1} revenue?',shift(late,-15),[t],YEAR+1,'extract')
-        if late:
+        if late and spec.get('late_cutoff'):
+            # Every company is asked a prior year after its latest filing, so the conflict probe is exercised without selecting on conflicts.
+            add('late_cutoff',f'What was {n} FY{YEAR-1} revenue?',shift(late,45),[t],YEAR-1,'extract')
+        elif late:
             for fy in (YEAR-2,YEAR-1):
                 if corpus.value(t,fy,shift(late,45))[0]=='restatement_conflict':add('restatement',f'What was {n} FY{fy} revenue?',shift(late,45),[t],fy,'extract')
     for t in spec['paraphrase']:

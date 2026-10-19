@@ -21,6 +21,17 @@ def development_rows(aliases):
     return development_lineage(release_b,aliases,[{'id':q['id'],'evidence_docs':q['evidence_docs']} for q in v1],ciks)
 
 
+def write_packet(packet,d):
+    """Human annotation sheet: proposals plus raw facts, blank reviewer columns."""
+    packet.parent.mkdir(parents=True,exist_ok=True);questions={q['id']:q for q in d['questions']}
+    with open(packet,'w',newline='',encoding='utf-8') as f:
+        w=csv.writer(f);w.writerow(['query_id','split','question','as_of','proposed_answerable','proposed_value','unit','reference_status','second_review_required','source_facts','reviewer_id','verdict','corrected_value','notes'])
+        for r in d['references']:
+            q=questions[r['query_id']];second=not r['answerable'] or r['reference_status']!='ok' or int(r['query_id'][1:])%4==0
+            facts='; '.join(f"{s['doc_id']} {s['accession']} {s['period_end']} {s['concept']}={s['value']} (scale {s['scale']}, {s['fact_id']})" for s in r['source_facts'])
+            w.writerow([r['query_id'],r['split'],q['question'],q['as_of'],r['answerable'],json.dumps(r['value']) if isinstance(r['value'],list) else r['value'] or '',r['unit'],r['reference_status'],second,facts,'','','',''])
+
+
 def main():
     p=argparse.ArgumentParser();p.add_argument('--config',required=True);p.add_argument('--source-raw-dir',required=True);a=p.parse_args()
     config=json.loads(Path(a.config).read_text());spec=config['pilot_spec']
@@ -41,14 +52,7 @@ def main():
              'human_reviewers':0,'review_status':'ai_proposed_unreviewed'}
     manifest.update(pilot_summary=summary)
     (OUT/'pilot_split_manifest.json').write_text(json.dumps(manifest,indent=2,sort_keys=True)+'\n')
-    packet=OUT/'annotation/pilot_packet.csv';packet.parent.mkdir(parents=True,exist_ok=True)
-    questions={q['id']:q for q in d['questions']}
-    with open(packet,'w',newline='',encoding='utf-8') as f:
-        w=csv.writer(f);w.writerow(['query_id','split','question','as_of','proposed_answerable','proposed_value','unit','reference_status','second_review_required','source_facts','reviewer_id','verdict','corrected_value','notes'])
-        for r in d['references']:
-            q=questions[r['query_id']];second=not r['answerable'] or r['reference_status']!='ok' or int(r['query_id'][1:])%4==0
-            facts='; '.join(f"{s['doc_id']} {s['accession']} {s['period_end']} {s['concept']}={s['value']} (scale {s['scale']}, {s['fact_id']})" for s in r['source_facts'])
-            w.writerow([r['query_id'],r['split'],q['question'],q['as_of'],r['answerable'],json.dumps(r['value']) if isinstance(r['value'],list) else r['value'] or '',r['unit'],r['reference_status'],second,facts,'','','',''])
+    write_packet(OUT/'annotation/pilot_packet.csv',d)
     print(json.dumps({k:summary[k] for k in ('questions','answerable','unanswerable','by_split','by_template')},sort_keys=True));print('groups',manifest['effective_groups'],manifest['locked_test'],manifest['inference_status'])
 
 

@@ -91,3 +91,12 @@ def test_precision_only_difference_is_not_restatement():
     from evaluation.evidence_aware.pilot import Corpus
     assert Corpus(FILINGS+lly).value('EEE',2023,'2026-04-01')[:2]==('ok',__import__('decimal').Decimal('34124.1'))
     assert Corpus(FILINGS).value('BBB',2023,'2026-04-01')[0]=='restatement_conflict'
+
+
+def test_late_cutoff_template_asks_every_company_after_its_latest_filing():
+    d=draft_pilot(FILINGS,dict(SPEC,late_cutoff=True))
+    late=[(q,r) for q,r in zip(d['questions'],d['references']) if r['template']=='late_cutoff']
+    assert {q['question'] for q,_ in late}=={'What was Alpha Co FY2023 revenue?','What was Beta Co FY2023 revenue?'} and not any(r['template']=='restatement' for r in d['references'])
+    by={q['question']:(q,r) for q,r in late}
+    q,r=by['What was Alpha Co FY2023 revenue?'];assert r['answerable'] and r['value']=='100' and q['as_of']=='2026-04-01'
+    q,r=by['What was Beta Co FY2023 revenue?'];assert not r['answerable'] and r['reference_status']=='restatement_conflict'
