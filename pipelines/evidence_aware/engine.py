@@ -57,7 +57,16 @@ def run_spec(spec,backends,documents,config,answerer=None):
                     result=abstain('provider_budget_disabled')
                 else:
                     # Contract deliberately excludes the private executor result.
-                    result=audit_answer(answerer.answer(spec,packed),spec,packed)
+                    from evaluation.evidence_aware.ledger import reserve_call
+                    event=UsageEvent(f'{spec.id}:generation',spec.id,'generation',provider='injected_answerer',model_revision=config.get('model_revision','unknown'),input_tokens=None,output_tokens=None,estimated_usd=reserve)
+                    reserve_call(event,budget)
+                    before=perf_counter()
+                    try:
+                        result=audit_answer(answerer.answer(spec,packed),spec,packed)
+                    except Exception as e:
+                        event.status=type(e).__name__;result=AnswerRecord('error',reason=event.status)
+                    event.elapsed_ms=(perf_counter()-before)*1000
+                    trace.usage.append(asdict(event))
             trace.answer=result;trace.decisions.append({'action':'answer' if result.status=='answered' else 'abstain','reason_codes':[result.reason or 'complete_evidence']});break
         if decision.action=='abstain':
             trace.answer=abstain(decision.reason_codes[0]);trace.decisions.append(asdict(decision));break
