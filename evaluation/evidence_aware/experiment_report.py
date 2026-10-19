@@ -19,7 +19,8 @@ def arm_metrics(rows,traces):
             'correct_abstentions':sum(r['correct_decision'] for r in unanswerable),'correct_abstention_rate':sum(r['correct_decision'] for r in unanswerable)/len(unanswerable) if unanswerable else None,
             'answered':sum(r['status']=='answered' for r in rows),'errors':sum(r['status']=='error' for r in rows),'unsupported_answers':sum(r['status']=='answered' and not r['supported_correct'] for r in rows),
             'retrieval_stages':sum(len(t['selected_units']) for t in traces),'inspected_retrieval_tokens':sum(e['input_tokens'] or 0 for e in usage if e['stage']=='retrieval'),
-            'verification_tokens':sum(e['input_tokens'] or 0 for e in usage if e['stage']=='verification'),
+            'verification_tokens':sum(e['input_tokens'] or 0 for e in usage if e['stage']=='verification'),'conflict_probe_tokens':sum(e['input_tokens'] or 0 for e in usage if e['stage']=='conflict_probe'),
+            'probe_status':{k:sum((t.get('conflict_probe') or {}).get('status')==k for t in traces) for k in ('ran','ran_truncated','skipped_budget','no_later_filings')},
             'latency':{'p50_ms':percentile([t['wall_ms'] for t in traces],.5),'p95_ms':percentile([t['wall_ms'] for t in traces],.95)}}
 
 
@@ -57,10 +58,10 @@ def build_experiment_report(result_dir,reference_path,manifest):
     def in_split(r,s):return s=='all' or (r['query_id'] in sensitive if s=='arm_sensitive' else r['split']==s)
     arms={a:{s:arm_metrics([r for r in rows if r['arm']==a and in_split(r,s)],[trace_by[(r['query_id'],r['arm'],r['repeat'])] for r in rows if r['arm']==a and in_split(r,s)]) for s in splits} for a in sorted({r['arm'] for r in rows})}
     p=manifest['primary'];treatment=f"{p['treatment']}@{p['budget']}";comparator=f"{p['comparator']}@{p['budget']}"
-    pairs=[('primary',treatment,comparator)]
+    pairs=[('primary',treatment,comparator)]+[('secondary',f"{c['treatment']}@{c['budget']}",f"{c['comparator']}@{c['budget']}") for c in manifest.get('secondary',[])]
     for a in arms:
         name,budget=a.split('@')
-        if a not in (treatment,comparator) and budget==p['budget']:pairs.append(('exploratory',a,comparator if name!='bm25' else treatment))
+        if a not in (treatment,comparator) and budget==p['budget'] and not any(a==t for k,t,_ in pairs if k=='secondary'):pairs.append(('exploratory',a,comparator if name!='bm25' else treatment))
     comparisons=[]
     for kind,t,c in pairs:
         if t not in arms or c not in arms:continue

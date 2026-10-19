@@ -216,6 +216,8 @@ class RunTrace:
     answer:AnswerRecord=field(default_factory=lambda:AnswerRecord('error',reason='not_run'))
     usage:list=field(default_factory=list)
     timing_kind:str='fresh_local_executor'
+    gate:str='audit_coverage_v2'
+    conflict_probe:dict|None=None
 
 
 def load_question(record): return strict(QuestionInput,record)

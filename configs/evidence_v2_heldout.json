@@ -1,0 +1,28 @@
+{
+  "schema_version": 2,
+  "provider_enabled": false,
+  "max_usd": 0,
+  "input_mode": "raw_question",
+  "answerer": "decimal_executor",
+  "policy": "coverage_rule_v1",
+  "max_context_tokens": 8192,
+  "max_output_tokens": 512,
+  "stage_context_tokens": 8192,
+  "cheap_context_tokens": 8192,
+  "retrieval_tokens_total": 24576,
+  "verification_tokens_total": 24576,
+  "max_packed_sections": 12,
+  "deadline_ms": 30000,
+  "seed": 11,
+  "repeats": 1,
+  "documents": "data/processed/evidence_v2/heldout_documents.jsonl",
+  "queries": "data/release/v2/heldout_questions.jsonl",
+  "output": "results/evidence_v2/heldout_not_run",
+  "heldout_selection": {
+    "tickers": ["ABT", "ADBE", "CRM", "CSCO", "HON", "IBM", "LMT", "LOW", "MRK", "PEP", "QCOM", "SBUX", "TGT", "TMO", "TXN", "UPS"],
+    "development_named_tickers": ["MSFT", "NFLX", "INTC", "ORCL", "NKE", "TSLA"],
+    "annual_filings": 3,
+    "raw_dir": "data/raw/heldout_v2",
+    "filings_manifest": "data/release/v2/heldout_filings.json"
+  }
+}

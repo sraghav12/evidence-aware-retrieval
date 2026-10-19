@@ -29,7 +29,7 @@ def test_every_arm_has_identical_limits_gate_and_audit_per_budget():
     assert all(a['max_output_tokens']==512 for a in m['arms'])
     for k,v in (('max_context_tokens',2048),('prompt_hash','d'*64),('gate','none')):
         bad=json.loads(json.dumps(m));bad['arms'][1][k]=v;bad.pop('manifest_sha256')
-        with pytest.raises(ValueError,match=f'unmatched {k}'):validate_experiment(bad)
+        with pytest.raises(ValueError,match='gate' if k=='gate' else f'unmatched {k}'):validate_experiment(bad)
 
 
 def test_unavailable_strategy_arms_are_never_bm25():
@@ -129,3 +129,22 @@ def test_arm_sensitivity_counts_parse_and_zero_cell_invariant_rows():
     s=arm_sensitivity(qs,d,aliases,refs)
     assert s['parse_invariant']=={'unknown_fiscal_calendar':1} and s['zero_cell_invariant']=={'unanswerable':1}
     assert s['arm_sensitive']==6 and s['arm_sensitive_answerable']==3 and s['arm_sensitive_groups']==6
+
+
+V3=dict(BASE,gate='audit_coverage_v3',probe_units_per_filing=3,probe_tokens=2048,budget_profiles=[{'name':'ctx8192','max_context_tokens':8192}],strategy_arms=['bm25','hybrid_rrf'],
+        gate_ablation=[{'name':'coverage_rule_v1_gate_v2','policy':'coverage_rule_v1','backend':'bm25','gate':'audit_coverage_v2'}],
+        secondary=[{'name':'gate_v3_vs_v2','treatment':'coverage_rule_v1','comparator':'coverage_rule_v1_gate_v2','budget':'ctx8192'}])
+
+
+def test_gate_ablation_arm_differs_only_by_gate():
+    from evaluation.evidence_aware.experiment import engine_config
+    m=build_experiment_manifest(V3,documents(),QUESTIONS,available_rankers={'dense':'d@1'})
+    arms={a['name']:a for a in m['arms']}
+    assert {a['gate'] for a in m['arms'] if a['track']!='gate_ablation'}=={'audit_coverage_v3'} and arms['coverage_rule_v1_gate_v2']['gate']=='audit_coverage_v2'
+    assert set(arms)=={'bm25','hybrid_rrf','always_cheap_v1','always_maximum_v1','complexity_rule_v1','coverage_rule_v1','coverage_rule_v1_gate_v2'}
+    a,b=engine_config(arms['coverage_rule_v1']),engine_config(arms['coverage_rule_v1_gate_v2'])
+    assert {k for k in a if a[k]!=b.get(k)}=={'gate'} and a['probe_tokens']==2048
+    assert m['secondary']==V3['secondary'];validate_experiment(m)
+    bad=json.loads(json.dumps(m));bad.pop('manifest_sha256');next(x for x in bad['arms'] if x['name']=='always_cheap_v1')['gate']='audit_coverage_v2'
+    with pytest.raises(ValueError,match='gate'):validate_experiment(bad)
+    with pytest.raises(ValueError):build_experiment_manifest(dict(V3,secondary=[{'name':'x','treatment':'coverage_rule_v1','comparator':'nope','budget':'ctx8192'}]),documents(),QUESTIONS,available_rankers={})

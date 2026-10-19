@@ -50,7 +50,8 @@ def validate_config(config):
     if config.get('input_mode','raw_question') not in {'raw_question','diagnostic_spec'}:raise ValueError('invalid input mode')
     if config.get('policy','coverage_rule_v1') not in POLICIES:raise ValueError('unknown policy')
     if config.get('backend','bm25') not in BACKENDS:raise ValueError('unknown backend')
-    for k in ('max_context_tokens','max_output_tokens','cheap_context_tokens','stage_context_tokens','retrieval_tokens_total','verification_tokens_total','deadline_ms','max_packed_sections'):
+    if config.get('gate','audit_coverage_v2') not in {'audit_coverage_v2','audit_coverage_v3'}:raise ValueError('unknown gate')
+    for k in ('max_context_tokens','max_output_tokens','cheap_context_tokens','stage_context_tokens','retrieval_tokens_total','verification_tokens_total','deadline_ms','max_packed_sections','probe_units_per_filing','probe_tokens'):
         if k in config and (type(config[k]) is not int or config[k]<0):raise ValueError(f'invalid budget: {k}')
 
 

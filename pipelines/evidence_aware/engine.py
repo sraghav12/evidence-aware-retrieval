@@ -3,6 +3,8 @@ from dataclasses import asdict
 from time import monotonic,perf_counter
 from .contracts import BudgetState,RoutingState,RunTrace,UsageEvent,digest,AnswerRecord
 from .coverage import audit_coverage,same_quantity
+from .units import build_units
+from .extraction import extract_candidates
 from .numeric import execute_numeric,audit_answer,abstain
 from .policy import decide
 
@@ -22,9 +24,36 @@ def pack(spec,units,collected,token_limit,max_sections):
     return packed_units,omitted,count
 
 
+GATES={'audit_coverage_v2','audit_coverage_v3'}
+
+
+def conflict_probe(spec,coverage,packed,documents,config,budget):
+    """Gate v3: one bounded structured look at later eligible filings of each cited entity for the same quantities.
+    Restatements surface as comparative columns in later 10-Ks, which relevance ranking may never retrieve."""
+    cited=[s for s in packed if s.id in coverage.audited_span_ids];packed_docs={s.doc_id for s in packed}
+    cap=min(config.get('probe_tokens',2048),budget.retrieval_tokens_remaining,budget.verification_tokens_remaining)
+    later=sorted({d for e in {s.entity_id for s in cited} for d,doc in documents.items() if doc['entity_id']==e and doc['disclosed_at']<=spec.as_of
+                  and doc['disclosed_at']>min(s.disclosed_at for s in cited if s.entity_id==e) and d not in packed_docs},key=lambda d:(documents[d]['disclosed_at'],d))
+    record={'status':'no_later_filings' if not later else 'ran','probed_doc_ids':[],'inspected_tokens':0,'budget_tokens':cap,'spans':[],'conflicts':[]}
+    if not later:return record,[]
+    if cap<=0:record['status']='skipped_budget';return record,[]
+    found=[]
+    for d in later:
+        units=[u for u in build_units({d:documents[d]}) if any(same_quantity(r,s) for s in extract_candidates([u],documents) for r in spec.requirements)][:config.get('probe_units_per_filing',3)]
+        for u in units:
+            size=len(u.text.split())
+            if record['inspected_tokens']+size>cap:record['status']='ran_truncated';continue
+            record['inspected_tokens']+=size;found.extend(s for s in extract_candidates([u],documents) if any(same_quantity(r,s) for r in spec.requirements))
+            if d not in record['probed_doc_ids']:record['probed_doc_ids'].append(d)
+    record['spans']=[s.id for s in found]
+    return record,found
+
+
 def run_spec(spec,backends,documents,config,answerer=None):
     budget=BudgetState(context_tokens_remaining=config.get('max_context_tokens',8192),output_tokens_remaining=config.get('max_output_tokens',512),max_usd=config.get('max_usd',0),deadline_ms=config.get('deadline_ms',30000),retrieval_tokens_remaining=config.get('retrieval_tokens_total',24576),verification_tokens_remaining=config.get('verification_tokens_total',24576))
-    trace=RunTrace(spec.id,spec.question,spec.as_of,config.get('input_mode','raw_question'),digest(asdict(spec)),digest(config),digest(documents),policy_version=config.get('policy','coverage_rule_v1'),spec=asdict(spec))
+    gate=config.get('gate','audit_coverage_v2')
+    if gate not in GATES:raise ValueError(f'unknown gate: {gate}')
+    trace=RunTrace(spec.id,spec.question,spec.as_of,config.get('input_mode','raw_question'),digest(asdict(spec)),digest(config),digest(documents),policy_version=config.get('policy','coverage_rule_v1'),spec=asdict(spec),gate=gate)
     try:route(spec,backends,documents,config,answerer,budget,trace)
     except Exception as e:
         # Keep attempted stages and usage; a failed row is never an empty, zero-cost row.
@@ -65,12 +94,22 @@ def route(spec,backends,documents,config,answerer,budget,trace):
         if count>budget.verification_tokens_remaining:
             trace.answer=abstain('budget_exhausted');trace.decisions.append({'action':'abstain','reason_codes':['verification_budget_exhausted']});return
         budget.verification_tokens_remaining-=count
-        before=perf_counter();coverage=audit_coverage(spec,packed,documents)
+        precise=config.get('gate')=='audit_coverage_v3'
+        before=perf_counter();coverage=audit_coverage(spec,packed,documents,precision_aware=precise)
         trace.usage.append(asdict(UsageEvent(f'{spec.id}:{action}:audit',spec.id,'verification',input_tokens=count,elapsed_ms=(perf_counter()-before)*1000)))
         trace.coverage_snapshots.append(asdict(coverage));trace.evidence=[asdict(s) for s in packed]
         budget.deadline_ms=max(0,int((deadline-monotonic())*1000))
         decision=decide(config.get('policy','coverage_rule_v1'),spec,coverage,budget,RoutingState(len(attempted),tuple(attempted)))
         if monotonic()>=deadline:decision=type(decision)('abstain',('budget_exhausted',),coverage.missing_requirement_ids)
+        if decision.action=='answer' and precise:
+            before=perf_counter();probe,extra=conflict_probe(spec,coverage,packed,documents,config,budget)
+            budget.retrieval_tokens_remaining-=probe['inspected_tokens'];budget.verification_tokens_remaining-=probe['inspected_tokens']
+            if probe['status'] in ('ran','ran_truncated'):
+                trace.usage.append(asdict(UsageEvent(f'{spec.id}:conflict_probe',spec.id,'conflict_probe',input_tokens=probe['inspected_tokens'],elapsed_ms=(perf_counter()-before)*1000)))
+                recheck=audit_coverage(spec,packed+[s for s in extra if s.id not in {p.id for p in packed}],documents,precision_aware=True)
+                probe['conflicts']=list(recheck.conflicts)
+                if recheck.conflicts:decision=type(decision)('abstain',('conflicting_evidence',),recheck.missing_requirement_ids)
+            trace.conflict_probe=probe
         if decision.action=='answer':
             result=execute_numeric(spec,coverage,packed)
             if result.status=='answered' and answerer is not None:result=generate(spec,packed,coverage,config,answerer,budget,trace,deadline)
