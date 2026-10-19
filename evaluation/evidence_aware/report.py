@@ -87,7 +87,9 @@ def paired_cluster_summary(rows,cluster_key,seed,metric='supported_correct',trea
     for _ in range(2000):
         values=[x for c in rng.choices(clusters,k=len(clusters)) for x in clustered[c]];boot.append(sum(values)/len(values))
     boot.sort();values=[x for c in clusters for x in clustered[c]]
-    return dict(arms=arms,questions=len(per_query),independent_clusters=len(clusters),paired_difference=sum(values)/len(values),ci95=[boot[50],boot[1949]],inference_status='descriptive_only' if len(clusters)<12 else 'pilot_interval_not_confirmatory',resampling_unit=cluster_key,seed=seed,metric=metric,treatment=arms[1],comparator=arms[0])
+    discordant=sum(any(v!=0 for v in vs) for vs in per_query.values())
+    # With no discordant question the bootstrap collapses to [0, 0]; the exact one-sided 95% bound on the discordance rate is 1-0.05**(1/n).
+    return dict(arms=arms,questions=len(per_query),discordant_questions=discordant,zero_discordance_upper95=1-0.05**(1/len(per_query)) if not discordant else None,independent_clusters=len(clusters),paired_difference=sum(values)/len(values),ci95=[boot[50],boot[1949]],inference_status='descriptive_only' if len(clusters)<12 else 'pilot_interval_not_confirmatory',resampling_unit=cluster_key,seed=seed,metric=metric,treatment=arms[1],comparator=arms[0])
 
 
 def build_report(result_dir,reference_path):

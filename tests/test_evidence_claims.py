@@ -50,9 +50,25 @@ def test_published_pilot_claims_match_exported_report():
     import json
     from pathlib import Path
     root=Path(__file__).resolve().parents[1]/'examples/evidence_v2'
-    report=json.loads((root/'pilot_001_report.json').read_text());claims=json.loads((root/'claims.json').read_text())
-    validate_claims(claims,{report['run_id']:report})
+    reports={r['run_id']:r for r in (json.loads((root/f).read_text()) for f in ('pilot_001_report.json','heldout_001_report.json'))};claims=json.loads((root/'claims.json').read_text())
+    validate_claims(claims,reports);report=reports['pilot_001']
+    held=[c for c in reports['heldout_001']['comparisons'] if c['name'] in ('primary','secondary')]
+    assert held and all(c['discordant_questions']==0 and c['inference_status']!='confirmatory' for c in held)
+    with pytest.raises(ValueError,match='degenerate'):validate_claims([dict(kind='noninferiority',run_id='heldout_001',comparison='primary',margin=0.02,input_mode='raw_question')],reports)
     primary=[c for c in report['comparisons'] if c['name']=='primary']
     assert primary and all(c['inference_status']=='descriptive_only' for c in primary)
     with pytest.raises(ValueError):validate_claims([dict(kind='noninferiority',run_id='pilot_001',comparison='primary',margin=0.02,input_mode='raw_question')],{report['run_id']:report})
     with pytest.raises(ValueError):validate_claims([dict(kind='savings',run_id='pilot_001',input_mode='raw_question')],{report['run_id']:report})
+
+
+def test_degenerate_interval_cannot_support_noninferiority():
+    claim=dict(kind='noninferiority',run_id='z',comparison='primary',margin=0.02,input_mode='raw_question')
+    zero=dict(REPORT,run_id='z',comparisons=[dict(REPORT['comparisons'][0],inference_status='pilot_interval_not_confirmatory',ci95=[0.0,0.0],discordant_questions=0,questions=60)])
+    with pytest.raises(ValueError,match='degenerate'):validate_claims([claim],{'z':zero})
+
+
+def test_paired_summary_reports_discordant_questions_and_exact_bound():
+    from evaluation.evidence_aware.report import paired_cluster_summary
+    rows=[dict(arm=a,query_id=f'q{i}',repeat=0,component=f'c{i}',supported_correct=True) for i in range(60) for a in ('t','c')]
+    s=paired_cluster_summary(rows,'component',11,treatment='t')
+    assert s['discordant_questions']==0 and s['ci95']==[0.0,0.0] and abs(s['zero_discordance_upper95']-0.0487)<0.001

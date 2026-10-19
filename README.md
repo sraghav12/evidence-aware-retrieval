@@ -8,11 +8,13 @@ In a preregistered, hash-frozen pilot (111 development questions, 25 companies, 
 - The evidence rule matched always running every retrieval stage on every question (58/77 supported, 33/34 correct abstentions), with 39% fewer inspected retrieval tokens.
 - Fixed cheaper schedules lost answers.
 - Pinned dense, hybrid and reranked retrieval did not beat BM25 on these table units.
-- One superseded answer (GE Aerospace FY2023) shows that conflict checks are only as good as retrieval.
+- One superseded answer (GE Aerospace FY2023) showed that conflict checks are only as good as retrieval. A bounded post-gate conflict probe (gate v3), designed on development data, fixed it without losing answers.
 
-Limits: development-only, AI-proposed unreviewed references, 6 independent answerable groups, and no savings, noninferiority or generalization claim.
+**Held-out replication:** a publicly preregistered locked test on 16 newly collected companies (48 SEC 10-Ks, 76 questions, 13 independent groups). The evidence rule again matched always-maximum on every question (51/60 supported, 16/16 correct abstentions) with 52.5% fewer inspected retrieval tokens, and gate v3 cost no answers.
 
-[Case study](docs/v2/case_study.md) · [results](docs/v2/results.md) · [5-minute walkthrough](docs/v2/interview_walkthrough.md) · [real-filing traces](examples/evidence_v2/walkthrough.md) · [preregistration](docs/v2/preregistration.md) · [extraction audit](docs/v2/extraction_audit.md) · [reproduction](docs/v2/reproduction.md)
+Limits: AI-proposed unreviewed references; zero discordant questions make the paired interval degenerate (exact 95% bound 4.9% > 2-point margin), so no noninferiority, savings or broad generalization claim.
+
+[Case study](docs/v2/case_study.md) · [results](docs/v2/results.md) · [5-minute walkthrough](docs/v2/interview_walkthrough.md) · [real-filing traces](examples/evidence_v2/walkthrough.md) · [preregistration](docs/v2/preregistration.md) · [held-out preregistration](docs/v2/preregistration_heldout.md) · [extraction audit](docs/v2/extraction_audit.md) · [reproduction](docs/v2/reproduction.md)
 
 Offline check with the Python standard library only:
 

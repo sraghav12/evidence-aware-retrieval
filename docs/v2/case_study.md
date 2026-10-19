@@ -29,9 +29,13 @@ A retrieval system that ranks text by relevance has no way to know which of thos
 - **Cheaper fixed schedules lose answers:** 45/77 for always-cheap, 48/77 for an operand-count rule.
 - **Pinned dense, hybrid RRF and cross-encoder reranking did not beat BM25** on these terse numeric table units (55, 57 and 56 vs 58). The reranker cost about 7× the median latency.
 
+**Held-out replication (protocol v3, locked test).** 16 companies outside all development ancestry, 48 newly collected 10-Ks, 76 questions, 13 independent groups:
+- The evidence rule and always-maximum disagreed on 0 of 76 questions (51/60 supported, 16/16 correct abstentions), with 52.5% fewer inspected tokens.
+- Because nothing disagreed, the paired interval is degenerate. The exact 95% bound on the discordance rate is 4.9%, so noninferiority at a 2-point margin is **not** claimed.
+
 ## What went wrong, and what that taught
 
-- **A wrong answer from retrieval-bounded conflict checks.** For GE Aerospace FY2023 the evidence rule answered 67,954, the originally reported figure. The later 10-K restates it as 35,348, but BM25 never retrieved that cell, so the gate never saw the conflict. The dense arms happened to retrieve it and abstained. "No conflict found" is only as good as the retrieval behind it.
+- **A wrong answer from retrieval-bounded conflict checks, then a bounded fix.** For GE Aerospace FY2023 the evidence rule answered 67,954, the originally reported figure. The later 10-K restates it as 35,348, but BM25 never retrieved that cell. Gate v3 adds one bounded structured look at later eligible filings of each cited company before answering. On development data it turned that answer into a correct abstention and lost nothing. On held-out data it cost nothing (1,024 tokens, no false conflicts), but no held-out restatement existed to catch, so its benefit is supported by one development case only.
 - **More retrieval can hurt an exact-value rule.** On development data, always-maximum lost an Eli Lilly answer because a later filing rounds 34,124.1 to 34,124. The inference gate still treats that as a conflict, though the references now compare at stated XBRL precision.
 - **The locked test did not survive scrutiny.** A fresh review found the first split ignored the published v1 questions. Applying that rule collapsed the test to 2 informative groups, so the study was re-registered as development-only before any pilot run, rather than forcing a split.
 - **Three-company questions are fragile under lexical ranking.** One company's tables can take every retrieval slot.
@@ -39,7 +43,7 @@ A retrieval system that ranks text by relevance has no way to know which of thos
 ## Limits
 
 - The references are AI-proposed and no human has reviewed them.
-- There are 6 independent answerable groups and no held-out companies, so the intervals are descriptive.
+- Development intervals are descriptive (6 answerable groups). The held-out test has 13 groups, but its paired interval is degenerate (no discordant questions).
 - Supported scope is consolidated reported revenue for the controlled question forms.
 - Token counts are whitespace estimates, and local compute is unpriced.
 - No savings, noninferiority or generalization claim is made.

@@ -42,13 +42,13 @@ Always-maximum runs all three bounded stages for every question. On the 111-ques
 
 ## 5. The failed hypothesis (60 s)
 
-I expected "the gate will catch restatements." It catches only the ones retrieval finds. For GE Aerospace FY2023 the evidence rule answered the superseded 67,954 because BM25 never retrieved the restated 35,348; the dense arms did and abstained. Second, the planned locked test collapsed once v1 lineage was applied, so the study was re-registered as development-only before running, rather than forcing a split. Next steps:
-- a targeted conflict probe after a complete gate, at bounded cost;
-- new companies outside v1 for a real held-out test;
-- human review of the 111 references.
+I expected "the gate will catch restatements." It catches only the ones retrieval finds. For GE Aerospace FY2023 the evidence rule answered the superseded 67,954 because BM25 never retrieved the restated 35,348; the dense arms did and abstained. Second, the planned locked test collapsed once v1 lineage was applied, so the study was re-registered as development-only before running, rather than forcing a split. What came next:
+- **Conflict probe:** I added a bounded post-gate conflict probe (gate v3), tuned only on development data, which fixed GE without losing answers.
+- **Held-out test:** I collected 16 new companies from SEC EDGAR, froze protocol v3 publicly, and ran it once. The evidence rule matched always-maximum on all 76 held-out questions with 52.5% fewer inspected tokens.
+- **What I won't claim:** noninferiority. Zero discordant questions make the bootstrap interval degenerate, and the exact bound (4.9%) is wider than the margin.
 
 ## Factual resume lines (drafts; the author decides whether and how to use them)
 
 - Built an evidence-aware retrieval pipeline over raw SEC inline-XBRL filings. It extracts source-linked revenue cells (594 accepted, every rejection recorded with a reason), audits operand coverage and abstains on conflicts, with 180+ tests and mutation-checked safety guards.
 - Ran a preregistered, hash-frozen 1,554-run comparison of seven retrieval and scheduling arms with paired cluster bootstrap analysis. The coverage-based rule matched the maximum-retrieval baseline on all 111 development questions with 39% fewer inspected tokens; development-only results with AI-proposed references.
-- Diagnosed a retrieval-bounded failure mode, where an unretrieved restatement led to a superseded answer, and documented it rather than tuning on the data.
+- Diagnosed a retrieval-bounded failure mode (an unretrieved restatement led to a superseded answer) and added a bounded conflict probe designed on development data. A preregistered locked test on 16 newly collected companies (76 questions) replicated the evidence rule's 52.5% inspected-token reduction with no answer lost; noninferiority is not claimed.

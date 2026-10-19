@@ -309,5 +309,325 @@
   "kind": "latency",
   "run_id": "pilot_001",
   "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "coverage_rule_v1@ctx8192",
+  "split": "test",
+  "metric": "supported_success",
+  "value": 51,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "coverage_rule_v1@ctx8192",
+  "split": "test",
+  "metric": "correct_abstentions",
+  "value": 16,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "coverage_rule_v1@ctx8192",
+  "split": "test",
+  "metric": "inspected_retrieval_tokens",
+  "value": 255086,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "coverage_rule_v1@ctx8192",
+  "split": "test",
+  "metric": "retrieval_stages",
+  "value": 82,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "coverage_rule_v1@ctx8192",
+  "split": "test",
+  "metric": "unsupported_answers",
+  "value": 0,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "always_maximum_v1@ctx8192",
+  "split": "test",
+  "metric": "supported_success",
+  "value": 51,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "always_maximum_v1@ctx8192",
+  "split": "test",
+  "metric": "correct_abstentions",
+  "value": 16,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "always_maximum_v1@ctx8192",
+  "split": "test",
+  "metric": "inspected_retrieval_tokens",
+  "value": 537506,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "always_maximum_v1@ctx8192",
+  "split": "test",
+  "metric": "retrieval_stages",
+  "value": 177,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "always_maximum_v1@ctx8192",
+  "split": "test",
+  "metric": "unsupported_answers",
+  "value": 0,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "always_cheap_v1@ctx8192",
+  "split": "test",
+  "metric": "supported_success",
+  "value": 44,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "always_cheap_v1@ctx8192",
+  "split": "test",
+  "metric": "correct_abstentions",
+  "value": 16,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "always_cheap_v1@ctx8192",
+  "split": "test",
+  "metric": "inspected_retrieval_tokens",
+  "value": 186829,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "always_cheap_v1@ctx8192",
+  "split": "test",
+  "metric": "retrieval_stages",
+  "value": 59,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "always_cheap_v1@ctx8192",
+  "split": "test",
+  "metric": "unsupported_answers",
+  "value": 0,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "complexity_rule_v1@ctx8192",
+  "split": "test",
+  "metric": "supported_success",
+  "value": 45,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "complexity_rule_v1@ctx8192",
+  "split": "test",
+  "metric": "correct_abstentions",
+  "value": 16,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "complexity_rule_v1@ctx8192",
+  "split": "test",
+  "metric": "inspected_retrieval_tokens",
+  "value": 203703,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "complexity_rule_v1@ctx8192",
+  "split": "test",
+  "metric": "retrieval_stages",
+  "value": 63,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "complexity_rule_v1@ctx8192",
+  "split": "test",
+  "metric": "unsupported_answers",
+  "value": 0,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "hybrid_rrf@ctx8192",
+  "split": "test",
+  "metric": "supported_success",
+  "value": 51,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "hybrid_rrf@ctx8192",
+  "split": "test",
+  "metric": "correct_abstentions",
+  "value": 16,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "hybrid_rrf@ctx8192",
+  "split": "test",
+  "metric": "inspected_retrieval_tokens",
+  "value": 273001,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "hybrid_rrf@ctx8192",
+  "split": "test",
+  "metric": "retrieval_stages",
+  "value": 84,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "hybrid_rrf@ctx8192",
+  "split": "test",
+  "metric": "unsupported_answers",
+  "value": 0,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "coverage_rule_v1_gate_v2@ctx8192",
+  "split": "test",
+  "metric": "supported_success",
+  "value": 51,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "coverage_rule_v1_gate_v2@ctx8192",
+  "split": "test",
+  "metric": "correct_abstentions",
+  "value": 16,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "coverage_rule_v1_gate_v2@ctx8192",
+  "split": "test",
+  "metric": "inspected_retrieval_tokens",
+  "value": 255086,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "coverage_rule_v1_gate_v2@ctx8192",
+  "split": "test",
+  "metric": "retrieval_stages",
+  "value": 82,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "coverage_rule_v1_gate_v2@ctx8192",
+  "split": "test",
+  "metric": "unsupported_answers",
+  "value": 0,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "coverage_rule_v1@ctx8192",
+  "split": "test",
+  "metric": "answerable",
+  "value": 60,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "coverage_rule_v1@ctx8192",
+  "split": "test",
+  "metric": "unanswerable",
+  "value": 16,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "coverage_rule_v1@ctx8192",
+  "split": "test",
+  "metric": "conflict_probe_tokens",
+  "value": 1024,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "coverage_rule_v1@ctx8192",
+  "split": "arm_sensitive",
+  "metric": "supported_success",
+  "value": 51,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "metric",
+  "run_id": "heldout_001",
+  "arm": "coverage_rule_v1@ctx8192",
+  "split": "arm_sensitive",
+  "metric": "answerable",
+  "value": 51,
+  "input_mode": "raw_question"
+ },
+ {
+  "kind": "latency",
+  "run_id": "heldout_001",
+  "input_mode": "raw_question"
  }
 ]

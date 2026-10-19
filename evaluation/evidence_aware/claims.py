@@ -19,6 +19,7 @@ def validate_claims(claims,reports):
         elif kind=='noninferiority':
             comparison=next((x for x in report['comparisons'] if x['name']==c['comparison']),None)
             if comparison is None or not comparison.get('ci95'):raise ValueError('noninferiority requires a paired interval')
+            if comparison['ci95'][0]==comparison['ci95'][1]:raise ValueError('degenerate interval (no discordant questions) cannot support noninferiority')
             if comparison['inference_status']=='descriptive_only':raise ValueError('descriptive-only interval cannot support noninferiority')
             if comparison['ci95'][0]<=-c['margin']:raise ValueError('interval lower bound does not clear the margin')
         else:raise ValueError(f'unknown claim kind: {kind}')

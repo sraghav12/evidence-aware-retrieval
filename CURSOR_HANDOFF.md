@@ -51,15 +51,22 @@ The eight synthetic cases yielded three supported answers and five correct abste
 - **Evidence package:** `docs/v2/{results,case_study,interview_walkthrough,reproduction}.md` and `examples/evidence_v2/` (claims validated by tests). 184 tests pass.
 - Note: `experiment_report.py` changed after the run (plot fix), so re-running needs a new freeze version; the executor will refuse the old one by design.
 
+- **Tasks 11–12 done** (user chose follow-ups 1 and 3).
+  - **Gate v3:** a bounded post-gate conflict probe plus displayed-precision compatibility, frozen from development data. It fixed the GE superseded answer.
+  - **Held-out collection:** 16 companies outside all development ancestry, 48 10-Ks collected from SEC with the User-Agent from the LLM_Research `.env` (only that key read, never stored).
+  - **Protocol v3:** frozen and pushed before running (`3bd1da2`).
+  - **`heldout_001` result:** the evidence rule matches always-maximum on all 76 questions with 52.5% fewer inspected tokens. Gate v3 cost nothing. The paired interval is degenerate (0 discordant questions, exact bound 4.9%), so no noninferiority claim.
+- Verification: 200 tests pass; 71 published claims are validated against the exported reports.
+
 ## Exact next action
 
-Project 2's planned Tasks 1–10 are complete. Candidate next steps, each a user decision:
-1. Independent held-out data: new SEC filings for companies outside v1 and Release B (needs a declared SEC User-Agent with real contact details).
-2. Human review of `data/release/v2/annotation/pilot_packet.csv`.
-3. A bounded post-gate conflict probe to address the GE failure, as a new protocol version.
-4. Publishing or sharing the case study; resume-line drafts are in `docs/v2/interview_walkthrough.md`.
+Remaining candidates, each a user decision:
+- **Human review** of `data/release/v2/annotation/{pilot,heldout}_packet.csv`.
+- **More held-out companies or years**, to get discordant pairs and a non-degenerate interval.
+- **A held-out set with real restatements**, to test gate v3's benefit.
+- **Publishing or sharing** the case study.
 
-Task 10 itself has not had an independent review.
+Tasks 10–12 have not had an independent review.
 
 ## Run and inspect
 

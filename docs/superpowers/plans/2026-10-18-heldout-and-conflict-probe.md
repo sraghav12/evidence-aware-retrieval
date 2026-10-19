@@ -1,6 +1,8 @@
 # Project 2 follow-up: bounded conflict probe (Task 11) and held-out companies (Task 12)
 
-The user chose these two follow-ups on October 18, 2026. Spec authority: [design](../specs/2026-10-18-evidence-aware-retrieval-design.md). Global constraints are unchanged:
+The user chose these two follow-ups on October 18, 2026. Spec authority: [design](../specs/2026-10-18-evidence-aware-retrieval-design.md). **Status (October 18, 2026): both tasks complete.** Task 11 is gate v3, frozen from development data. Task 12 is the held-out locked test, run once as `heldout_001`. Results are in `docs/v2/results.md`.
+
+Global constraints are unchanged:
 - 0 provider calls and `max_usd=0`;
 - v1 byte-identical;
 - references never reach inference;
