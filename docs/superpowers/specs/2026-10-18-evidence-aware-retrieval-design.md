@@ -13,8 +13,8 @@ The project should demonstrate retrieval, data engineering, numerical reasoning,
 ## Inputs and precedence
 
 - User request: plan Project 2, with Superpowers, for applied AI/ML hiring evidence.
-- Original specification: [folder 2 handoff](../../../Evidence%20aware%20retrieval%20confined%20cost.md).
-- Shared constraints: [AI implementation handoff](../../../../ai%20implementation%20handoff.md).
+- Original specification: [folder 2 handoff](../handoffs/original-project-2.md).
+- Shared constraints: [AI implementation handoff](../handoffs/original-ai-implementation-handoff.md).
 - This design and its [execution plan](../plans/2026-10-18-evidence-aware-retrieval.md) resolve implementation choices without replacing the original scientific safeguards.
 - Planning files live in folder `2`, following the workspace's existing convention. Copy these documents into the isolated product checkout at implementation time. No project code belongs in folder `1` or in the memory project.
 
