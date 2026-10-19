@@ -1,0 +1,448 @@
+[
+  {
+    "answer": {
+      "citations": {
+        "cik:320193:revenue:2023": [
+          "AAPL_10K_2023:10548",
+          "AAPL_10K_2023:381",
+          "AAPL_10K_2024:507"
+        ],
+        "cik:320193:revenue:2024": [
+          "AAPL_10K_2024:381"
+        ]
+      },
+      "reason": "",
+      "status": "answered",
+      "unit": "percent",
+      "value": "2.02"
+    },
+    "as_of": "2025-03-01",
+    "coverage": [
+      {
+        "conflicts": [],
+        "missing_requirement_ids": [],
+        "supported_requirement_ids": [
+          "cik:320193:revenue:2023",
+          "cik:320193:revenue:2024"
+        ]
+      }
+    ],
+    "decisions": [
+      "cheap_search",
+      "answer"
+    ],
+    "evidence": [
+      {
+        "cited": true,
+        "doc_id": "AAPL_10K_2023",
+        "fiscal_year": 2023,
+        "id": "AAPL_10K_2023:10548",
+        "quote": "revenue | USD_million | 2022-09-25 | 2023-09-30 | 2023 | reported | 383285 | Total net sales | 2023 | t27.r7.c2",
+        "raw_locator": {
+          "cell_index": 2,
+          "concept": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "fact_id": "f-385",
+          "raw_byte_end": 768367,
+          "raw_byte_start": 768165,
+          "row_index": 7,
+          "table_index": 27
+        },
+        "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000106/aapl-20230930.htm",
+        "unit": "USD_million",
+        "value": "383285"
+      },
+      {
+        "cited": true,
+        "doc_id": "AAPL_10K_2024",
+        "fiscal_year": 2024,
+        "id": "AAPL_10K_2024:381",
+        "quote": "revenue | USD_million | 2023-10-01 | 2024-09-28 | 2024 | reported | 391035 | Total net sales | September 28, 2024 | t22.r6.c1",
+        "raw_locator": {
+          "cell_index": 1,
+          "concept": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "fact_id": "f-66",
+          "raw_byte_end": 492974,
+          "raw_byte_start": 492773,
+          "row_index": 6,
+          "table_index": 22
+        },
+        "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/aapl-20240928.htm",
+        "unit": "USD_million",
+        "value": "391035"
+      },
+      {
+        "cited": true,
+        "doc_id": "AAPL_10K_2024",
+        "fiscal_year": 2023,
+        "id": "AAPL_10K_2024:507",
+        "quote": "revenue | USD_million | 2022-09-25 | 2023-09-30 | 2023 | reported | 383285 | Total net sales | September 30, 2023 | t22.r6.c4",
+        "raw_locator": {
+          "cell_index": 4,
+          "concept": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "fact_id": "f-67",
+          "raw_byte_end": 493635,
+          "raw_byte_start": 493433,
+          "row_index": 6,
+          "table_index": 22
+        },
+        "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/aapl-20240928.htm",
+        "unit": "USD_million",
+        "value": "383285"
+      }
+    ],
+    "query_id": "rd02",
+    "question": "What was Apple FY2024 revenue growth over FY2023?",
+    "requirements": [
+      "cik:320193:revenue:2023",
+      "cik:320193:revenue:2024"
+    ],
+    "stages": [
+      {
+        "inspected_tokens": 3724,
+        "selected_units": 12,
+        "stage": "cheap_search"
+      }
+    ],
+    "title": "Early stop: complete evidence after the cheap stage"
+  },
+  {
+    "answer": {
+      "citations": {
+        "cik:21344:revenue:2023": [
+          "KO_10K_2023:339"
+        ],
+        "cik:320193:revenue:2023": [
+          "AAPL_10K_2023:381"
+        ]
+      },
+      "reason": "",
+      "status": "answered",
+      "unit": "USD_million",
+      "value": "429039"
+    },
+    "as_of": "2024-06-30",
+    "coverage": [
+      {
+        "conflicts": [],
+        "missing_requirement_ids": [
+          "cik:320193:revenue:2023"
+        ],
+        "supported_requirement_ids": [
+          "cik:21344:revenue:2023"
+        ]
+      },
+      {
+        "conflicts": [],
+        "missing_requirement_ids": [],
+        "supported_requirement_ids": [
+          "cik:320193:revenue:2023",
+          "cik:21344:revenue:2023"
+        ]
+      }
+    ],
+    "decisions": [
+      "cheap_search",
+      "section_search",
+      "answer"
+    ],
+    "evidence": [
+      {
+        "cited": true,
+        "doc_id": "KO_10K_2023",
+        "fiscal_year": 2023,
+        "id": "KO_10K_2023:339",
+        "quote": "revenue | USD_million | 2023-01-01 | 2023-12-31 | 2023 | reported | 45754 | Net Operating Revenues | 2023 | t26.r2.c2",
+        "raw_locator": {
+          "cell_index": 2,
+          "concept": "us-gaap:Revenues",
+          "fact_id": "f-92",
+          "raw_byte_end": 1224591,
+          "raw_byte_start": 1224434,
+          "row_index": 2,
+          "table_index": 26
+        },
+        "source_url": "https://www.sec.gov/Archives/edgar/data/21344/000002134424000009/ko-20231231.htm",
+        "unit": "USD_million",
+        "value": "45754"
+      },
+      {
+        "cited": true,
+        "doc_id": "AAPL_10K_2023",
+        "fiscal_year": 2023,
+        "id": "AAPL_10K_2023:381",
+        "quote": "revenue | USD_million | 2022-09-25 | 2023-09-30 | 2023 | reported | 383285 | Total net sales | September 30, 2023 | t22.r6.c1",
+        "raw_locator": {
+          "cell_index": 1,
+          "concept": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "fact_id": "f-69",
+          "raw_byte_end": 500638,
+          "raw_byte_start": 500437,
+          "row_index": 6,
+          "table_index": 22
+        },
+        "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000106/aapl-20230930.htm",
+        "unit": "USD_million",
+        "value": "383285"
+      }
+    ],
+    "query_id": "rd05",
+    "question": "What was Apple and Coca-Cola FY2023 total revenue?",
+    "requirements": [
+      "cik:320193:revenue:2023",
+      "cik:21344:revenue:2023"
+    ],
+    "stages": [
+      {
+        "inspected_tokens": 2826,
+        "selected_units": 12,
+        "stage": "cheap_search"
+      },
+      {
+        "inspected_tokens": 4637,
+        "selected_units": 12,
+        "stage": "section_search"
+      }
+    ],
+    "title": "Escalation: section search recovers the missing company"
+  },
+  {
+    "answer": {
+      "citations": {},
+      "reason": "conflicting_evidence",
+      "status": "abstained",
+      "unit": "",
+      "value": null
+    },
+    "as_of": "2024-06-30",
+    "coverage": [
+      {
+        "conflicts": [
+          "cik:200406:revenue:2022"
+        ],
+        "missing_requirement_ids": [
+          "cik:200406:revenue:2022"
+        ],
+        "supported_requirement_ids": []
+      }
+    ],
+    "decisions": [
+      "cheap_search",
+      "abstain"
+    ],
+    "evidence": [
+      {
+        "cited": false,
+        "doc_id": "JNJ_10K_2022",
+        "fiscal_year": 2022,
+        "id": "JNJ_10K_2022:2892",
+        "quote": "revenue | USD_million | 2022-01-03 | 2023-01-01 | 2022 | reported | 94943 | Sales to customers | 2022 | t69.r2.c2",
+        "raw_locator": {
+          "cell_index": 2,
+          "concept": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "fact_id": "id3VybDovL2RvY3MudjEvZG9jOjUxYTQ2MTY3ZWYzNjQ5NTFiZjcwYWU5ZDY0OTM3NzZjL3NlYzo1MWE0NjE2N2VmMzY0OTUxYmY3MGFlOWQ2NDkzNzc2Y18xMjEvZnJhZzo4M2MwMWZhMWMyNTU0ZDg5OTliYzhjZDUyMjVlZDZlYy90YWJsZTpiMjU3ZTJiNjgzOTk0ODM5ODVmZDQyMDcxODZiZjA4Ny90YWJsZXJhbmdlOmIyNTdlMmI2ODM5OTQ4Mzk4NWZkNDIwNzE4NmJmMDg3XzEtMS0xLTEtODQ0NDQ_1b298ec4-2b9f-42ba-bf0c-ad96c91f21bf",
+          "raw_byte_end": 1575108,
+          "raw_byte_start": 1574522,
+          "row_index": 2,
+          "table_index": 69
+        },
+        "source_url": "https://www.sec.gov/Archives/edgar/data/200406/000020040623000016/jnj-20230101.htm",
+        "unit": "USD_million",
+        "value": "94943"
+      },
+      {
+        "cited": false,
+        "doc_id": "JNJ_10K_2023",
+        "fiscal_year": 2022,
+        "id": "JNJ_10K_2023:3271",
+        "quote": "revenue | USD_million | 2022-01-03 | 2023-01-01 | 2022 | reported | 79990 | Sales to customers | 2022 | t75.r2.c2",
+        "raw_locator": {
+          "cell_index": 2,
+          "concept": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "fact_id": "f-136",
+          "raw_byte_end": 1325429,
+          "raw_byte_start": 1325227,
+          "row_index": 2,
+          "table_index": 75
+        },
+        "source_url": "https://www.sec.gov/Archives/edgar/data/200406/000020040624000013/jnj-20231231.htm",
+        "unit": "USD_million",
+        "value": "79990"
+      }
+    ],
+    "query_id": "rd13",
+    "question": "What was Johnson & Johnson FY2022 revenue?",
+    "requirements": [
+      "cik:200406:revenue:2022"
+    ],
+    "stages": [
+      {
+        "inspected_tokens": 2801,
+        "selected_units": 12,
+        "stage": "cheap_search"
+      }
+    ],
+    "title": "Principled abstention: reported vs restated revenue"
+  },
+  {
+    "answer": {
+      "citations": {},
+      "reason": "incomplete_evidence",
+      "status": "abstained",
+      "unit": "",
+      "value": null
+    },
+    "as_of": "2025-03-01",
+    "coverage": [
+      {
+        "conflicts": [],
+        "missing_requirement_ids": [
+          "cik:320193:revenue:2023",
+          "cik:320193:revenue:2024",
+          "cik:2488:revenue:2023",
+          "cik:2488:revenue:2024",
+          "cik:21344:revenue:2023",
+          "cik:21344:revenue:2024"
+        ],
+        "supported_requirement_ids": []
+      },
+      {
+        "conflicts": [],
+        "missing_requirement_ids": [
+          "cik:320193:revenue:2023",
+          "cik:320193:revenue:2024",
+          "cik:2488:revenue:2023",
+          "cik:2488:revenue:2024"
+        ],
+        "supported_requirement_ids": [
+          "cik:21344:revenue:2023",
+          "cik:21344:revenue:2024"
+        ]
+      },
+      {
+        "conflicts": [],
+        "missing_requirement_ids": [
+          "cik:320193:revenue:2024",
+          "cik:2488:revenue:2023",
+          "cik:2488:revenue:2024"
+        ],
+        "supported_requirement_ids": [
+          "cik:320193:revenue:2023",
+          "cik:21344:revenue:2023",
+          "cik:21344:revenue:2024"
+        ]
+      }
+    ],
+    "decisions": [
+      "cheap_search",
+      "section_search",
+      "expanded_search",
+      "abstain"
+    ],
+    "evidence": [
+      {
+        "cited": false,
+        "doc_id": "KO_10K_2023",
+        "fiscal_year": 2023,
+        "id": "KO_10K_2023:339",
+        "quote": "revenue | USD_million | 2023-01-01 | 2023-12-31 | 2023 | reported | 45754 | Net Operating Revenues | 2023 | t26.r2.c2",
+        "raw_locator": {
+          "cell_index": 2,
+          "concept": "us-gaap:Revenues",
+          "fact_id": "f-92",
+          "raw_byte_end": 1224591,
+          "raw_byte_start": 1224434,
+          "row_index": 2,
+          "table_index": 26
+        },
+        "source_url": "https://www.sec.gov/Archives/edgar/data/21344/000002134424000009/ko-20231231.htm",
+        "unit": "USD_million",
+        "value": "45754"
+      },
+      {
+        "cited": false,
+        "doc_id": "KO_10K_2024",
+        "fiscal_year": 2024,
+        "id": "KO_10K_2024:339",
+        "quote": "revenue | USD_million | 2024-01-01 | 2024-12-31 | 2024 | reported | 47061 | Net Operating Revenues | 2024 | t26.r2.c2",
+        "raw_locator": {
+          "cell_index": 2,
+          "concept": "us-gaap:Revenues",
+          "fact_id": "f-121",
+          "raw_byte_end": 1168093,
+          "raw_byte_start": 1167935,
+          "row_index": 2,
+          "table_index": 26
+        },
+        "source_url": "https://www.sec.gov/Archives/edgar/data/21344/000002134425000011/ko-20241231.htm",
+        "unit": "USD_million",
+        "value": "47061"
+      },
+      {
+        "cited": false,
+        "doc_id": "KO_10K_2024",
+        "fiscal_year": 2023,
+        "id": "KO_10K_2024:457",
+        "quote": "revenue | USD_million | 2023-01-01 | 2023-12-31 | 2023 | reported | 45754 | Net Operating Revenues | 2023 | t26.r2.c5",
+        "raw_locator": {
+          "cell_index": 5,
+          "concept": "us-gaap:Revenues",
+          "fact_id": "f-122",
+          "raw_byte_end": 1169014,
+          "raw_byte_start": 1168855,
+          "row_index": 2,
+          "table_index": 26
+        },
+        "source_url": "https://www.sec.gov/Archives/edgar/data/21344/000002134425000011/ko-20241231.htm",
+        "unit": "USD_million",
+        "value": "45754"
+      },
+      {
+        "cited": false,
+        "doc_id": "AAPL_10K_2023",
+        "fiscal_year": 2023,
+        "id": "AAPL_10K_2023:10548",
+        "quote": "revenue | USD_million | 2022-09-25 | 2023-09-30 | 2023 | reported | 383285 | Total net sales | 2023 | t27.r7.c2",
+        "raw_locator": {
+          "cell_index": 2,
+          "concept": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "fact_id": "f-385",
+          "raw_byte_end": 768367,
+          "raw_byte_start": 768165,
+          "row_index": 7,
+          "table_index": 27
+        },
+        "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000106/aapl-20230930.htm",
+        "unit": "USD_million",
+        "value": "383285"
+      }
+    ],
+    "query_id": "rd06",
+    "question": "Rank Apple, AMD and Coca-Cola by FY2024 revenue growth over FY2023.",
+    "requirements": [
+      "cik:320193:revenue:2023",
+      "cik:320193:revenue:2024",
+      "cik:2488:revenue:2023",
+      "cik:2488:revenue:2024",
+      "cik:21344:revenue:2023",
+      "cik:21344:revenue:2024"
+    ],
+    "stages": [
+      {
+        "inspected_tokens": 3708,
+        "selected_units": 12,
+        "stage": "cheap_search"
+      },
+      {
+        "inspected_tokens": 4095,
+        "selected_units": 12,
+        "stage": "section_search"
+      },
+      {
+        "inspected_tokens": 4101,
+        "selected_units": 12,
+        "stage": "expanded_search"
+      }
+    ],
+    "title": "Unresolved failure: BM25 slot competition in a three-company ranking"
+  }
+]

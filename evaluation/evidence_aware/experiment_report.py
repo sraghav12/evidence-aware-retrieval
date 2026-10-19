@@ -25,7 +25,7 @@ def arm_metrics(rows,traces):
 
 def svg(points,title):
     """Standard-library scatter: inspected retrieval tokens per question (x) against answerable supported-success rate (y)."""
-    W,H,P=720,420,60;xs=[p[1] for p in points] or [1];xmax=max(xs)*1.1 or 1
+    W,H,P=760,420,60;xs=[p[1] for p in points] or [1];xmax=max(xs)*1.45 or 1
     def x(v):return P+(W-2*P)*v/xmax
     def y(v):return H-P-(H-2*P)*v
     parts=[f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" font-family="system-ui" font-size="11">',f'<text x="{W/2}" y="20" text-anchor="middle" font-size="13">{html.escape(title)}</text>',
@@ -70,12 +70,12 @@ def build_experiment_report(result_dir,reference_path,manifest):
                 if not subset:continue
                 field='supported_correct' if answerable else 'correct_decision'
                 comparisons.append(dict(paired_cluster_summary(subset,'component',manifest['seed'],metric=field,treatment=t),name=kind,split=s,metric=metric))
-    focus='test' if 'test' in splits else 'all'
-    points=[(a,v[focus]['inspected_retrieval_tokens']/max(1,v[focus]['questions']),v[focus]['supported_success_rate']) for a,v in arms.items()]
+    focus='test' if 'test' in splits else 'all' if 'all' in splits else splits[0]
+    points=[(a.split('@')[0],v[focus]['inspected_retrieval_tokens']/max(1,v[focus]['questions']),v[focus]['supported_success_rate']) for a,v in arms.items() if a.endswith('@'+p['budget'])]
     report={'run_id':root.name,'input_mode':'raw_question','timing_kind':run['timing_kind'],'scope':'feasibility pilot; AI-proposed unreviewed references; descriptive intervals only when fewer than 12 independent groups',
             'experiment_manifest_sha256':manifest['manifest_sha256'],'primary':p,'arms':arms,'comparisons':comparisons,'rows':rows,
             'costs':{'estimated_api_usd':0,'compute_cost_usd':None,'indexing':run['indexing'],'model_inference':run['model_inference'],'peak_memory_bytes':run['peak_memory_bytes']},
             'references_sha256':hashlib.sha256(Path(reference_path).read_bytes()).hexdigest()}
     write_json(root/'experiment_report.json',report)
-    (root/'quality_resource.svg').write_text(svg(points,f'Quality vs inspected retrieval tokens ({focus} split, {root.name})'))
+    (root/'quality_resource.svg').write_text(svg(points,f'Quality vs inspected retrieval tokens ({focus} split, {p["budget"]}, {root.name})'))
     return report

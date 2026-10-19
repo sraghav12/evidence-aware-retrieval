@@ -74,3 +74,10 @@ def test_report_adds_preregistered_arm_sensitive_subset(tmp_path):
     sub=r['arms']['coverage_rule_v1@ctx8192']['arm_sensitive']
     assert sub['questions']==6 and r['arms']['coverage_rule_v1@ctx8192']['all']['questions']==8
     assert {(c['split'],c['metric']) for c in r['comparisons'] if c['name']=='primary'}>={('arm_sensitive','supported_correct')}
+
+
+def test_report_with_a_single_named_split(tmp_path,frozen):
+    m,questions=frozen;out=run_experiment(m,CONFIG,documents(),questions,{},tmp_path/'run')
+    refs=tmp_path/'refs.jsonl';refs.write_text(''.join(json.dumps(dict(r,split='development'))+'\n' for r in read_jsonl(f'{FIX}/references.jsonl')))
+    r=build_experiment_report(out,str(refs),m)
+    assert set(r['arms']['coverage_rule_v1@ctx8192'])=={'development'} and 'development' in (out/'quality_resource.svg').read_text()

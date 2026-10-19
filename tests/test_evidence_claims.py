@@ -44,3 +44,15 @@ def test_noninferiority_requires_interval():
 def test_raw_question_results_separate_from_diagnostics():
     with pytest.raises(ValueError,match='input mode'):validate_claims([metric(run_id='diag_001')],REPORTS)
     validate_claims([metric(run_id='diag_001',input_mode='diagnostic_spec')],REPORTS)
+
+
+def test_published_pilot_claims_match_exported_report():
+    import json
+    from pathlib import Path
+    root=Path(__file__).resolve().parents[1]/'examples/evidence_v2'
+    report=json.loads((root/'pilot_001_report.json').read_text());claims=json.loads((root/'claims.json').read_text())
+    validate_claims(claims,{report['run_id']:report})
+    primary=[c for c in report['comparisons'] if c['name']=='primary']
+    assert primary and all(c['inference_status']=='descriptive_only' for c in primary)
+    with pytest.raises(ValueError):validate_claims([dict(kind='noninferiority',run_id='pilot_001',comparison='primary',margin=0.02,input_mode='raw_question')],{report['run_id']:report})
+    with pytest.raises(ValueError):validate_claims([dict(kind='savings',run_id='pilot_001',input_mode='raw_question')],{report['run_id']:report})

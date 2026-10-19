@@ -1,6 +1,30 @@
 # Beyond Vector Search
 
-> **v2 in progress: Evidence-Aware Budgeted Retrieval.** Parses a supported financial question, retrieves source table cells from raw SEC inline-XBRL filings, audits whether every required operand is supported (entity, period, unit, disclosure cutoff, source hash), escalates retrieval within explicit budgets, then computes a Decimal answer with operand citations or abstains. Development pilot on 20 real-filing questions: 12/16 answerable supported, 4/4 correct abstentions, 0 errors, 0 provider calls. References are AI-authored and unreviewed; this is development data, not a test, and no cost-saving claim is made. See [results](docs/v2/results.md), [extraction audit](docs/v2/extraction_audit.md), [methods](docs/v2/methods.md) and the [design](docs/superpowers/specs/2026-10-18-evidence-aware-retrieval-design.md). Runs offline with the Python standard library: `python3 -S scripts/run_evidence_v2.py --config configs/evidence_v2_offline.json --output results/evidence_v2/my_smoke`. Everything below describes the published v1 benchmark, whose model-judge scores are a different metric from v2 supported correctness.
+## v2: Evidence-Aware Budgeted Retrieval
+
+**In 60 seconds:** v2 turns a financial question into the exact numbers it needs (company, fiscal year, consolidated revenue). It extracts source-linked cells from raw SEC inline-XBRL filings, and only escalates retrieval while specific operands are still missing. It then computes a Decimal answer citing every operand, or abstains on missing, late or conflicting evidence.
+
+In a preregistered, hash-frozen pilot (111 development questions, 25 companies, 7 arms, 1,554 paired runs, 0 provider calls):
+- The evidence rule matched always running every retrieval stage on every question (58/77 supported, 33/34 correct abstentions), with 39% fewer inspected retrieval tokens.
+- Fixed cheaper schedules lost answers.
+- Pinned dense, hybrid and reranked retrieval did not beat BM25 on these table units.
+- One superseded answer (GE Aerospace FY2023) shows that conflict checks are only as good as retrieval.
+
+Limits: development-only, AI-proposed unreviewed references, 6 independent answerable groups, and no savings, noninferiority or generalization claim.
+
+[Case study](docs/v2/case_study.md) · [results](docs/v2/results.md) · [5-minute walkthrough](docs/v2/interview_walkthrough.md) · [real-filing traces](examples/evidence_v2/walkthrough.md) · [preregistration](docs/v2/preregistration.md) · [extraction audit](docs/v2/extraction_audit.md) · [reproduction](docs/v2/reproduction.md)
+
+Offline check with the Python standard library only:
+
+```bash
+python3 -S scripts/run_evidence_v2.py --config configs/evidence_v2_offline.json --output results/evidence_v2/my_smoke
+```
+
+Everything below describes the published v1 benchmark. Its model-judge scores are a different metric from v2 supported correctness.
+
+---
+
+# v1: Beyond Vector Search
 
 **How do retrieval strategies trade answer quality against latency and cost when answering financial questions over SEC filings?**
 

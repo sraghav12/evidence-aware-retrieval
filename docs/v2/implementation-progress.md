@@ -99,3 +99,10 @@ Final: minor (deferred): ranking ties — reference ties on rounded rate, execut
 Final: minor (deferred): "late disclosure" means no 10-K in this corpus by the cutoff, not that results were unpublished (docs now say so).
 Final: minor (deferred): experiment config carries pilot_spec evaluation-design fields (not read by inference).
 Final: minor (deferred): annotation packet shows proposed values and split, which can anchor reviewers.
+Task 10: Ran frozen manifest v2 (098db2c…) exactly: results/evidence_v2/pilot_001, 1554/1554 rows, 0 errors, 0 provider calls, 18.7 min CPU; one dense index (7,180 units, 314.5 s, 2.83 GB peak) reused across model arms.
+Task 10: Ruling: the scoring step crashed at the plot because an `all` split exists only with several natural splits; nothing was displayed before the crash. Fixed focus selection with test_report_with_a_single_named_split RED→GREEN and regenerated the report from saved traces; the run itself was not repeated and the comparisons are unchanged — cost if wrong: none to outcomes.
+Task 10: Ruling: the plot shows the primary budget only, with right padding for labels; 4,096 results are identical and stated in text — cost: none.
+Task 10: Observation: run manifest records git_dirty=true because git status is read at the end of the run, after the walkthrough exporter and reproduction doc were added mid-run; the freeze check at start verified every hashed source, script, lock and config. Recorded in the exported provenance note.
+Task 10: Observation: GE Aerospace FY2023 (p036) answered with superseded 67,954 by coverage_rule_v1 and always_maximum_v1 — BM25 never packed the restated 35,348; dense/hybrid/rerank arms abstained. Documented as the main open failure, not tuned.
+Task 10: Published numbers live in examples/evidence_v2/claims.json (35 claims) and are validated against the exported report by test_published_pilot_claims_match_exported_report.
+Final: minor (deferred): runner records git commit/dirty at run end rather than start.
