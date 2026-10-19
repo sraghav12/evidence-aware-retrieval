@@ -50,4 +50,4 @@ A retrieval system that ranks text by relevance has no way to know which of thos
 
 ## Ownership and AI assistance
 
-The project direction, scope decisions and approvals (repository, model download, publication) are the author's. Implementation, tests, reviews and documentation were produced with AI coding agents under that direction and checked by tests, mutation checks and two fresh code reviews. Before presenting it, the author should be able to walk through the parser, one source cell, one route, the strongest baseline and the failed hypothesis without notes. [interview_walkthrough.md](interview_walkthrough.md) is the script for that.
+The project direction, scope decisions and approvals (repository, model download, publication) are the author's. Implementation, tests, reviews and documentation were produced with AI coding agents under that direction and checked by tests, mutation checks and three fresh code reviews. Before presenting it, the author should be able to walk through the parser, one source cell, one route, the strongest baseline and the failed hypothesis without notes. [interview_walkthrough.md](interview_walkthrough.md) is the script for that.

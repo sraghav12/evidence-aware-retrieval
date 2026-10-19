@@ -58,15 +58,23 @@ The eight synthetic cases yielded three supported answers and five correct abste
   - **`heldout_001` result:** the evidence rule matches always-maximum on all 76 questions with 52.5% fewer inspected tokens. Gate v3 cost nothing. The paired interval is degenerate (0 discordant questions; cluster-level 95% bound 22%), so no noninferiority claim. A later review found the v3 probe's packed-filing skip; gate v4 fixes it (tested, not run on locked data).
 - Verification: 200 tests pass; 71 published claims are validated against the exported reports.
 
-## Exact next action
+- **Review 3 + completion pass done.** The fresh review of Tasks 10–12 found 0 Critical, 3 Important and 9 Minor. Everything material is fixed in `d72e1f6`:
+  - gate v4 probe fix (v3 kept as frozen);
+  - per-cluster zero-discordance bounds;
+  - frozen-accession SEC collection;
+  - doc corrections.
+- Verification: 207 tests pass.
 
-Remaining candidates, each a user decision:
-- **Human review** of `data/release/v2/annotation/{pilot,heldout}_packet.csv`.
-- **More held-out companies or years**, to get discordant pairs and a non-degenerate interval.
-- **A held-out set with real restatements**, to test gate v3's benefit.
-- **Publishing or sharing** the case study.
+## Status
 
-Tasks 10–12 have not had an independent review.
+Project 2 is complete except human review. Optional extensions, each a user decision:
+- the deferred minors in `docs/v2/implementation-progress.md`;
+- running gate v4 under a new protocol version on fresh locked data;
+- re-testing the dense and rerank arms on held-out data;
+- a held-out set with extractable restatements;
+- publishing.
+
+Human review packets are `data/release/v2/annotation/{pilot,heldout}_packet.csv`.
 
 ## Run and inspect
 
