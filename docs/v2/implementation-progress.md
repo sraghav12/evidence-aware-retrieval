@@ -55,3 +55,4 @@ Task 8: Ruling: references built from an independent raw ix-fact reader (no tabl
 Task 8: Ruling: full normalized documents, segments and failure rows stay untracked (regenerable from raw filings); manifest, 150-filing audit, questions, references and two synthetic layout fixtures are tracked — cost: reproduction needs the source checkout's raw HTML.
 Task 8: Observation (not changed): queries do not include fiscal-year tokens, and three-company ranking (rd06) loses BM25 slots to one company — left visible rather than tuned on development outcomes; Task 9 strong retrieval controls are the place to test it.
 Task 8: Observation: a trial run on these questions exposed cutoff-unfiltered retrieval and repeated escalation; both were fixed in the review fix pass (7693235) with synthetic regressions before the recorded run real_dev_001 at 4448255.
+Task 8: complete (commits 7693235..8c05992, tests: .venv/bin/python -m pytest -q → 122 passed in 1.78s)
