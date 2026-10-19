@@ -56,6 +56,9 @@ def run(config,queries=None):
     sha=hashlib.sha256((output/'traces.jsonl').read_bytes()).hexdigest()
     root=Path(__file__).resolve().parents[2]
     manifest={'schema_version':2,'git_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip(),'python':platform.python_version(),'platform':platform.platform(),'machine':platform.machine(),'peak_memory_scope':'process_high_water','tokenizer':'whitespace_estimate','backend':'python_cpu','seed':config.get('seed',11),'model_revision':'none_executor','prompt_hash':None,'config_hash':digest(config),'corpus_hash':digest(documents),'questions_hash':digest([asdict(q) for q in questions]),'traces_sha256':sha,'dependency_lock_sha256':hashlib.sha256((root/'requirements-evidence-v2-compat.lock').read_bytes()).hexdigest(),'question_count':len(questions),'provider_calls':0,'api_cost_usd':0,'compute_cost_usd':None,'input_mode':mode}
+    sources=sorted((root/'pipelines/evidence_aware').glob('*.py'))+sorted((root/'evaluation/evidence_aware').glob('*.py'))+[root/'scripts/run_evidence_v2.py']
+    manifest['source_sha256']={str(p.relative_to(root)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sources}
+    manifest['git_dirty']=bool(subprocess.check_output(['git','status','--porcelain'],cwd=root,text=True).strip())
     write_json(output/'manifest.json',manifest)
     write_json(output/'status.json',{'complete':True,'rows':len(traces),'errors':sum(t['answer']['status']=='error' for t in traces)})
     with open(output/'usage.jsonl','w') as f:

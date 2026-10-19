@@ -63,3 +63,10 @@ def test_generation_attempt_has_usage_record():
     assert trace.answer.status=='error'
     event=next(e for e in trace.usage if e['stage']=='generation')
     assert event['status']=='TimeoutError' and event['billed_usd'] is None and event['input_tokens'] is None
+
+
+def test_run_manifest_records_executed_source_not_just_head(tmp_path):
+    out=run(config(tmp_path));m=json.loads((out/'manifest.json').read_text())
+    assert 'pipelines/evidence_aware/engine.py' in m['source_sha256']
+    assert len(m['source_sha256']['pipelines/evidence_aware/engine.py'])==64
+    assert type(m['git_dirty']) is bool
