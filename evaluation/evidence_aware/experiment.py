@@ -28,6 +28,12 @@ def source_hashes():
     return {str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in files}
 
 
+def planned_runs(questions,arms,repeats,seed):
+    """Paired fresh runs of every available, non-duplicate arm, in one seeded random order."""
+    runs=[(q['id'],a['name'],a['budget'],r) for q in questions for a in arms if a['status']=='available' and not a['same_run_as'] for r in range(repeats)]
+    Random(seed).shuffle(runs);return runs
+
+
 def build_experiment_manifest(config,documents,questions,available_rankers,attachments=None):
     if config.get('provider_enabled') or config.get('max_usd',0)!=0:raise ValueError('experiment freeze keeps live execution disabled')
     if config.get('max_output_tokens')!=512:raise ValueError('final output stays 512 tokens')
@@ -48,8 +54,7 @@ def build_experiment_manifest(config,documents,questions,available_rankers,attac
     primary=config['primary'];names={a['name'] for a in arms if a['track']=='scheduling'}
     if primary['treatment'] not in names or primary['comparator'] not in names or primary['budget'] not in {p['name'] for p in profiles}:
         raise ValueError('primary comparison must use available scheduling arms and a declared budget')
-    runs=[(q['id'],a['name'],a['budget'],r) for q in questions for a in arms if a['status']=='available' and not a['same_run_as'] for r in range(config.get('repeats',1))]
-    Random(config['seed']).shuffle(runs)
+    runs=planned_runs(questions,arms,config.get('repeats',1),config['seed'])
     per_question=sum(a['status']=='available' and not a['same_run_as'] for a in arms)
     model=kind=='model_qa'
     m={'schema_version':2,'status':'frozen_not_executed','live_execution':'disabled','arms':arms,'primary':primary,'budget_profiles':profiles,'repeats':config.get('repeats',1),'seed':config['seed'],

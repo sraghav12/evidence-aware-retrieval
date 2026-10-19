@@ -42,3 +42,11 @@ def test_missing_arm_or_query_prevents_paired_claim():
 
 
 def test_small_cluster_count_limits_claim():assert paired_cluster_summary(paired(),'component',11)['inference_status']=='descriptive_only'
+
+
+def test_paired_difference_direction_follows_treatment():
+    from evaluation.evidence_aware.report import paired_cluster_summary
+    rows=[dict(arm=a,query_id=q,repeat=0,component=q,supported_correct=v,correct_decision=not v) for q in ('q1','q2') for a,v in (('zeta',True),('alpha',False))]
+    assert paired_cluster_summary(rows,'component',11,treatment='zeta')['paired_difference']==1.0
+    assert paired_cluster_summary(rows,'component',11,treatment='alpha')['paired_difference']==-1.0
+    assert paired_cluster_summary(rows,'component',11,metric='correct_decision',treatment='alpha')['paired_difference']==1.0

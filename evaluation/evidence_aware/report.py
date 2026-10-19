@@ -62,15 +62,19 @@ def summarize(rows):
     return dict(queries=len(rows),scored_queries=len(usable),answerable=len(answerable),unanswerable=len(unanswerable),supported_success=correct,supported_success_rate=correct/len(answerable) if answerable else None,correct_abstentions=sum(r['correct_decision'] for r in unanswerable),correct_decisions=sum(r['correct_decision'] for r in usable),errors=sum(r['status']=='error' for r in rows),answered=sum(r['status']=='answered' for r in usable),estimated_api_usd=total,compute_cost_usd=None,cost_per_correct_usd=None,cost_per_correct_status='null: local compute is unpriced',annotation_status=sorted({r['review_status'] for r in rows}))
 
 
-def paired_cluster_summary(rows,cluster_key,seed):
+def paired_cluster_summary(rows,cluster_key,seed,metric='supported_correct',treatment=None):
+    """Difference is treatment minus the other arm when `treatment` is given, else second minus first by name."""
     rows=[r for r in rows if r['arm']!='oracle'];arms=sorted({r['arm'] for r in rows})
     if len(arms)!=2:raise ValueError('exactly two deployable arms required')
+    if treatment is not None:
+        if treatment not in arms:raise ValueError('treatment arm missing')
+        arms=[a for a in arms if a!=treatment]+[treatment]
     indexed={};components={}
     for r in rows:
         key=(r['arm'],r['query_id'],r.get('repeat',0))
         if key in indexed:raise ValueError('duplicate paired row')
-        if r['supported_correct'] is None:raise ValueError('infeasible arm is not scored')
-        indexed[key]=r['supported_correct']
+        if r[metric] is None:raise ValueError('infeasible arm is not scored')
+        indexed[key]=r[metric]
         if r['query_id'] in components and components[r['query_id']]!=r[cluster_key]:raise ValueError('inconsistent component')
         components[r['query_id']]=r[cluster_key]
     keys=[{(q,repeat) for a,q,repeat in indexed if a==arm} for arm in arms]
@@ -83,7 +87,7 @@ def paired_cluster_summary(rows,cluster_key,seed):
     for _ in range(2000):
         values=[x for c in rng.choices(clusters,k=len(clusters)) for x in clustered[c]];boot.append(sum(values)/len(values))
     boot.sort();values=[x for c in clusters for x in clustered[c]]
-    return dict(arms=arms,questions=len(per_query),independent_clusters=len(clusters),paired_difference=sum(values)/len(values),ci95=[boot[50],boot[1949]],inference_status='descriptive_only' if len(clusters)<12 else 'pilot_interval_not_confirmatory',resampling_unit=cluster_key,seed=seed)
+    return dict(arms=arms,questions=len(per_query),independent_clusters=len(clusters),paired_difference=sum(values)/len(values),ci95=[boot[50],boot[1949]],inference_status='descriptive_only' if len(clusters)<12 else 'pilot_interval_not_confirmatory',resampling_unit=cluster_key,seed=seed,metric=metric,treatment=arms[1],comparator=arms[0])
 
 
 def build_report(result_dir,reference_path):
