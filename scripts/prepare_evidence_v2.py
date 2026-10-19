@@ -37,14 +37,14 @@ def main():
                'per_filing':[{k:e.get(k) for k in ('doc_id','status','raw_sha256','fiscal_year_focus','revenue_candidates','revenue_spans','rejected')} for e in m['filings']]}
         target=ROOT/selection['audit_output'];target.write_text(json.dumps(audit,indent=2,sort_keys=True)+'\n');print(target);return
     chosen=[f for f in filings if f['ticker'] in set(selection['tickers'])]
-    out=prepare_sources(a.source_raw_dir,chosen,copy_dir=ROOT/selection['raw_copy_dir'])
+    out=prepare_sources(a.source_raw_dir,chosen,copy_dir=ROOT/selection['raw_copy_dir'] if selection.get('raw_copy_dir') else None)
     docs=ROOT/config['documents'];write_jsonl(docs,out['documents'])
     write_jsonl(ROOT/selection['segments_output'],out['segments']);write_jsonl(ROOT/selection['failures_output'],out['failures'])
     manifest=out['manifest'];lineage={f['doc_id']:f for f in chosen}
     for e in manifest['filings']:e['v1_text_sha256']=lineage[e['doc_id']]['v1_text_sha256'];e['source_url']=lineage[e['doc_id']]['source_url']
     manifest.update(selection=selection,v1_corpus_sha256=hashlib.sha256((ROOT/'data/release/v1/corpus_150.jsonl.gz').read_bytes()).hexdigest(),
                     documents_sha256=hashlib.sha256(docs.read_bytes()).hexdigest(),segments_sha256=hashlib.sha256((ROOT/selection['segments_output']).read_bytes()).hexdigest(),
-                    raw_location='raw HTML is untracked; source checkout data/raw/<doc_id>.html, copied into ignored '+selection['raw_copy_dir'])
+                    raw_location='raw HTML is untracked; source checkout data/raw/<doc_id>.html, '+('copied into ignored '+selection['raw_copy_dir'] if selection.get('raw_copy_dir') else 'hashed in place, not copied'))
     target=ROOT/selection['manifest_output'];target.write_text(json.dumps(manifest,indent=2,sort_keys=True)+'\n')
     print(json.dumps({'manifest':str(target.relative_to(ROOT)),'status_counts':manifest['status_counts'],'revenue_spans':manifest['revenue_spans']},sort_keys=True))
 

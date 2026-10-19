@@ -7,6 +7,7 @@ from pipelines.evidence_aware.calendar import build_fiscal_calendar
 from pipelines.evidence_aware.parser import parse_query,UnsupportedQuery
 from pipelines.evidence_aware.retrieval import BM25Backend
 from pipelines.evidence_aware.engine import run_spec
+from pipelines.evidence_aware.policy import POLICIES
 
 
 def read_jsonl(path):
@@ -21,6 +22,7 @@ def validate_config(config):
     if any('gold' in k or 'reference' in k or 'oracle' in k for k in config):raise ValueError('evaluation configuration forbidden in inference')
     if config.get('provider_enabled',False) or config.get('max_usd',0)!=0:raise ValueError('live provider arm unavailable; zero-budget offline mode only')
     if config.get('input_mode','raw_question') not in {'raw_question','diagnostic_spec'}:raise ValueError('invalid input mode')
+    if config.get('policy','coverage_rule_v1') not in POLICIES:raise ValueError('unknown policy')
     for k in ('max_context_tokens','max_output_tokens','cheap_context_tokens','stage_context_tokens','retrieval_tokens_total','verification_tokens_total','deadline_ms','max_packed_sections'):
         if k in config and (type(config[k]) is not int or config[k]<0):raise ValueError(f'invalid budget: {k}')
 

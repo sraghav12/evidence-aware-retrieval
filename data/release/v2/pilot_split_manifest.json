@@ -1,0 +1,1798 @@
+{
+  "effective_groups": {
+    "development": 14,
+    "test": 8,
+    "total": 22
+  },
+  "grammar_overlap": {
+    "extract": 41,
+    "growth": 20,
+    "late_disclosure": 24,
+    "paraphrase": 5,
+    "ranking": 6,
+    "release_b": 20,
+    "restatement": 6,
+    "sum": 7,
+    "unknown_company": 5
+  },
+  "inference_status": "descriptive_only",
+  "locked_test": "feasible",
+  "pilot_summary": {
+    "answerable": 76,
+    "by_split": {
+      "development": 75,
+      "test": 39
+    },
+    "by_template": {
+      "extract": 41,
+      "growth": 20,
+      "late_disclosure": 24,
+      "paraphrase": 5,
+      "ranking": 6,
+      "restatement": 6,
+      "sum": 7,
+      "unknown_company": 5
+    },
+    "excluded": [
+      {
+        "fiscal_year": 2023,
+        "reason": "definition_conflict",
+        "template": "extract",
+        "ticker": "COP"
+      },
+      {
+        "fiscal_year": 2024,
+        "reason": "definition_conflict",
+        "template": "extract",
+        "ticker": "COP"
+      },
+      {
+        "fiscal_year": 2024,
+        "reason": "definition_conflict",
+        "template": "growth",
+        "ticker": "COP"
+      },
+      {
+        "fiscal_year": 2023,
+        "reason": "definition_conflict",
+        "template": "extract",
+        "ticker": "CVX"
+      },
+      {
+        "fiscal_year": 2024,
+        "reason": "definition_conflict",
+        "template": "extract",
+        "ticker": "CVX"
+      },
+      {
+        "fiscal_year": 2024,
+        "reason": "definition_conflict",
+        "template": "growth",
+        "ticker": "CVX"
+      },
+      {
+        "fiscal_year": 2023,
+        "reason": "no_calendar",
+        "template": "extract",
+        "ticker": "FCX"
+      },
+      {
+        "fiscal_year": 2024,
+        "reason": "no_calendar",
+        "template": "extract",
+        "ticker": "FCX"
+      },
+      {
+        "fiscal_year": 2023,
+        "reason": "definition_conflict",
+        "template": "extract",
+        "ticker": "PFE"
+      },
+      {
+        "fiscal_year": 2024,
+        "reason": "definition_conflict",
+        "template": "growth",
+        "ticker": "PFE"
+      },
+      {
+        "fiscal_year": 2023,
+        "reason": "definition_conflict",
+        "template": "extract",
+        "ticker": "WMT"
+      },
+      {
+        "fiscal_year": 2024,
+        "reason": "definition_conflict",
+        "template": "extract",
+        "ticker": "WMT"
+      },
+      {
+        "fiscal_year": 2024,
+        "reason": "definition_conflict",
+        "template": "growth",
+        "ticker": "WMT"
+      },
+      {
+        "fiscal_year": 2024,
+        "reason": "definition_conflict",
+        "template": "sum",
+        "ticker": "CAT+WMT"
+      },
+      {
+        "fiscal_year": 2024,
+        "reason": "definition_conflict",
+        "template": "ranking",
+        "ticker": "CAT+WMT"
+      },
+      {
+        "fiscal_year": 2024,
+        "reason": "definition_conflict",
+        "template": "ranking",
+        "ticker": "ABBV+PFE"
+      },
+      {
+        "fiscal_year": 2024,
+        "reason": "definition_conflict",
+        "template": "sum",
+        "ticker": "COP+XOM"
+      },
+      {
+        "fiscal_year": 2024,
+        "reason": "definition_conflict",
+        "template": "ranking",
+        "ticker": "COP+XOM"
+      }
+    ],
+    "excluded_tickers": {
+      "BAC": "bank revenue is reported net of interest expense; outside the reviewed revenue definition",
+      "BLK": "asset manager; outside the reviewed revenue definition",
+      "GS": "bank; outside the reviewed revenue definition",
+      "JPM": "bank; outside the reviewed revenue definition",
+      "WFC": "bank; outside the reviewed revenue definition"
+    },
+    "human_reviewers": 0,
+    "questions": 114,
+    "review_status": "ai_proposed_unreviewed",
+    "unanswerable": 38
+  },
+  "rows": [
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:320193"
+      ],
+      "query_id": "p001",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "extract"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:320193"
+      ],
+      "query_id": "p002",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "extract"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:320193"
+      ],
+      "query_id": "p003",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "growth"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:320193"
+      ],
+      "query_id": "p004",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "late_disclosure"
+    },
+    {
+      "component": "063041fca4e4",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:1551152"
+      ],
+      "query_id": "p005",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "extract"
+    },
+    {
+      "component": "063041fca4e4",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:1551152"
+      ],
+      "query_id": "p006",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "extract"
+    },
+    {
+      "component": "063041fca4e4",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:1551152"
+      ],
+      "query_id": "p007",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "growth"
+    },
+    {
+      "component": "063041fca4e4",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:1551152"
+      ],
+      "query_id": "p008",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "late_disclosure"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:2488"
+      ],
+      "query_id": "p009",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "extract"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:2488"
+      ],
+      "query_id": "p010",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "extract"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:2488"
+      ],
+      "query_id": "p011",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "growth"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:2488"
+      ],
+      "query_id": "p012",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "late_disclosure"
+    },
+    {
+      "component": "6139781abf09",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:12927"
+      ],
+      "query_id": "p013",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "extract"
+    },
+    {
+      "component": "6139781abf09",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:12927"
+      ],
+      "query_id": "p014",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "extract"
+    },
+    {
+      "component": "6139781abf09",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:12927"
+      ],
+      "query_id": "p015",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "growth"
+    },
+    {
+      "component": "6139781abf09",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:12927"
+      ],
+      "query_id": "p016",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "late_disclosure"
+    },
+    {
+      "component": "675264e7443a",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:18230"
+      ],
+      "query_id": "p017",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "extract"
+    },
+    {
+      "component": "675264e7443a",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:18230"
+      ],
+      "query_id": "p018",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "extract"
+    },
+    {
+      "component": "675264e7443a",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:18230"
+      ],
+      "query_id": "p019",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "growth"
+    },
+    {
+      "component": "675264e7443a",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:18230"
+      ],
+      "query_id": "p020",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "late_disclosure"
+    },
+    {
+      "component": "bb7851186ee8",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:1163165"
+      ],
+      "query_id": "p021",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "late_disclosure"
+    },
+    {
+      "component": "b39a5a865333",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:909832"
+      ],
+      "query_id": "p022",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "extract"
+    },
+    {
+      "component": "b39a5a865333",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:909832"
+      ],
+      "query_id": "p023",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "extract"
+    },
+    {
+      "component": "b39a5a865333",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:909832"
+      ],
+      "query_id": "p024",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "growth"
+    },
+    {
+      "component": "b39a5a865333",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:909832"
+      ],
+      "query_id": "p025",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "late_disclosure"
+    },
+    {
+      "component": "9dd94e8b7c00",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:93410"
+      ],
+      "query_id": "p026",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "late_disclosure"
+    },
+    {
+      "component": "73346b4f614f",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:315189"
+      ],
+      "query_id": "p027",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "extract"
+    },
+    {
+      "component": "73346b4f614f",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:315189"
+      ],
+      "query_id": "p028",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "extract"
+    },
+    {
+      "component": "73346b4f614f",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:315189"
+      ],
+      "query_id": "p029",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "growth"
+    },
+    {
+      "component": "73346b4f614f",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:315189"
+      ],
+      "query_id": "p030",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "late_disclosure"
+    },
+    {
+      "component": "6139781abf09",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:40545"
+      ],
+      "query_id": "p031",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "extract"
+    },
+    {
+      "component": "6139781abf09",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:40545"
+      ],
+      "query_id": "p032",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "extract"
+    },
+    {
+      "component": "6139781abf09",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:40545"
+      ],
+      "query_id": "p033",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "growth"
+    },
+    {
+      "component": "6139781abf09",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:40545"
+      ],
+      "query_id": "p034",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "late_disclosure"
+    },
+    {
+      "component": "6139781abf09",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:40545"
+      ],
+      "query_id": "p035",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "restatement"
+    },
+    {
+      "component": "6139781abf09",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:40545"
+      ],
+      "query_id": "p036",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "restatement"
+    },
+    {
+      "component": "4441ad252f70",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:1652044"
+      ],
+      "query_id": "p037",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "extract"
+    },
+    {
+      "component": "4441ad252f70",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:1652044"
+      ],
+      "query_id": "p038",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "extract"
+    },
+    {
+      "component": "4441ad252f70",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:1652044"
+      ],
+      "query_id": "p039",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "growth"
+    },
+    {
+      "component": "4441ad252f70",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:1652044"
+      ],
+      "query_id": "p040",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "late_disclosure"
+    },
+    {
+      "component": "b39a5a865333",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:354950"
+      ],
+      "query_id": "p041",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "extract"
+    },
+    {
+      "component": "b39a5a865333",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:354950"
+      ],
+      "query_id": "p042",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "extract"
+    },
+    {
+      "component": "b39a5a865333",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:354950"
+      ],
+      "query_id": "p043",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "growth"
+    },
+    {
+      "component": "b39a5a865333",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:354950"
+      ],
+      "query_id": "p044",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "late_disclosure"
+    },
+    {
+      "component": "d3f2cf12b4de",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:200406"
+      ],
+      "query_id": "p045",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "extract"
+    },
+    {
+      "component": "d3f2cf12b4de",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:200406"
+      ],
+      "query_id": "p046",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "extract"
+    },
+    {
+      "component": "d3f2cf12b4de",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:200406"
+      ],
+      "query_id": "p047",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "growth"
+    },
+    {
+      "component": "d3f2cf12b4de",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:200406"
+      ],
+      "query_id": "p048",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "late_disclosure"
+    },
+    {
+      "component": "d3f2cf12b4de",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:200406"
+      ],
+      "query_id": "p049",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "restatement"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:21344"
+      ],
+      "query_id": "p050",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "extract"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:21344"
+      ],
+      "query_id": "p051",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "extract"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:21344"
+      ],
+      "query_id": "p052",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "growth"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:21344"
+      ],
+      "query_id": "p053",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "late_disclosure"
+    },
+    {
+      "component": "99d351b6d192",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:1707925"
+      ],
+      "query_id": "p054",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "extract"
+    },
+    {
+      "component": "99d351b6d192",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:1707925"
+      ],
+      "query_id": "p055",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "extract"
+    },
+    {
+      "component": "99d351b6d192",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:1707925"
+      ],
+      "query_id": "p056",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "growth"
+    },
+    {
+      "component": "99d351b6d192",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:1707925"
+      ],
+      "query_id": "p057",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "late_disclosure"
+    },
+    {
+      "component": "d3f2cf12b4de",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:59478"
+      ],
+      "query_id": "p058",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "extract"
+    },
+    {
+      "component": "d3f2cf12b4de",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:59478"
+      ],
+      "query_id": "p059",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "extract"
+    },
+    {
+      "component": "d3f2cf12b4de",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:59478"
+      ],
+      "query_id": "p060",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "growth"
+    },
+    {
+      "component": "d3f2cf12b4de",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:59478"
+      ],
+      "query_id": "p061",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "late_disclosure"
+    },
+    {
+      "component": "d3f2cf12b4de",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:59478"
+      ],
+      "query_id": "p062",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "restatement"
+    },
+    {
+      "component": "69c212e315b2",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:63908"
+      ],
+      "query_id": "p063",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "extract"
+    },
+    {
+      "component": "69c212e315b2",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:63908"
+      ],
+      "query_id": "p064",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "extract"
+    },
+    {
+      "component": "69c212e315b2",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:63908"
+      ],
+      "query_id": "p065",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "growth"
+    },
+    {
+      "component": "69c212e315b2",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:63908"
+      ],
+      "query_id": "p066",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "late_disclosure"
+    },
+    {
+      "component": "69c212e315b2",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:63908"
+      ],
+      "query_id": "p067",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "restatement"
+    },
+    {
+      "component": "69c212e315b2",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:63908"
+      ],
+      "query_id": "p068",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "restatement"
+    },
+    {
+      "component": "4441ad252f70",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:1326801"
+      ],
+      "query_id": "p069",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "extract"
+    },
+    {
+      "component": "4441ad252f70",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:1326801"
+      ],
+      "query_id": "p070",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "extract"
+    },
+    {
+      "component": "4441ad252f70",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:1326801"
+      ],
+      "query_id": "p071",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "growth"
+    },
+    {
+      "component": "4441ad252f70",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:1326801"
+      ],
+      "query_id": "p072",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "late_disclosure"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:1045810"
+      ],
+      "query_id": "p073",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "extract"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:1045810"
+      ],
+      "query_id": "p074",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "extract"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:1045810"
+      ],
+      "query_id": "p075",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "growth"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:1045810"
+      ],
+      "query_id": "p076",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "late_disclosure"
+    },
+    {
+      "component": "063041fca4e4",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:78003"
+      ],
+      "query_id": "p077",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "extract"
+    },
+    {
+      "component": "063041fca4e4",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:78003"
+      ],
+      "query_id": "p078",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "late_disclosure"
+    },
+    {
+      "component": "5aefdc49850c",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:80424"
+      ],
+      "query_id": "p079",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "extract"
+    },
+    {
+      "component": "5aefdc49850c",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:80424"
+      ],
+      "query_id": "p080",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "extract"
+    },
+    {
+      "component": "5aefdc49850c",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:80424"
+      ],
+      "query_id": "p081",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "growth"
+    },
+    {
+      "component": "5aefdc49850c",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:80424"
+      ],
+      "query_id": "p082",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "late_disclosure"
+    },
+    {
+      "component": "55038440e6c2",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:731766"
+      ],
+      "query_id": "p083",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "extract"
+    },
+    {
+      "component": "55038440e6c2",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:731766"
+      ],
+      "query_id": "p084",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "extract"
+    },
+    {
+      "component": "55038440e6c2",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:731766"
+      ],
+      "query_id": "p085",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "growth"
+    },
+    {
+      "component": "55038440e6c2",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:731766"
+      ],
+      "query_id": "p086",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "late_disclosure"
+    },
+    {
+      "component": "671307205fee",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:104169"
+      ],
+      "query_id": "p087",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "late_disclosure"
+    },
+    {
+      "component": "9443d5ddaa71",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:34088"
+      ],
+      "query_id": "p088",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "extract"
+    },
+    {
+      "component": "9443d5ddaa71",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:34088"
+      ],
+      "query_id": "p089",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "extract"
+    },
+    {
+      "component": "9443d5ddaa71",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:34088"
+      ],
+      "query_id": "p090",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "growth"
+    },
+    {
+      "component": "9443d5ddaa71",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:34088"
+      ],
+      "query_id": "p091",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "late_disclosure"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [
+        "p002"
+      ],
+      "development_only": true,
+      "entity_ids": [
+        "cik:320193"
+      ],
+      "query_id": "p092",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "paraphrase"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [
+        "p074"
+      ],
+      "development_only": true,
+      "entity_ids": [
+        "cik:1045810"
+      ],
+      "query_id": "p093",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "paraphrase"
+    },
+    {
+      "component": "b39a5a865333",
+      "derivation_ancestry": [
+        "p023"
+      ],
+      "development_only": false,
+      "entity_ids": [
+        "cik:909832"
+      ],
+      "query_id": "p094",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "paraphrase"
+    },
+    {
+      "component": "99d351b6d192",
+      "derivation_ancestry": [
+        "p055"
+      ],
+      "development_only": false,
+      "entity_ids": [
+        "cik:1707925"
+      ],
+      "query_id": "p095",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "paraphrase"
+    },
+    {
+      "component": "55038440e6c2",
+      "derivation_ancestry": [
+        "p084"
+      ],
+      "development_only": false,
+      "entity_ids": [
+        "cik:731766"
+      ],
+      "query_id": "p096",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "paraphrase"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:21344",
+        "cik:320193"
+      ],
+      "query_id": "p097",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "sum"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:21344",
+        "cik:320193"
+      ],
+      "query_id": "p098",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "ranking"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:1045810",
+        "cik:2488"
+      ],
+      "query_id": "p099",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "sum"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:1045810",
+        "cik:2488"
+      ],
+      "query_id": "p100",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "ranking"
+    },
+    {
+      "component": "4441ad252f70",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:1326801",
+        "cik:1652044"
+      ],
+      "query_id": "p101",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "sum"
+    },
+    {
+      "component": "4441ad252f70",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:1326801",
+        "cik:1652044"
+      ],
+      "query_id": "p102",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "ranking"
+    },
+    {
+      "component": "d3f2cf12b4de",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:200406",
+        "cik:59478"
+      ],
+      "query_id": "p103",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "sum"
+    },
+    {
+      "component": "d3f2cf12b4de",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:200406",
+        "cik:59478"
+      ],
+      "query_id": "p104",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "ranking"
+    },
+    {
+      "component": "063041fca4e4",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:1551152",
+        "cik:78003"
+      ],
+      "query_id": "p105",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "sum"
+    },
+    {
+      "component": "b39a5a865333",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:354950",
+        "cik:909832"
+      ],
+      "query_id": "p106",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "sum"
+    },
+    {
+      "component": "b39a5a865333",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:354950",
+        "cik:909832"
+      ],
+      "query_id": "p107",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "ranking"
+    },
+    {
+      "component": "6139781abf09",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:12927",
+        "cik:40545"
+      ],
+      "query_id": "p108",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "sum"
+    },
+    {
+      "component": "6139781abf09",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "cik:12927",
+        "cik:40545"
+      ],
+      "query_id": "p109",
+      "source_ancestry": [],
+      "split": "test",
+      "template": "ranking"
+    },
+    {
+      "component": "4a9ce609acfd",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "unknown:microsoft"
+      ],
+      "query_id": "p110",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "unknown_company"
+    },
+    {
+      "component": "2f36d2fe4f4d",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "unknown:netflix"
+      ],
+      "query_id": "p111",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "unknown_company"
+    },
+    {
+      "component": "9ab7c6e66609",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "unknown:intel"
+      ],
+      "query_id": "p112",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "unknown_company"
+    },
+    {
+      "component": "79286066a4be",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "unknown:oracle"
+      ],
+      "query_id": "p113",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "unknown_company"
+    },
+    {
+      "component": "54c284f9a4a1",
+      "derivation_ancestry": [],
+      "development_only": false,
+      "entity_ids": [
+        "unknown:nike"
+      ],
+      "query_id": "p114",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "unknown_company"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:320193"
+      ],
+      "query_id": "rd01",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "release_b"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:320193"
+      ],
+      "query_id": "rd02",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "release_b"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:21344"
+      ],
+      "query_id": "rd03",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "release_b"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:2488"
+      ],
+      "query_id": "rd04",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "release_b"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:21344",
+        "cik:320193"
+      ],
+      "query_id": "rd05",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "release_b"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:21344",
+        "cik:2488",
+        "cik:320193"
+      ],
+      "query_id": "rd06",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "release_b"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:1045810"
+      ],
+      "query_id": "rd07",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "release_b"
+    },
+    {
+      "component": "675264e7443a",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:18230"
+      ],
+      "query_id": "rd08",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "release_b"
+    },
+    {
+      "component": "4441ad252f70",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:1326801"
+      ],
+      "query_id": "rd09",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "release_b"
+    },
+    {
+      "component": "4441ad252f70",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:1652044"
+      ],
+      "query_id": "rd10",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "release_b"
+    },
+    {
+      "component": "4441ad252f70",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:1326801",
+        "cik:1652044"
+      ],
+      "query_id": "rd11",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "release_b"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:320193"
+      ],
+      "query_id": "rd12",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "release_b"
+    },
+    {
+      "component": "d3f2cf12b4de",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:200406"
+      ],
+      "query_id": "rd13",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "release_b"
+    },
+    {
+      "component": "d3f2cf12b4de",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:200406"
+      ],
+      "query_id": "rd14",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "release_b"
+    },
+    {
+      "component": "671307205fee",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:104169"
+      ],
+      "query_id": "rd15",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "release_b"
+    },
+    {
+      "component": "d3f2cf12b4de",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:59478"
+      ],
+      "query_id": "rd16",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "release_b"
+    },
+    {
+      "component": "9ddd756ffb87",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "unknown:tesla"
+      ],
+      "query_id": "rd17",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "release_b"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:320193"
+      ],
+      "query_id": "rd18",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "release_b"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:21344"
+      ],
+      "query_id": "rd19",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "release_b"
+    },
+    {
+      "component": "005dd703788e",
+      "derivation_ancestry": [],
+      "development_only": true,
+      "entity_ids": [
+        "cik:21344",
+        "cik:320193"
+      ],
+      "query_id": "rd20",
+      "source_ancestry": [],
+      "split": "development",
+      "template": "release_b"
+    }
+  ],
+  "schema_version": 2,
+  "seed": 11
+}

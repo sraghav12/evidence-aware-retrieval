@@ -4,7 +4,7 @@ from time import monotonic,perf_counter
 from .contracts import BudgetState,RoutingState,RunTrace,UsageEvent,digest,AnswerRecord
 from .coverage import audit_coverage,same_quantity
 from .numeric import execute_numeric,audit_answer,abstain
-from .policy import decide_route
+from .policy import decide
 
 
 def contains(unit,span):return span.doc_id==unit.doc_id and unit.start<=span.start and span.end<=unit.end
@@ -24,7 +24,7 @@ def pack(spec,units,collected,token_limit,max_sections):
 
 def run_spec(spec,backends,documents,config,answerer=None):
     budget=BudgetState(context_tokens_remaining=config.get('max_context_tokens',8192),output_tokens_remaining=config.get('max_output_tokens',512),max_usd=config.get('max_usd',0),deadline_ms=config.get('deadline_ms',30000),retrieval_tokens_remaining=config.get('retrieval_tokens_total',24576),verification_tokens_remaining=config.get('verification_tokens_total',24576))
-    trace=RunTrace(spec.id,spec.question,spec.as_of,config.get('input_mode','raw_question'),digest(asdict(spec)),digest(config),digest(documents),spec=asdict(spec))
+    trace=RunTrace(spec.id,spec.question,spec.as_of,config.get('input_mode','raw_question'),digest(asdict(spec)),digest(config),digest(documents),policy_version=config.get('policy','coverage_rule_v1'),spec=asdict(spec))
     try:route(spec,backends,documents,config,answerer,budget,trace)
     except Exception as e:
         # Keep attempted stages and usage; a failed row is never an empty, zero-cost row.
@@ -69,7 +69,7 @@ def route(spec,backends,documents,config,answerer,budget,trace):
         trace.usage.append(asdict(UsageEvent(f'{spec.id}:{action}:audit',spec.id,'verification',input_tokens=count,elapsed_ms=(perf_counter()-before)*1000)))
         trace.coverage_snapshots.append(asdict(coverage));trace.evidence=[asdict(s) for s in packed]
         budget.deadline_ms=max(0,int((deadline-monotonic())*1000))
-        decision=decide_route(spec,coverage,budget,RoutingState(len(attempted),tuple(attempted)))
+        decision=decide(config.get('policy','coverage_rule_v1'),spec,coverage,budget,RoutingState(len(attempted),tuple(attempted)))
         if monotonic()>=deadline:decision=type(decision)('abstain',('budget_exhausted',),coverage.missing_requirement_ids)
         if decision.action=='answer':
             result=execute_numeric(spec,coverage,packed)

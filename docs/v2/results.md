@@ -17,4 +17,17 @@ After the fresh whole-branch review fix pass, the same eight cases still give th
 
 20 development questions over 10 companies from raw SEC inline-XBRL HTML: 12/16 answerable questions supported and reference-verified, 4/4 unanswerable correctly abstained, 0 errors, 0 provider calls. Misses are a three-company ranking lost to BM25 slot competition, Walmart's two revenue concepts, one out-of-grammar wording and one comparative-only fiscal year. References are AI-authored and unreviewed; this is development data, not a test. Details, failure table and limitations: [extraction audit](extraction_audit.md).
 
+## Release C preparation (not yet run)
+
+The scheduling controls (always-cheap, evidence rule, complexity rule, always-maximum) were compared on the 20 Release B development questions at 8,192 context:
+
+| Arm | Supported / 16 | Correct abstentions / 4 | Retrieval tokens inspected |
+|---|---|---|---|
+| always_cheap_v1 | 11 | 4 | 51,955 |
+| coverage_rule_v1 | 12 | 4 | 64,788 |
+| complexity_rule_v1 | 11 | 4 | 66,931 |
+| always_maximum_v1 | 11 | 4 | 158,257 |
+
+These are development observations, not evidence of a general advantage. A 114-question pilot, its locked 8-group test split and a matched experiment manifest are frozen and have not been run. Dense and hybrid arms are unavailable pending a model-download decision. See the [preregistration](preregistration.md) and [resource probe](resource_probe.md).
+
 Use a new output directory per run. Reporting reads saved files and does not call a model. The core works with the Python standard library; pytest is needed for its tests, and the separate compatibility lock supports the historical v1 test suite.
