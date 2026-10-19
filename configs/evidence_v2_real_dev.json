@@ -1,0 +1,40 @@
+{
+  "schema_version": 2,
+  "provider_enabled": false,
+  "max_usd": 0,
+  "input_mode": "raw_question",
+  "answerer": "decimal_executor",
+  "policy": "coverage_rule_v1",
+  "max_context_tokens": 8192,
+  "max_output_tokens": 512,
+  "stage_context_tokens": 8192,
+  "cheap_context_tokens": 8192,
+  "retrieval_tokens_total": 24576,
+  "verification_tokens_total": 24576,
+  "max_packed_sections": 12,
+  "deadline_ms": 30000,
+  "seed": 11,
+  "documents": "data/processed/evidence_v2/real_dev_documents.jsonl",
+  "queries": "data/release/v2/real_dev_questions.jsonl",
+  "output": "results/evidence_v2/real_dev_001",
+  "aliases": {
+    "alphabet": "cik:1652044",
+    "amd": "cik:2488",
+    "apple": "cik:320193",
+    "caterpillar": "cik:18230",
+    "coca-cola": "cik:21344",
+    "eli lilly": "cik:59478",
+    "johnson & johnson": "cik:200406",
+    "meta": "cik:1326801",
+    "nvidia": "cik:1045810",
+    "walmart": "cik:104169"
+  },
+  "source_selection": {
+    "tickers": ["AAPL", "AMD", "CAT", "GOOGL", "JNJ", "KO", "LLY", "META", "NVDA", "WMT"],
+    "raw_copy_dir": "data/raw/evidence_v2",
+    "segments_output": "data/processed/evidence_v2/real_dev_segments.jsonl",
+    "failures_output": "data/processed/evidence_v2/real_dev_extraction_failures.jsonl",
+    "manifest_output": "data/release/v2/source_manifest.json",
+    "audit_output": "data/release/v2/extraction_audit_v1_corpus.json"
+  }
+}

@@ -1,0 +1,1711 @@
+{
+  "extractor_version": "html_ixbrl_tables_v1",
+  "filings_with_spans": 99,
+  "per_filing": [
+    {
+      "doc_id": "AAPL_10K_2021",
+      "fiscal_year_focus": 2021,
+      "raw_sha256": "c174312fe1823b0c8aabf1638d6fa8c1783b53034986cdd572a8e88c3484779b",
+      "rejected": {},
+      "revenue_candidates": 9,
+      "revenue_spans": 9,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "AAPL_10K_2022",
+      "fiscal_year_focus": 2022,
+      "raw_sha256": "783e4588c24217cd55f0af0c11f15d94271e0c6b756478b862701951ecb49258",
+      "rejected": {},
+      "revenue_candidates": 9,
+      "revenue_spans": 9,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "AAPL_10K_2023",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "bda1f34435199672c16ecdf2034c650872d2cac8399ed0d179fc25450b080b90",
+      "rejected": {},
+      "revenue_candidates": 9,
+      "revenue_spans": 9,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "AAPL_10K_2024",
+      "fiscal_year_focus": 2024,
+      "raw_sha256": "24a830a0f1256e371d36a1f7f72e5e85a38037d1de2f6f966eb8457db42ff6d6",
+      "rejected": {},
+      "revenue_candidates": 9,
+      "revenue_spans": 9,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "AAPL_10K_2025",
+      "fiscal_year_focus": 2025,
+      "raw_sha256": "548ae59778cf08ee0f2ee088e7ece20d947076c3c01f74d2d65db4c2777e436a",
+      "rejected": {},
+      "revenue_candidates": 12,
+      "revenue_spans": 12,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "ABBV_10K_2021",
+      "fiscal_year_focus": 2021,
+      "raw_sha256": "302ac908d9c808e0c9ba608a464743bcc16590175a6469dbd6e6c607d4c01036",
+      "rejected": {
+        "non_annual_period": 1
+      },
+      "revenue_candidates": 10,
+      "revenue_spans": 9,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "ABBV_10K_2022",
+      "fiscal_year_focus": 2022,
+      "raw_sha256": "46ffc5ce20f557b354d1b72af4636df515c056ab4c6596c05714a5e2711301ba",
+      "rejected": {
+        "non_annual_period": 1
+      },
+      "revenue_candidates": 10,
+      "revenue_spans": 9,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "ABBV_10K_2023",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "c554dd1cd2158b715990315e78cc168afa617c00bfa753e8a9f27a651cf95dc7",
+      "rejected": {
+        "non_annual_period": 1
+      },
+      "revenue_candidates": 10,
+      "revenue_spans": 9,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "ABBV_10K_2024",
+      "fiscal_year_focus": 2024,
+      "raw_sha256": "40a01fcd174bd825461f2f9eab8b4f5bcf3875bb1c572721925fadddc9db72cc",
+      "rejected": {
+        "non_annual_period": 1
+      },
+      "revenue_candidates": 10,
+      "revenue_spans": 9,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "ABBV_10K_2025",
+      "fiscal_year_focus": 2025,
+      "raw_sha256": "48e4487c959cd24152341bd490a9462b83e9e0c6f2642f8b96a8b5aaf433f0b8",
+      "rejected": {
+        "non_annual_period": 1
+      },
+      "revenue_candidates": 10,
+      "revenue_spans": 9,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "AMD_10K_2021",
+      "fiscal_year_focus": 2021,
+      "raw_sha256": "5ab3b2564e1b5f18a1fc6b8b60a307abc3be32ee902a59955b3038c504dbfd36",
+      "rejected": {},
+      "revenue_candidates": 9,
+      "revenue_spans": 9,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "AMD_10K_2022",
+      "fiscal_year_focus": 2022,
+      "raw_sha256": "df0ad96c282b7eab4c3387bc2ef772350004e37be21805622ab8503b5db02acd",
+      "rejected": {},
+      "revenue_candidates": 9,
+      "revenue_spans": 9,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "AMD_10K_2023",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "0e9d83bd98b81b70050a88635171e721488f783eada9686fe21d6919ee1b668e",
+      "rejected": {},
+      "revenue_candidates": 9,
+      "revenue_spans": 9,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "AMD_10K_2024",
+      "fiscal_year_focus": 2024,
+      "raw_sha256": "a56e68cfe5f9cbb84451c9bb7ffe95e287c84ea616570e392f052474e0400664",
+      "rejected": {},
+      "revenue_candidates": 9,
+      "revenue_spans": 9,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "AMD_10K_2025",
+      "fiscal_year_focus": 2025,
+      "raw_sha256": "247b08e661e15f3c3a18a77ea40c0fa8702d23c4b05e2d5303e305840c45b111",
+      "rejected": {},
+      "revenue_candidates": 9,
+      "revenue_spans": 9,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "BAC_10K_2021",
+      "fiscal_year_focus": 2021,
+      "raw_sha256": "2413923430ba8a0218ca0615cbcb91535db48f370f6412ae060faf08eefea163",
+      "rejected": {
+        "row_label_not_revenue": 6
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "BAC_10K_2022",
+      "fiscal_year_focus": 2022,
+      "raw_sha256": "9d58e26ced9354952d03f55cc151e6f222f09cd34d6a38b5410348849a28493c",
+      "rejected": {
+        "row_label_not_revenue": 8
+      },
+      "revenue_candidates": 8,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "BAC_10K_2023",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "ec7ca546700349585038c6f3fec4d1b7bd4721ec25ac680634c38d84a9b3e0d7",
+      "rejected": {
+        "row_label_not_revenue": 9
+      },
+      "revenue_candidates": 9,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "BAC_10K_2024",
+      "fiscal_year_focus": 2024,
+      "raw_sha256": "2bd740567c0f0a7ad4b873da1af6765d4d6268a2c1f0dc129d001af9f09a50e6",
+      "rejected": {
+        "row_label_not_revenue": 6
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "BAC_10K_2025",
+      "fiscal_year_focus": 2025,
+      "raw_sha256": "c8725c7963d19cd6a2f3c1d0034b2a1068b4490124be6b6600a4db23be5ed134",
+      "rejected": {
+        "row_label_not_revenue": 6
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "BA_10K_2021",
+      "fiscal_year_focus": 2021,
+      "raw_sha256": "a5d1303b956fcb04c8d6dc42c74029ef973d6e728fe518a7df69a5caac28720b",
+      "rejected": {
+        "missing_unit_header": 3
+      },
+      "revenue_candidates": 9,
+      "revenue_spans": 6,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "BA_10K_2022",
+      "fiscal_year_focus": 2022,
+      "raw_sha256": "1ae4a90bf95ab690394210b6d9d8695cf2fc3c35c599b35c7e0fc43ffb1b4440",
+      "rejected": {
+        "missing_unit_header": 3
+      },
+      "revenue_candidates": 9,
+      "revenue_spans": 6,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "BA_10K_2023",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "8d4aa184eadda59a5216d4783deb24fd9f01cfe0240b7d49395d4cfd0bd4e820",
+      "rejected": {
+        "missing_unit_header": 3
+      },
+      "revenue_candidates": 9,
+      "revenue_spans": 6,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "BA_10K_2024",
+      "fiscal_year_focus": 2024,
+      "raw_sha256": "5543e481852dd01f459608ad58d70f119b66c605b91fdf16c5b93c5477486f68",
+      "rejected": {
+        "missing_unit_header": 3
+      },
+      "revenue_candidates": 9,
+      "revenue_spans": 6,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "BA_10K_2025",
+      "fiscal_year_focus": 2025,
+      "raw_sha256": "5e6dd009813c7851c73c30eb8a1117eab36e86a8c64bde61ad3af5444b052501",
+      "rejected": {
+        "missing_unit_header": 3
+      },
+      "revenue_candidates": 9,
+      "revenue_spans": 6,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "BLK_10K_2019",
+      "fiscal_year_focus": 2019,
+      "raw_sha256": "38c047116e039901b302ab4cf58cd5c39f2f0f997e811267567af7b6b5881956",
+      "rejected": {
+        "unsupported_unit": 6
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "BLK_10K_2020",
+      "fiscal_year_focus": 2020,
+      "raw_sha256": "84e83ba7f2ca50ffa8167c38ca4a6c41305a745aceb202fc1b72952be76fa88a",
+      "rejected": {
+        "unsupported_unit": 6
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "BLK_10K_2021",
+      "fiscal_year_focus": 2021,
+      "raw_sha256": "2a9b395334c7f4e7b8bddce59311943bfca469e62641a534405bca3ee2c345f8",
+      "rejected": {
+        "unsupported_unit": 6
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "BLK_10K_2022",
+      "fiscal_year_focus": 2022,
+      "raw_sha256": "c954a18de00cd3be04c733fd7504fbb400d1081fced8ac467791055d16b4eeac",
+      "rejected": {
+        "unsupported_unit": 6
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "BLK_10K_2023",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "2debace85ac4945d4b87f174132e21c18bcf7a5c4381982b329bc3bed05695a0",
+      "rejected": {
+        "unsupported_unit": 12
+      },
+      "revenue_candidates": 12,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "CAT_10K_2021",
+      "fiscal_year_focus": 2021,
+      "raw_sha256": "926c3064c1b485242db38739459d66126011e6f4b2db5289066a58f6456ccc08",
+      "rejected": {
+        "missing_period_header": 6,
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 12,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "CAT_10K_2022",
+      "fiscal_year_focus": 2022,
+      "raw_sha256": "779a0af213e496cf178df5089e528d4b6ab0afafa4ec812db660c5b230857fe0",
+      "rejected": {
+        "missing_period_header": 6,
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 12,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "CAT_10K_2023",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "6234e660810ce6ac07a3574668a3223492164efc9019ff6c05178b0f782ea3d7",
+      "rejected": {
+        "missing_period_header": 3,
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 9,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "CAT_10K_2024",
+      "fiscal_year_focus": 2024,
+      "raw_sha256": "a2abf5cb2bc7be0440c1d358cdd02b5eb300a8f231ff4233ee6a724f02b6782c",
+      "rejected": {
+        "missing_period_header": 6,
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 12,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "CAT_10K_2025",
+      "fiscal_year_focus": 2025,
+      "raw_sha256": "090ce2bd6d7dd1e85d4397ab152d3c3c3fb059fd4af0eb9aa979c1eb2ff92f15",
+      "rejected": {
+        "missing_period_header": 6,
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 12,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "COP_10K_2021",
+      "fiscal_year_focus": 2021,
+      "raw_sha256": "666486a1b5771e7f3105afa02cd58d68c5cbfd1d8847e69b4cac50580c35b759",
+      "rejected": {},
+      "revenue_candidates": 0,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "COP_10K_2022",
+      "fiscal_year_focus": 2022,
+      "raw_sha256": "a2160657237fc560db121122f1686ff01e6c6d7f55d56052f22339f4bc9bf0be",
+      "rejected": {
+        "missing_period_header": 3,
+        "missing_unit_header": 9,
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 15,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "COP_10K_2023",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "d7ef89c4e007ca21a81358f701cf7871efb206db980cb211d6a38a08b2dd9b59",
+      "rejected": {
+        "missing_period_header": 3,
+        "missing_unit_header": 9,
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 15,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "COP_10K_2024",
+      "fiscal_year_focus": 2024,
+      "raw_sha256": "9cd2d574969a93136ec07162c89fb50a20eae4b504dc5bcf83a936133812d662",
+      "rejected": {
+        "missing_period_header": 3,
+        "missing_unit_header": 12,
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 18,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "COP_10K_2025",
+      "fiscal_year_focus": 2025,
+      "raw_sha256": "770bf79d6864a4bb9845c3b56d263e4a06efbe720ff0900e34389e2666346ba7",
+      "rejected": {
+        "missing_period_header": 3,
+        "missing_unit_header": 9,
+        "row_label_not_revenue": 6
+      },
+      "revenue_candidates": 18,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "COST_10K_2021",
+      "fiscal_year_focus": 2021,
+      "raw_sha256": "1901dc3e5cdc3ee31cb43e153b6b997ab76b26114ba7548db6a37b536aeb3411",
+      "rejected": {
+        "missing_period_header": 3
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "COST_10K_2022",
+      "fiscal_year_focus": 2022,
+      "raw_sha256": "53bae81dda5f001208a6d73f07302c1b60116bdbb5dbcdb491f074d7f8aad52b",
+      "rejected": {
+        "missing_period_header": 3
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "COST_10K_2023",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "17ad400391c4b3c075c8bc4be019173aa6adf3fcf8d434d39f1dc8ace64a83c9",
+      "rejected": {
+        "missing_period_header": 3
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "COST_10K_2024",
+      "fiscal_year_focus": 2024,
+      "raw_sha256": "02f59d813caef1917d773104629133fd7a7414759a5ea8a9c6918e070c970638",
+      "rejected": {
+        "missing_period_header": 3
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "COST_10K_2025",
+      "fiscal_year_focus": 2025,
+      "raw_sha256": "2cf71f4336c8f36b008a584403551d95ab3b7e4addc9179a99b62029810f7c9a",
+      "rejected": {
+        "missing_unit_header": 3
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "CVX_10K_2021",
+      "fiscal_year_focus": 2021,
+      "raw_sha256": "de3805232affcd3975cf0d336b485d49c7c43502addeffcfe6a1bb6ea7d44660",
+      "rejected": {
+        "missing_unit_header": 6
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "CVX_10K_2022",
+      "fiscal_year_focus": 2022,
+      "raw_sha256": "faf5cf790f6c3d8bc991a4d00b965a0925fc1421bb0c8cfe0a5d3e4da6c86f16",
+      "rejected": {
+        "missing_unit_header": 6
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "CVX_10K_2023",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "4e8830c4480b1480207abfe84dba5ad4cea8f77f6bab78ad2a13d18f75f9d59b",
+      "rejected": {
+        "missing_unit_header": 6
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "CVX_10K_2024",
+      "fiscal_year_focus": 2024,
+      "raw_sha256": "f1689d83592bd0411ec7bf3c072680a715266b1c6c52336cdd37ef0529a80624",
+      "rejected": {
+        "missing_unit_header": 6,
+        "unsupported_rowspan": 6
+      },
+      "revenue_candidates": 12,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "CVX_10K_2025",
+      "fiscal_year_focus": 2025,
+      "raw_sha256": "eba2b2a9b395e555114d1aa5f7e0048b03d6d49665b10e48cb9f3c23da4e1f07",
+      "rejected": {
+        "missing_unit_header": 6,
+        "unsupported_rowspan": 6
+      },
+      "revenue_candidates": 12,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "DE_10K_2021",
+      "fiscal_year_focus": 2021,
+      "raw_sha256": "2edc6b9764c6ecde8b191064ae95d072ad27413e33e7fb49531ce861dfa26b75",
+      "rejected": {
+        "unsupported_unit": 18
+      },
+      "revenue_candidates": 18,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "DE_10K_2022",
+      "fiscal_year_focus": 2022,
+      "raw_sha256": "ed83510500698559621125ed2b911a4e4651fa116a167599cabbe56a269625ea",
+      "rejected": {
+        "unsupported_unit": 15
+      },
+      "revenue_candidates": 15,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "DE_10K_2023",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "b06d05c7e6c196322ae295672801b9a0ba3b7f68194edc70655eb1339c51eaf3",
+      "rejected": {
+        "unsupported_unit": 15
+      },
+      "revenue_candidates": 15,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "DE_10K_2024",
+      "fiscal_year_focus": 2024,
+      "raw_sha256": "2aa81bcec57db1af538be5edad58b0932f70d64081272933845b93fe15a7604d",
+      "rejected": {
+        "unsupported_unit": 15
+      },
+      "revenue_candidates": 15,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "DE_10K_2025",
+      "fiscal_year_focus": 2025,
+      "raw_sha256": "2d63e1f585d06b9305dcf47719af9781b5b95c66bf443278b2fb80cc653f3103",
+      "rejected": {
+        "unsupported_unit": 15
+      },
+      "revenue_candidates": 15,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "FCX_10K_2021",
+      "fiscal_year_focus": 2021,
+      "raw_sha256": "5cc0e98d597233beb0a71b041ce4d7c6be019b204a7f66510fe7d93ad2d87799",
+      "rejected": {
+        "missing_unit_header": 6,
+        "row_label_not_revenue": 6
+      },
+      "revenue_candidates": 15,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "FCX_10K_2022",
+      "fiscal_year_focus": 2022,
+      "raw_sha256": "1113d8f1f413ff0d57846db340b4fa5002e925a4a047f79ec4a8b950d4d5ad8b",
+      "rejected": {
+        "missing_unit_header": 6,
+        "row_label_not_revenue": 6
+      },
+      "revenue_candidates": 15,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "FCX_10K_2023",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "fa419d31ab1c55b012bf5b75ad4b7d61fa2a88c1de2a82ca5af38aab2308c86f",
+      "rejected": {
+        "missing_unit_header": 6,
+        "row_label_not_revenue": 6
+      },
+      "revenue_candidates": 15,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "FCX_10K_2024",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "ea4d361dfcba8e5390799165f1deafdb8a46f7015456aea2d8c8b9d6e9bff840",
+      "rejected": {
+        "period_header_mismatch": 9,
+        "row_label_not_revenue": 6
+      },
+      "revenue_candidates": 15,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "FCX_10K_2025",
+      "fiscal_year_focus": 2025,
+      "raw_sha256": "246e0f9b242211ffa051e4b63d2520e9a2fd07078bbf097d1482074054aca6ed",
+      "rejected": {
+        "missing_period_header": 3,
+        "missing_unit_header": 6,
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 15,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "GE_10K_2021",
+      "fiscal_year_focus": 2021,
+      "raw_sha256": "883338efe273ebaa54b40eefdd2448eff06f81ccf84a4bcb97e41c6ee6d173b0",
+      "rejected": {
+        "missing_period_header": 3,
+        "missing_unit_header": 6,
+        "non_annual_period": 16,
+        "row_label_not_revenue": 8
+      },
+      "revenue_candidates": 36,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "GE_10K_2022",
+      "fiscal_year_focus": 2022,
+      "raw_sha256": "2b29bc652e60f3e7b2235d1bb405580d2a302119c9004c7dd2c5cdcaecba1242",
+      "rejected": {
+        "missing_period_header": 3,
+        "missing_unit_header": 3,
+        "non_annual_period": 16,
+        "row_label_not_revenue": 8
+      },
+      "revenue_candidates": 33,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "GE_10K_2023",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "db7709bba22e1ce118f2050ac3be6159bfec738db156961e5900fe929eaf8033",
+      "rejected": {
+        "missing_period_header": 1,
+        "non_annual_period": 16,
+        "period_header_mismatch": 2,
+        "row_label_not_revenue": 8
+      },
+      "revenue_candidates": 30,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "GE_10K_2024",
+      "fiscal_year_focus": 2024,
+      "raw_sha256": "53bc55998f298d75d48e38ba388e6be0e9cf875b74ad66fe084e0589a4094398",
+      "rejected": {
+        "missing_unit_header": 9,
+        "non_annual_period": 16
+      },
+      "revenue_candidates": 28,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "GE_10K_2025",
+      "fiscal_year_focus": 2025,
+      "raw_sha256": "a73b722fd7c8998c3d7091950926302f30619dff6c542dab656325d562c69be7",
+      "rejected": {
+        "missing_unit_header": 9
+      },
+      "revenue_candidates": 12,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "GOOGL_10K_2021",
+      "fiscal_year_focus": 2021,
+      "raw_sha256": "68c4b06d728f42e47efda7eda080c6ebaf5635f379d7b5e465f988c3d5980799",
+      "rejected": {
+        "row_label_not_revenue": 3,
+        "unit_header_mismatch": 3
+      },
+      "revenue_candidates": 15,
+      "revenue_spans": 9,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "GOOGL_10K_2022",
+      "fiscal_year_focus": 2022,
+      "raw_sha256": "ae45cb015238b351e0ca68e5cb8d391842f9a42111a247a6e03800569deec6a0",
+      "rejected": {},
+      "revenue_candidates": 6,
+      "revenue_spans": 6,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "GOOGL_10K_2023",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "787dd59d770312b204d144b4c78b8de23db1e1d53aae4bf37a52d6d874e903b2",
+      "rejected": {
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 15,
+      "revenue_spans": 12,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "GOOGL_10K_2024",
+      "fiscal_year_focus": 2024,
+      "raw_sha256": "a70a2cc584744e7d678ec6c4fb669fa7c5c871861eb5820fb9de4357319db7d9",
+      "rejected": {
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 15,
+      "revenue_spans": 12,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "GOOGL_10K_2025",
+      "fiscal_year_focus": 2025,
+      "raw_sha256": "c2f6301004f35411a20611c14ff01d80a85c0bcbab6053c80d8cc7f6fc747161",
+      "rejected": {
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 15,
+      "revenue_spans": 12,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "GS_10K_2021",
+      "fiscal_year_focus": 2021,
+      "raw_sha256": "6c47e8cc41f4f57dd8a43f8a06f65380f2f00b273d28ba9614db6ff2a2559c7a",
+      "rejected": {},
+      "revenue_candidates": 0,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "GS_10K_2022",
+      "fiscal_year_focus": 2022,
+      "raw_sha256": "212708cdb57888058cfbece57ee56fafb075cfae04cd847f652f6f3f4dc47aa3",
+      "rejected": {},
+      "revenue_candidates": 0,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "GS_10K_2023",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "a2f8901af8d3f667748297d2d6a8b19c37081f132951922756b0dec8b6be61c8",
+      "rejected": {},
+      "revenue_candidates": 0,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "GS_10K_2024",
+      "fiscal_year_focus": 2024,
+      "raw_sha256": "8ca4f168a5b2554e745e04c1e36f410aa200116aedd1a9955533f696de1d5e87",
+      "rejected": {},
+      "revenue_candidates": 0,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "GS_10K_2025",
+      "fiscal_year_focus": 2025,
+      "raw_sha256": "49dcc48291d906b8a8786671afb4bf9e96c280befc46605adc7ea8656b2d49db",
+      "rejected": {},
+      "revenue_candidates": 0,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "HD_10K_2021",
+      "fiscal_year_focus": 2021,
+      "raw_sha256": "2a87e6beb728f44335e410757f0162facf803c4d5577e75ccd502777910f65be",
+      "rejected": {
+        "row_label_not_revenue": 3,
+        "unsupported_rowspan": 3
+      },
+      "revenue_candidates": 15,
+      "revenue_spans": 9,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "HD_10K_2022",
+      "fiscal_year_focus": 2022,
+      "raw_sha256": "99bd8d886fd8185b5b14106058abe5ec343fd532ec553b426092956d9af943dd",
+      "rejected": {
+        "row_label_not_revenue": 3,
+        "unsupported_rowspan": 3
+      },
+      "revenue_candidates": 15,
+      "revenue_spans": 9,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "HD_10K_2023",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "019dc812e89c7d23f364c1ec964ef8760d1b200dc30a289d0ff094251ad7f95a",
+      "rejected": {
+        "row_label_not_revenue": 3,
+        "unsupported_rowspan": 3
+      },
+      "revenue_candidates": 15,
+      "revenue_spans": 9,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "HD_10K_2024",
+      "fiscal_year_focus": 2024,
+      "raw_sha256": "b787e5ef05e77d39b9dd9c039cf16a9883a7a6220cd4ec878049618edcb14f85",
+      "rejected": {
+        "unsupported_rowspan": 3
+      },
+      "revenue_candidates": 16,
+      "revenue_spans": 13,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "HD_10K_2025",
+      "fiscal_year_focus": 2025,
+      "raw_sha256": "7a108cae33600d3ebc1ea24d363d38066ad5703aeb437b8b5fc7a20fad71ef18",
+      "rejected": {
+        "unsupported_rowspan": 3
+      },
+      "revenue_candidates": 17,
+      "revenue_spans": 14,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "JNJ_10K_2021",
+      "fiscal_year_focus": 2021,
+      "raw_sha256": "b95f9e8cddb3b37246b2a8c8fae75b41d6e5c8d744c5cc1abf9949bbb77f7929",
+      "rejected": {
+        "row_label_not_revenue": 6
+      },
+      "revenue_candidates": 9,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "JNJ_10K_2022",
+      "fiscal_year_focus": 2022,
+      "raw_sha256": "2eb8ddc284750ad8531f01a44019d6b8646ed0eea9f2f39c135730443e74aa21",
+      "rejected": {
+        "row_label_not_revenue": 6
+      },
+      "revenue_candidates": 9,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "JNJ_10K_2023",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "83359d3ca5566ed9e7bb4721667778e86b52f380148ef6336270c1fdef3e7251",
+      "rejected": {
+        "non_annual_period": 8,
+        "row_label_not_revenue": 6
+      },
+      "revenue_candidates": 17,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "JNJ_10K_2024",
+      "fiscal_year_focus": 2024,
+      "raw_sha256": "60ce747c6aada8965e1f7c3843e5b1ff0fef6be86cbdf08e96cb78105d0b9f83",
+      "rejected": {
+        "row_label_not_revenue": 6
+      },
+      "revenue_candidates": 9,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "JNJ_10K_2025",
+      "fiscal_year_focus": 2025,
+      "raw_sha256": "082f4e489d4c19f585cae4c8b62acea92bd6727576f7b0e450b9dfe8ecd42694",
+      "rejected": {
+        "row_label_not_revenue": 6
+      },
+      "revenue_candidates": 9,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "JPM_10K_2021",
+      "fiscal_year_focus": 2021,
+      "raw_sha256": "f24a93a751aa5cb683c25de0e53708e9b1bd1662969fdfc8049175d1048f9670",
+      "rejected": {
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 3,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "JPM_10K_2022",
+      "fiscal_year_focus": 2022,
+      "raw_sha256": "be0daadf5cb327a7d78c373896f3e8eb236a25e7c0056783c13cf058a1468953",
+      "rejected": {
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 3,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "JPM_10K_2023",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "f7d48a9bfd108eb0a5abc9b7d95781f8ff03dd3b3b373e20823a6602c215b2d4",
+      "rejected": {
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 3,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "JPM_10K_2024",
+      "fiscal_year_focus": 2024,
+      "raw_sha256": "f62bd288f3c4492140db19629acf7b9a8de9da72caf895b724a4229dc5b72d96",
+      "rejected": {
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 3,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "JPM_10K_2025",
+      "fiscal_year_focus": 2025,
+      "raw_sha256": "4d9febdbc2038dcdca8726053286df4cbbfd48885051cbd781efcc3becb66a23",
+      "rejected": {
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 3,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "KO_10K_2021",
+      "fiscal_year_focus": 2021,
+      "raw_sha256": "2a9a884ad5aacbdeafa82f53838d6c3f60565728dde35028de2608740d439b31",
+      "rejected": {
+        "missing_period_header": 3,
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 12,
+      "revenue_spans": 6,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "KO_10K_2022",
+      "fiscal_year_focus": 2022,
+      "raw_sha256": "2c6b4d7dcc264aff3657ea1e5d227fc6dba172d87c3bae16d077d242ecedd2bb",
+      "rejected": {
+        "missing_period_header": 3,
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 12,
+      "revenue_spans": 6,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "KO_10K_2023",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "3e64a8ba843636d383ab22a1517306383199a50b1e998d74a67a8adddab9ad6d",
+      "rejected": {
+        "missing_period_header": 3,
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 12,
+      "revenue_spans": 6,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "KO_10K_2024",
+      "fiscal_year_focus": 2024,
+      "raw_sha256": "03e0f59ce1b6115dd5cc3bb46b3078146affe03f3e2b1b37f2d59c3202135b68",
+      "rejected": {
+        "missing_period_header": 3,
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 12,
+      "revenue_spans": 6,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "KO_10K_2025",
+      "fiscal_year_focus": 2025,
+      "raw_sha256": "22dd41f1aab4928f94a5f80e9497cf6203f27baa7c3f4e9088a6dd0aee929c66",
+      "rejected": {
+        "missing_period_header": 3,
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 12,
+      "revenue_spans": 6,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "LIN_10K_2021",
+      "fiscal_year_focus": 2021,
+      "raw_sha256": "6623ccd2cb8efdcebacc3bbcb0c2e343f947ddce35dcda60ea8979435fbcf2de",
+      "rejected": {
+        "missing_unit_header": 6,
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 12,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "LIN_10K_2022",
+      "fiscal_year_focus": 2022,
+      "raw_sha256": "20d1bcb60858f370f4b4950a813ac3ccbe270833af398b6f2e5007ed5e49a536",
+      "rejected": {
+        "missing_unit_header": 6,
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 12,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "LIN_10K_2023",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "1d22c53fab9d1c25a3fd3d148c50e3d3bb938ea020618c186c7b50237ddce906",
+      "rejected": {
+        "missing_unit_header": 6,
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 12,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "LIN_10K_2024",
+      "fiscal_year_focus": 2024,
+      "raw_sha256": "7414f3b802c4d9718f98836331c82107eb5cfe38ee78003d2fe20640959aee85",
+      "rejected": {
+        "missing_unit_header": 3,
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 9,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "LIN_10K_2025",
+      "fiscal_year_focus": 2025,
+      "raw_sha256": "20ad66ea4f0f115715b3af959f9d145f75da1198f5c9f0500fd74302e908994c",
+      "rejected": {
+        "missing_unit_header": 3,
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 9,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "LLY_10K_2021",
+      "fiscal_year_focus": 2021,
+      "raw_sha256": "9373c289276d72c9bc4abbfe564aff53cb62e7842932314e10908c473bfea8dc",
+      "rejected": {
+        "missing_unit_header": 6
+      },
+      "revenue_candidates": 9,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "LLY_10K_2022",
+      "fiscal_year_focus": 2022,
+      "raw_sha256": "a068b560a83979a8754f87a3fbdebec32209b0bd6c37c78c26dba405592b14d9",
+      "rejected": {
+        "missing_unit_header": 6
+      },
+      "revenue_candidates": 9,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "LLY_10K_2023",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "c863c092127de74cbb6830780eb6c4744d260b3580de0131f34267d79f9624f5",
+      "rejected": {
+        "missing_unit_header": 6
+      },
+      "revenue_candidates": 9,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "LLY_10K_2024",
+      "fiscal_year_focus": 2024,
+      "raw_sha256": "90debea11381d15799684c9b3600d9e4b4706beb588825fe04dcdbb91a2a24df",
+      "rejected": {
+        "missing_unit_header": 6
+      },
+      "revenue_candidates": 9,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "LLY_10K_2025",
+      "fiscal_year_focus": 2025,
+      "raw_sha256": "1450e79937d3a53bed1b7f1fe1ba60dda4b0d2d1c372ffbb02107df4576e2cc9",
+      "rejected": {
+        "missing_unit_header": 6
+      },
+      "revenue_candidates": 9,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "MCD_10K_2021",
+      "fiscal_year_focus": 2021,
+      "raw_sha256": "a507cc76e4f6c4cf97e2649a6703db85f8c68f759026f6cc139d1ed180e8c177",
+      "rejected": {
+        "ambiguous_period_header": 3
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "MCD_10K_2022",
+      "fiscal_year_focus": 2022,
+      "raw_sha256": "88c6e9f116d7d9aca0e035f655104f95f2b4086ae70311ab4c30cd3aa1d9bbf3",
+      "rejected": {
+        "ambiguous_period_header": 4
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 2,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "MCD_10K_2023",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "ee8df3f3efab490c7301d669edefa1ef6b29c9f03dd2847313de20506dbe1925",
+      "rejected": {
+        "ambiguous_period_header": 4
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 2,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "MCD_10K_2024",
+      "fiscal_year_focus": 2024,
+      "raw_sha256": "5345d0e67b373f1ad72a76414046b20d43ee74604e647dab978bfcf3ea8dd49f",
+      "rejected": {
+        "ambiguous_period_header": 4
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 2,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "MCD_10K_2025",
+      "fiscal_year_focus": 2025,
+      "raw_sha256": "64e680630d5fe4448db26ff695aaf50189ec23427566f01508d3bf27aa8d8b3e",
+      "rejected": {
+        "ambiguous_period_header": 4
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 2,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "META_10K_2021",
+      "fiscal_year_focus": 2021,
+      "raw_sha256": "927b01dd44798801ec6b7a9cf7d9480a1983a2e0cb93cf6568a935f21a498569",
+      "rejected": {},
+      "revenue_candidates": 12,
+      "revenue_spans": 12,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "META_10K_2022",
+      "fiscal_year_focus": 2022,
+      "raw_sha256": "cc2e9262109cacaa8944e8d93ba1f7b82e3a0edb1d8087f8dee07b9c5ffd6f38",
+      "rejected": {},
+      "revenue_candidates": 12,
+      "revenue_spans": 12,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "META_10K_2023",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "2a61eb4a2e077087b0f832d4005b29adc67748a8c1ab91027b57c7202c8458a2",
+      "rejected": {},
+      "revenue_candidates": 12,
+      "revenue_spans": 12,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "META_10K_2024",
+      "fiscal_year_focus": 2024,
+      "raw_sha256": "931517fc551d51ced8c8348eb313f94a0baa931934eb6f189f432f5ece7e5ce1",
+      "rejected": {},
+      "revenue_candidates": 12,
+      "revenue_spans": 12,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "META_10K_2025",
+      "fiscal_year_focus": 2025,
+      "raw_sha256": "97d1a65e8f28c8d2878a1f73218b89f8da3be83e6517c5cffdd81845c8ce40be",
+      "rejected": {},
+      "revenue_candidates": 12,
+      "revenue_spans": 12,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "NVDA_10K_2021",
+      "fiscal_year_focus": 2022,
+      "raw_sha256": "f6f5263c402599b2eb0de04ddfb0e4e6bcd9cab08f3c2a1792d6df108daa559d",
+      "rejected": {
+        "missing_period_header": 3
+      },
+      "revenue_candidates": 12,
+      "revenue_spans": 9,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "NVDA_10K_2022",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "a4c77324eba4a3d88d46428ee097531930b75e46e983816352c76eff927621b7",
+      "rejected": {
+        "missing_period_header": 3
+      },
+      "revenue_candidates": 12,
+      "revenue_spans": 9,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "NVDA_10K_2023",
+      "fiscal_year_focus": 2024,
+      "raw_sha256": "3ee6c75beb947d9e815464e5c0b6392db4f8ca20aa2f99666bc17c92b82d7759",
+      "rejected": {
+        "missing_period_header": 3
+      },
+      "revenue_candidates": 12,
+      "revenue_spans": 9,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "NVDA_10K_2024",
+      "fiscal_year_focus": 2025,
+      "raw_sha256": "dae19486be264fd26eb00a7f920dc641041a261c81bc8c03b678eea947de4856",
+      "rejected": {
+        "missing_period_header": 3
+      },
+      "revenue_candidates": 12,
+      "revenue_spans": 9,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "NVDA_10K_2025",
+      "fiscal_year_focus": 2026,
+      "raw_sha256": "73d81f5a111abcf72426c840871e76f5f5edc9631f436d495a86b6f87306d58b",
+      "rejected": {},
+      "revenue_candidates": 9,
+      "revenue_spans": 9,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "PFE_10K_2021",
+      "fiscal_year_focus": 2021,
+      "raw_sha256": "027bc5e04390a6c4faaabdc9a88f5fb44fb5d9b51a6a0e211dc08a153b34c029",
+      "rejected": {
+        "missing_unit_header": 9,
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 12,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "PFE_10K_2022",
+      "fiscal_year_focus": 2022,
+      "raw_sha256": "6d36cd4535f217e78c5392af118af21e96d7d3069f2d48c42365b461789864ee",
+      "rejected": {
+        "missing_unit_header": 9,
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 12,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "PFE_10K_2023",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "6d4ccadf0cb5a1e0f716c8f39c300adbbe5587372bf89459fa8a0ea34cdee15c",
+      "rejected": {
+        "missing_unit_header": 12,
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 15,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "PFE_10K_2024",
+      "fiscal_year_focus": 2024,
+      "raw_sha256": "ecf7be6bf680c4ca56f0ae43bc361cb63d6b54d76d33785eb02b3f90df0a52f3",
+      "rejected": {
+        "missing_unit_header": 9,
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 12,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "PFE_10K_2025",
+      "fiscal_year_focus": 2025,
+      "raw_sha256": "175e07c21ee258eddd9952e443d34df2a297d0c38e2d1312dff0a64a31c401ab",
+      "rejected": {
+        "missing_unit_header": 9,
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 12,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "PG_10K_2021",
+      "fiscal_year_focus": 2021,
+      "raw_sha256": "d4d1775674ae0630994a1f604c34590888c4148fec3911900a6bc88e71c9b9dd",
+      "rejected": {
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "PG_10K_2022",
+      "fiscal_year_focus": 2022,
+      "raw_sha256": "9420c54d1c60fa42f16738d1befccd78606e39fba165ee00bff87e45d2deddb8",
+      "rejected": {
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "PG_10K_2023",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "22efb76f101ba62401ca2f5bc1570dd0a41d1072cc06b177006fe0afceed3f89",
+      "rejected": {
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "PG_10K_2024",
+      "fiscal_year_focus": 2024,
+      "raw_sha256": "65e13f87e364fce9390cfd8ab14aece77207825767e3d66adee3e8bbf9d2d557",
+      "rejected": {
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "PG_10K_2025",
+      "fiscal_year_focus": 2025,
+      "raw_sha256": "771cbdd953a63a343f4ddb4e09a90d81cca8b9209730ae27db63461e1562336f",
+      "rejected": {
+        "missing_unit_header": 2
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 4,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "UNH_10K_2021",
+      "fiscal_year_focus": 2021,
+      "raw_sha256": "e9235c73819a657a86274e3cc8f46bff99a607b513715b3fae7b4c520261eaf3",
+      "rejected": {
+        "missing_period_header": 3
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "UNH_10K_2022",
+      "fiscal_year_focus": 2022,
+      "raw_sha256": "c5864ebd5aa9391625805c41e996db62097c4d6940fe5d765c12f75ddcfdfc91",
+      "rejected": {
+        "missing_period_header": 3
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "UNH_10K_2023",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "5a5d68aa5a839be37eb32520c75615d84579d9b4a1be379ae64470d5230af762",
+      "rejected": {
+        "missing_period_header": 3
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "UNH_10K_2024",
+      "fiscal_year_focus": 2024,
+      "raw_sha256": "5368813fd21746c6fefb949f015d91cecb6d36ed08b6c0ace8582e73bd91a858",
+      "rejected": {
+        "missing_period_header": 3
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "UNH_10K_2025",
+      "fiscal_year_focus": 2025,
+      "raw_sha256": "ac66517766674908c3702dab75f52fc650729cef9dd81dfe04a580a8429c8543",
+      "rejected": {
+        "missing_period_header": 3
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 3,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "WFC_10K_2021",
+      "fiscal_year_focus": 2021,
+      "raw_sha256": "e6bd7a502be20e5b6125e6170426295cbb97e58aee6c486391d84633c837cfd9",
+      "rejected": {},
+      "revenue_candidates": 0,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "WFC_10K_2022",
+      "fiscal_year_focus": 2022,
+      "raw_sha256": "3e68a273c7bdbf49a7d00b7d0710f7e493541b3ad57b295f9373aefd51bba03d",
+      "rejected": {},
+      "revenue_candidates": 0,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "WFC_10K_2023",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "1eb8ef23b591de7be84c453e09795fc8341f7df20bfe72fd921440dd8b638ffc",
+      "rejected": {},
+      "revenue_candidates": 0,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "WFC_10K_2024",
+      "fiscal_year_focus": 2024,
+      "raw_sha256": "6d947e3be6d8f9c9aebf7a8c6b9ae4130d6f0ca3d5c9d78995a26cb82cf41ef3",
+      "rejected": {},
+      "revenue_candidates": 0,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "WFC_10K_2025",
+      "fiscal_year_focus": null,
+      "raw_sha256": "63f0906ae441374efdd57b759c550ad69982fcfe41c737f1c39e9679e57379a5",
+      "rejected": {
+        "missing_fiscal_year_focus": 1
+      },
+      "revenue_candidates": 0,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "WMT_10K_2021",
+      "fiscal_year_focus": 2022,
+      "raw_sha256": "45eeb5d5d2297bdb42353db05a7a50510f8e611ac868a5e00a228436164555aa",
+      "rejected": {
+        "ambiguous_period_header": 3,
+        "missing_period_header": 3
+      },
+      "revenue_candidates": 12,
+      "revenue_spans": 6,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "WMT_10K_2022",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "0b6d784515842edd9b168fa3935d562f0241cc1e3ba7c3f819976c272d7ebf44",
+      "rejected": {
+        "ambiguous_period_header": 3,
+        "missing_period_header": 3
+      },
+      "revenue_candidates": 12,
+      "revenue_spans": 6,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "WMT_10K_2023",
+      "fiscal_year_focus": 2024,
+      "raw_sha256": "b5d34a19ec27cb80ddda8d5140ccdaa8454bb2ba5ad4720667887238c55c0e09",
+      "rejected": {
+        "ambiguous_period_header": 3,
+        "missing_period_header": 3
+      },
+      "revenue_candidates": 12,
+      "revenue_spans": 6,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "WMT_10K_2024",
+      "fiscal_year_focus": 2025,
+      "raw_sha256": "fb8c04a6e50d964f863c694130afe0abdd827e05d23c41389c61c82a182234e2",
+      "rejected": {
+        "ambiguous_period_header": 3
+      },
+      "revenue_candidates": 15,
+      "revenue_spans": 12,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "WMT_10K_2025",
+      "fiscal_year_focus": 2026,
+      "raw_sha256": "276a6accff6066f00342ba03b390c6c2bd51aa7246f0346df22df0b839a5bf5c",
+      "rejected": {
+        "ambiguous_period_header": 3
+      },
+      "revenue_candidates": 15,
+      "revenue_spans": 12,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "XOM_10K_2021",
+      "fiscal_year_focus": 2021,
+      "raw_sha256": "d22e786344f3a9f00a75c8f8c25f25809ef5fe7f38a5267b967de0def7dfcbf1",
+      "rejected": {
+        "missing_period_header": 3,
+        "missing_unit_header": 6,
+        "row_label_not_revenue": 3
+      },
+      "revenue_candidates": 12,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "XOM_10K_2022",
+      "fiscal_year_focus": 2022,
+      "raw_sha256": "cc3b4e39f4a59435150748e52adbd4cc28e7e2df8262e96b284612bffb674e52",
+      "rejected": {
+        "missing_unit_header": 3
+      },
+      "revenue_candidates": 3,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "XOM_10K_2023",
+      "fiscal_year_focus": 2023,
+      "raw_sha256": "29d225db9f83e060b863b7ce5872feea7ece7ae6a8cf040085c03268fb170e40",
+      "rejected": {
+        "missing_unit_header": 3
+      },
+      "revenue_candidates": 3,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "XOM_10K_2024",
+      "fiscal_year_focus": 2024,
+      "raw_sha256": "ef8063b86ee33c8bcc1465c3c853752294a3397867621e1762c8fe45abf0ffc5",
+      "rejected": {
+        "missing_unit_header": 3,
+        "unsupported_rowspan": 3
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 0,
+      "status": "prepared"
+    },
+    {
+      "doc_id": "XOM_10K_2025",
+      "fiscal_year_focus": 2025,
+      "raw_sha256": "3591db2246ab14c52465d32f69b459b000919c141a5656c81cf59acf0a805be8",
+      "rejected": {
+        "missing_unit_header": 3,
+        "unsupported_rowspan": 3
+      },
+      "revenue_candidates": 6,
+      "revenue_spans": 0,
+      "status": "prepared"
+    }
+  ],
+  "rejected": {
+    "ambiguous_period_header": 34,
+    "missing_fiscal_year_focus": 1,
+    "missing_period_header": 115,
+    "missing_unit_header": 260,
+    "non_annual_period": 77,
+    "period_header_mismatch": 11,
+    "row_label_not_revenue": 242,
+    "unit_header_mismatch": 3,
+    "unsupported_rowspan": 33,
+    "unsupported_unit": 114
+  },
+  "revenue_spans": 594,
+  "scope": "all 150 frozen v1 filings; extraction counts only",
+  "status_counts": {
+    "prepared": 150
+  },
+  "tickers_with_spans": [
+    "AAPL",
+    "ABBV",
+    "AMD",
+    "BA",
+    "CAT",
+    "COST",
+    "FCX",
+    "GE",
+    "GOOGL",
+    "HD",
+    "JNJ",
+    "KO",
+    "LIN",
+    "LLY",
+    "MCD",
+    "META",
+    "NVDA",
+    "PG",
+    "UNH",
+    "WMT"
+  ],
+  "tickers_without_spans": [
+    "BAC",
+    "BLK",
+    "COP",
+    "CVX",
+    "DE",
+    "GS",
+    "JPM",
+    "PFE",
+    "WFC",
+    "XOM"
+  ]
+}
