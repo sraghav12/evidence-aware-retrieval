@@ -82,10 +82,10 @@ Existing ignored local artifacts:
 
 Machine: Apple M4 Pro, 24 GiB. Default shell Python is 3.14; use `.venv/bin/python` (3.12.9).
 
-Original source checkout is at `/Users/sragh/Downloads/GenAI/LLM_Research/beyond-vector-search`. It has 150 untracked raw HTML files under `data/raw/`, with frozen normalized metadata in `data/release/v1/corpus_150.jsonl.gz`. Raw files did not come through the new clone. All 150 match v1 metadata; the 50 pilot filings are copied and hashed in ignored `data/raw/evidence_v2/`. Do not copy credentials, `.env`, caches, old result directories or the source checkout's unrelated changes. Source has a modified cost report and untracked legacy results/builder; leave them intact.
+Original source checkout is at the original local v1 checkout. It has 150 untracked raw HTML files under `data/raw/`, with frozen normalized metadata in `data/release/v1/corpus_150.jsonl.gz`. Raw files did not come through the new clone. All 150 match v1 metadata; the 50 pilot filings are copied and hashed in ignored `data/raw/evidence_v2/`. Do not copy credentials, `.env`, caches, old result directories or the source checkout's unrelated changes. Source has a modified cost report and untracked legacy results/builder; leave them intact.
 
 ## Workflow continuity
 
 The requested workflow is Superpowers native execution: failing tests before implementation, minimal code, passing focused/full checks, local task commits and durable progress notes. No automatic confirmation between tasks. If the Superpowers installation is available in Cursor, use `executing-plans`; otherwise follow the same explicit plan/ledger checks without claiming a skill ran.
 
-Persistent user task state lives in `/Users/sragh/NOW.md`, under `# QUEUE`; update only this Project 2 task as meaningful work completes. Prefer durable repository notes over relying on the chat. Do not change user profiles or invent prior history.
+Persistent user task state lives in the user's local `NOW.md`, under `# QUEUE`; update only this Project 2 task as meaningful work completes. Prefer durable repository notes over relying on the chat. Do not change user profiles or invent prior history.

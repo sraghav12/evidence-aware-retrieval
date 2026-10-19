@@ -24,7 +24,7 @@ Read-only inspection on October 18 found:
 
 | Item | Observation | Consequence |
 |---|---|---|
-| Source checkout | `/Users/sragh/Downloads/GenAI/LLM_Research/beyond-vector-search` | Reuse its committed source through a separate clone |
+| Source checkout | the original local v1 checkout | Reuse its committed source through a separate clone |
 | Revision | `675733109b30e80ce40c0a796bc0dd89e616c4ef`, branch `main` | Pin initial v2 baseline to this revision |
 | Working changes | Modified `results/cost_report.json`; untracked legacy result directories and `scripts/build_evidence_complete_corpus.py` | Preserve; do not copy them into v2 implicitly |
 | Published v1 | 150 filings, 30 companies, 43 questions, 172 records, 23 tests described by README | Historical exploratory results, not v2 evidence |
@@ -65,7 +65,7 @@ Worked example: rank Alpha and Beta by FY2024 revenue growth over FY2023. Alpha 
 
 ## Technical boundaries and decisions
 
-**Repository:** implementation default `/Users/sragh/Downloads/Projects/beyond-vector-search`, branch `feat/evidence-aware-v2`, cloned from committed local history with `--no-hardlinks`, then set its origin to the existing public URL. Stop or reuse deliberately if that target already exists. No push or external publication in this planning task.
+**Repository:** implementation default this checkout, branch `feat/evidence-aware-v2`, cloned from committed local history with `--no-hardlinks`, then set its origin to the existing public URL. Stop or reuse deliberately if that target already exists. No push or external publication in this planning task.
 
 **Core:** Python >=3.11, implementation environment 3.12.9, frozen dataclasses, strict JSON, Decimal, pytest. Minimal offline dependencies only; no vector database service, cloud infrastructure, new orchestration framework or mandatory model download. Keep core imports free of provider SDK initialization and tokenizer downloads. Keep v1 interfaces and release files unchanged.
 

@@ -18,7 +18,7 @@ Tasks 1–8 implemented and tested: 122 total tests pass. Fresh whole-branch rev
 
 - Project 2 only. Do not edit Project 1, its data, environment or models.
 - Preserve published `data/release/v1/` and `results/release_v1/` byte-for-byte; put new artifacts under v2 paths.
-- Preserve unrelated source-checkout changes. New target: `/Users/sragh/Downloads/Projects/beyond-vector-search`, branch `feat/evidence-aware-v2`.
+- Preserve unrelated source-checkout changes. New target: this checkout, branch `feat/evidence-aware-v2`.
 - Default `provider_enabled=false`, `max_usd=0`; no API calls, model downloads or training for Release A.
 - Reference answers, gold evidence, oracle choices and test outcomes never enter inference features, prompts, retrieval units or runtime parsing.
 - Existing 43 published questions and derivatives are development-only; fixture results do not establish real-data performance.
@@ -103,7 +103,7 @@ def paired_cluster_summary(rows: list[dict], cluster_key: str, seed: int) -> dic
 
 **Consumes:** committed v1 snapshot and design. **Produces:** strict types/loaders, stable hashes and a clean isolated development baseline.
 
-- [x] Inspect source and target status. Use `superpowers:using-git-worktrees` for isolation selection; here the design selects a separate clone. Clone local committed history with `git clone --no-hardlinks /Users/sragh/Downloads/GenAI/LLM_Research/beyond-vector-search /Users/sragh/Downloads/Projects/beyond-vector-search`; verify HEAD, set existing public origin, and create `feat/evidence-aware-v2`. Do not reset an existing destination. Save every v1 release-file hash and source status in `docs/v2/baseline.md`. Copy the two reviewed planning documents into the checkout.
+- [x] Inspect source and target status. Use `superpowers:using-git-worktrees` for isolation selection; here the design selects a separate clone. Clone local committed history with `git clone --no-hardlinks <original local v1 checkout> <this checkout>`; verify HEAD, set existing public origin, and create `feat/evidence-aware-v2`. Do not reset an existing destination. Save every v1 release-file hash and source status in `docs/v2/baseline.md`. Copy the two reviewed planning documents into the checkout.
 - [x] Create an independent environment using the available uv-managed Python 3.12.9. Pin only the offline test dependencies initially. Do not install the entire legacy requirements file. Record interpreter/dependency versions and configuration hashes.
 - [x] Write failing tests: `test_rejects_gold_fields`, `test_rejects_nested_unknown_fields`, `test_decimal_roundtrip`, `test_nonfinite_decimal_rejected`, `test_stable_manifest`, `test_duplicate_requirement_ids_rejected`, `test_raw_question_rejects_requirements`. Assert `load_query` rejects `gold_answer`, nested `oracle_action`, and duplicate IDs; value `"120.00"` round-trips exactly; NaN/Infinity fail. Run `python -m pytest tests/test_evidence_contracts.py -q`; expect contract/import failure.
 - [x] Implement the original handoff's exact field contracts with enum/date/ID validation and stable serialization. Keep `__init__.py` free of SDK imports. Run the same command; require all tests pass. Commit only this task's files locally.
