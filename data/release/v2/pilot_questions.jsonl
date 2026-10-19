@@ -59,56 +59,53 @@
 {"as_of": "2025-04-05", "id": "p059", "question": "What was Eli Lilly FY2024 revenue?"}
 {"as_of": "2025-04-05", "id": "p060", "question": "What was Eli Lilly FY2024 revenue growth over FY2023?"}
 {"as_of": "2026-01-28", "id": "p061", "question": "What was Eli Lilly FY2025 revenue?"}
-{"as_of": "2026-03-29", "id": "p062", "question": "What was Eli Lilly FY2023 revenue?"}
-{"as_of": "2024-04-07", "id": "p063", "question": "What was McDonald's FY2023 revenue?"}
-{"as_of": "2025-04-11", "id": "p064", "question": "What was McDonald's FY2024 revenue?"}
-{"as_of": "2025-04-11", "id": "p065", "question": "What was McDonald's FY2024 revenue growth over FY2023?"}
-{"as_of": "2026-02-09", "id": "p066", "question": "What was McDonald's FY2025 revenue?"}
-{"as_of": "2026-04-10", "id": "p067", "question": "What was McDonald's FY2022 revenue?"}
-{"as_of": "2026-04-10", "id": "p068", "question": "What was McDonald's FY2023 revenue?"}
-{"as_of": "2024-03-18", "id": "p069", "question": "What was Meta FY2023 revenue?"}
-{"as_of": "2025-03-16", "id": "p070", "question": "What was Meta FY2024 revenue?"}
-{"as_of": "2025-03-16", "id": "p071", "question": "What was Meta FY2024 revenue growth over FY2023?"}
-{"as_of": "2026-01-14", "id": "p072", "question": "What was Meta FY2025 revenue?"}
-{"as_of": "2023-04-10", "id": "p073", "question": "What was NVIDIA FY2023 revenue?"}
-{"as_of": "2024-04-06", "id": "p074", "question": "What was NVIDIA FY2024 revenue?"}
-{"as_of": "2024-04-06", "id": "p075", "question": "What was NVIDIA FY2024 revenue growth over FY2023?"}
-{"as_of": "2025-02-11", "id": "p076", "question": "What was NVIDIA FY2025 revenue?"}
-{"as_of": "2025-04-13", "id": "p077", "question": "What was Pfizer FY2024 revenue?"}
-{"as_of": "2026-02-11", "id": "p078", "question": "What was Pfizer FY2025 revenue?"}
-{"as_of": "2023-09-18", "id": "p079", "question": "What was Procter & Gamble FY2023 revenue?"}
-{"as_of": "2024-09-19", "id": "p080", "question": "What was Procter & Gamble FY2024 revenue?"}
-{"as_of": "2024-09-19", "id": "p081", "question": "What was Procter & Gamble FY2024 revenue growth over FY2023?"}
-{"as_of": "2025-07-20", "id": "p082", "question": "What was Procter & Gamble FY2025 revenue?"}
-{"as_of": "2024-04-13", "id": "p083", "question": "What was UnitedHealth FY2023 revenue?"}
-{"as_of": "2025-04-13", "id": "p084", "question": "What was UnitedHealth FY2024 revenue?"}
-{"as_of": "2025-04-13", "id": "p085", "question": "What was UnitedHealth FY2024 revenue growth over FY2023?"}
-{"as_of": "2026-02-15", "id": "p086", "question": "What was UnitedHealth FY2025 revenue?"}
-{"as_of": "2025-02-27", "id": "p087", "question": "What was Walmart FY2025 revenue?"}
-{"as_of": "2024-04-13", "id": "p088", "question": "What was Exxon Mobil FY2023 revenue?"}
-{"as_of": "2025-04-05", "id": "p089", "question": "What was Exxon Mobil FY2024 revenue?"}
-{"as_of": "2025-04-05", "id": "p090", "question": "What was Exxon Mobil FY2024 revenue growth over FY2023?"}
-{"as_of": "2026-02-03", "id": "p091", "question": "What was Exxon Mobil FY2025 revenue?"}
-{"as_of": "2024-12-16", "id": "p092", "question": "How much revenue did Apple report in fiscal 2024?"}
-{"as_of": "2024-04-06", "id": "p093", "question": "How much revenue did NVIDIA report in fiscal 2024?"}
-{"as_of": "2024-11-23", "id": "p094", "question": "How much revenue did Costco report in fiscal 2024?"}
-{"as_of": "2025-04-12", "id": "p095", "question": "How much revenue did Linde report in fiscal 2024?"}
-{"as_of": "2025-04-13", "id": "p096", "question": "How much revenue did UnitedHealth report in fiscal 2024?"}
-{"as_of": "2025-04-06", "id": "p097", "question": "What was Apple and Coca-Cola FY2024 total revenue?"}
-{"as_of": "2025-04-06", "id": "p098", "question": "Rank Apple and Coca-Cola by FY2024 revenue growth over FY2023."}
-{"as_of": "2025-03-22", "id": "p099", "question": "What was AMD and NVIDIA FY2024 total revenue?"}
-{"as_of": "2025-03-22", "id": "p100", "question": "Rank AMD and NVIDIA by FY2024 revenue growth over FY2023."}
-{"as_of": "2025-03-22", "id": "p101", "question": "What was Alphabet and Meta FY2024 total revenue?"}
-{"as_of": "2025-03-22", "id": "p102", "question": "Rank Alphabet and Meta by FY2024 revenue growth over FY2023."}
-{"as_of": "2025-04-05", "id": "p103", "question": "What was Johnson & Johnson and Eli Lilly FY2024 total revenue?"}
-{"as_of": "2025-04-05", "id": "p104", "question": "Rank Johnson & Johnson and Eli Lilly by FY2024 revenue growth over FY2023."}
-{"as_of": "2025-04-13", "id": "p105", "question": "What was AbbVie and Pfizer FY2024 total revenue?"}
-{"as_of": "2025-05-05", "id": "p106", "question": "What was Costco and Home Depot FY2024 total revenue?"}
-{"as_of": "2025-05-05", "id": "p107", "question": "Rank Costco and Home Depot by FY2024 revenue growth over FY2023."}
-{"as_of": "2025-03-20", "id": "p108", "question": "What was Boeing and GE Aerospace FY2024 total revenue?"}
-{"as_of": "2025-03-20", "id": "p109", "question": "Rank Boeing and GE Aerospace by FY2024 revenue growth over FY2023."}
-{"as_of": "2025-06-30", "id": "p110", "question": "What was Microsoft FY2024 revenue?"}
-{"as_of": "2025-06-30", "id": "p111", "question": "What was Netflix FY2024 revenue?"}
-{"as_of": "2025-06-30", "id": "p112", "question": "What was Intel FY2024 revenue?"}
-{"as_of": "2025-06-30", "id": "p113", "question": "What was Oracle FY2024 revenue?"}
-{"as_of": "2025-06-30", "id": "p114", "question": "What was Nike FY2024 revenue?"}
+{"as_of": "2024-04-07", "id": "p062", "question": "What was McDonald's FY2023 revenue?"}
+{"as_of": "2025-04-11", "id": "p063", "question": "What was McDonald's FY2024 revenue?"}
+{"as_of": "2025-04-11", "id": "p064", "question": "What was McDonald's FY2024 revenue growth over FY2023?"}
+{"as_of": "2026-02-09", "id": "p065", "question": "What was McDonald's FY2025 revenue?"}
+{"as_of": "2024-03-18", "id": "p066", "question": "What was Meta FY2023 revenue?"}
+{"as_of": "2025-03-16", "id": "p067", "question": "What was Meta FY2024 revenue?"}
+{"as_of": "2025-03-16", "id": "p068", "question": "What was Meta FY2024 revenue growth over FY2023?"}
+{"as_of": "2026-01-14", "id": "p069", "question": "What was Meta FY2025 revenue?"}
+{"as_of": "2023-04-10", "id": "p070", "question": "What was NVIDIA FY2023 revenue?"}
+{"as_of": "2024-04-06", "id": "p071", "question": "What was NVIDIA FY2024 revenue?"}
+{"as_of": "2024-04-06", "id": "p072", "question": "What was NVIDIA FY2024 revenue growth over FY2023?"}
+{"as_of": "2025-02-11", "id": "p073", "question": "What was NVIDIA FY2025 revenue?"}
+{"as_of": "2025-04-13", "id": "p074", "question": "What was Pfizer FY2024 revenue?"}
+{"as_of": "2026-02-11", "id": "p075", "question": "What was Pfizer FY2025 revenue?"}
+{"as_of": "2023-09-18", "id": "p076", "question": "What was Procter & Gamble FY2023 revenue?"}
+{"as_of": "2024-09-19", "id": "p077", "question": "What was Procter & Gamble FY2024 revenue?"}
+{"as_of": "2024-09-19", "id": "p078", "question": "What was Procter & Gamble FY2024 revenue growth over FY2023?"}
+{"as_of": "2025-07-20", "id": "p079", "question": "What was Procter & Gamble FY2025 revenue?"}
+{"as_of": "2024-04-13", "id": "p080", "question": "What was UnitedHealth FY2023 revenue?"}
+{"as_of": "2025-04-13", "id": "p081", "question": "What was UnitedHealth FY2024 revenue?"}
+{"as_of": "2025-04-13", "id": "p082", "question": "What was UnitedHealth FY2024 revenue growth over FY2023?"}
+{"as_of": "2026-02-15", "id": "p083", "question": "What was UnitedHealth FY2025 revenue?"}
+{"as_of": "2025-02-27", "id": "p084", "question": "What was Walmart FY2025 revenue?"}
+{"as_of": "2024-04-13", "id": "p085", "question": "What was Exxon Mobil FY2023 revenue?"}
+{"as_of": "2025-04-05", "id": "p086", "question": "What was Exxon Mobil FY2024 revenue?"}
+{"as_of": "2025-04-05", "id": "p087", "question": "What was Exxon Mobil FY2024 revenue growth over FY2023?"}
+{"as_of": "2026-02-03", "id": "p088", "question": "What was Exxon Mobil FY2025 revenue?"}
+{"as_of": "2024-12-16", "id": "p089", "question": "How much revenue did Apple report in fiscal 2024?"}
+{"as_of": "2024-04-06", "id": "p090", "question": "How much revenue did NVIDIA report in fiscal 2024?"}
+{"as_of": "2024-11-23", "id": "p091", "question": "How much revenue did Costco report in fiscal 2024?"}
+{"as_of": "2025-04-12", "id": "p092", "question": "How much revenue did Linde report in fiscal 2024?"}
+{"as_of": "2025-04-13", "id": "p093", "question": "How much revenue did UnitedHealth report in fiscal 2024?"}
+{"as_of": "2025-04-06", "id": "p094", "question": "What was Apple and Coca-Cola FY2024 total revenue?"}
+{"as_of": "2025-04-06", "id": "p095", "question": "Rank Apple and Coca-Cola by FY2024 revenue growth over FY2023."}
+{"as_of": "2025-03-22", "id": "p096", "question": "What was AMD and NVIDIA FY2024 total revenue?"}
+{"as_of": "2025-03-22", "id": "p097", "question": "Rank AMD and NVIDIA by FY2024 revenue growth over FY2023."}
+{"as_of": "2025-03-22", "id": "p098", "question": "What was Alphabet and Meta FY2024 total revenue?"}
+{"as_of": "2025-03-22", "id": "p099", "question": "Rank Alphabet and Meta by FY2024 revenue growth over FY2023."}
+{"as_of": "2025-04-05", "id": "p100", "question": "What was Johnson & Johnson and Eli Lilly FY2024 total revenue?"}
+{"as_of": "2025-04-05", "id": "p101", "question": "Rank Johnson & Johnson and Eli Lilly by FY2024 revenue growth over FY2023."}
+{"as_of": "2025-04-13", "id": "p102", "question": "What was AbbVie and Pfizer FY2024 total revenue?"}
+{"as_of": "2025-05-05", "id": "p103", "question": "What was Costco and Home Depot FY2024 total revenue?"}
+{"as_of": "2025-05-05", "id": "p104", "question": "Rank Costco and Home Depot by FY2024 revenue growth over FY2023."}
+{"as_of": "2025-03-20", "id": "p105", "question": "What was Boeing and GE Aerospace FY2024 total revenue?"}
+{"as_of": "2025-03-20", "id": "p106", "question": "Rank Boeing and GE Aerospace by FY2024 revenue growth over FY2023."}
+{"as_of": "2025-06-30", "id": "p107", "question": "What was Microsoft FY2024 revenue?"}
+{"as_of": "2025-06-30", "id": "p108", "question": "What was Netflix FY2024 revenue?"}
+{"as_of": "2025-06-30", "id": "p109", "question": "What was Intel FY2024 revenue?"}
+{"as_of": "2025-06-30", "id": "p110", "question": "What was Oracle FY2024 revenue?"}
+{"as_of": "2025-06-30", "id": "p111", "question": "What was Nike FY2024 revenue?"}

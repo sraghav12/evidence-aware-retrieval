@@ -11,6 +11,21 @@ def shift(day,days):return (date.fromisoformat(day)+timedelta(days=days)).isofor
 def millions(fact):return Decimal(fact['value'])*Decimal(10)**int(fact['scale'])/Decimal(10)**6
 
 
+def quantum(fact):
+    """Stated XBRL precision in USD millions; None means exact (no or INF decimals)."""
+    d=fact.get('decimals')
+    return None if d in (None,'INF') else Decimal(10)**(-int(d)-6)
+
+
+def agree(items):
+    """Facts agree when they are equal at the coarsest stated precision among them."""
+    coarse=max((q for _,q in items if q is not None),default=None)
+    return len({v if coarse is None else v.quantize(coarse,rounding=ROUND_HALF_EVEN) for v,_ in items})==1
+
+
+def finest(items):return min(items,key=lambda x:(x[1] is not None,x[1] or 0))[0]
+
+
 def text(value):return format(value.normalize(),'f') if value==value.to_integral() else format(value,'f')
 
 
@@ -38,14 +53,14 @@ class Corpus:
             if f['ticker']!=ticker or f['filing_date']>as_of:continue
             for x in f['facts']:
                 if (x['period_start'],x['period_end'])==c[:2]:
-                    per_doc.setdefault(f['doc_id'],set()).add(millions(x))
-                    sources.append(dict(doc_id=f['doc_id'],accession=f['accession_number'],source_url=f['source_url'],period_end=x['period_end'],concept=x['concept'],value=x['value'],scale=x['scale'],fact_id=x['fact_id']))
+                    per_doc.setdefault(f['doc_id'],[]).append((millions(x),quantum(x)))
+                    sources.append(dict(doc_id=f['doc_id'],accession=f['accession_number'],source_url=f['source_url'],period_end=x['period_end'],concept=x['concept'],value=x['value'],scale=x['scale'],decimals=x.get('decimals'),fact_id=x['fact_id']))
         if not per_doc:return 'no_fact',None,[]
-        if any(len(v)>1 for v in per_doc.values()):return 'definition_conflict',None,sources
-        values=set().union(*per_doc.values())
-        if len(values)>1:return 'restatement_conflict',None,sources
+        if not all(agree(v) for v in per_doc.values()):return 'definition_conflict',None,sources
+        items=[x for v in per_doc.values() for x in v]
+        if not agree(items):return 'restatement_conflict',None,sources
         seen=set();unique=[s for s in sources if (s['doc_id'],s['value']) not in seen and not seen.add((s['doc_id'],s['value']))]
-        return 'ok',values.pop(),unique
+        return 'ok',finest(items),unique
 
 
 def growth(old,new):return ((new-old)/old*100).quantize(Decimal('.01'),rounding=ROUND_HALF_EVEN)
@@ -111,3 +126,14 @@ def draft_pilot(filings,spec):
         references.append({'query_id':qid,'answerable':False,'value':None,'unit':'','requirements':[],'reference_status':'not_in_corpus','template':'unknown_company','review_status':'ai_proposed_unreviewed','source_facts':[]})
         lineage.append({'query_id':qid,'entity_ids':[f'unknown:{n.casefold()}'],'source_ancestry':[],'derivation_ancestry':[],'template':'unknown_company','development_only':False})
     return {'questions':questions,'references':references,'lineage':lineage,'excluded':excluded}
+
+
+def development_lineage(release_b,aliases,v1_queries,doc_ciks):
+    """Release B questions and all 43 published v1 questions are development-only ancestry; their entities pull overlapping pilot rows into development."""
+    rows=[]
+    for q in release_b:
+        text=q['question'].casefold();entities=sorted({c for a,c in aliases.items() if a in text}) or ['unknown:'+text.split()[2]]
+        rows.append(dict(query_id=q['id'],entity_ids=entities,source_ancestry=[],derivation_ancestry=[],template='release_b',development_only=True))
+    for q in v1_queries:
+        rows.append(dict(query_id=f"v1:{q['id']}",entity_ids=sorted({f'cik:{doc_ciks[d]}' for d in q['evidence_docs']}),source_ancestry=[],derivation_ancestry=[],template='v1_published',development_only=True))
+    return rows

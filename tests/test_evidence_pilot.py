@@ -69,3 +69,25 @@ def test_conflicting_fiscal_focus_excludes_company():
 
 def test_pilot_generation_is_deterministic():
     assert draft()==draft()
+
+
+def test_v1_and_release_b_rows_are_development_only():
+    from evaluation.evidence_aware.pilot import development_lineage
+    rows=development_lineage([{'id':'rd01','question':'What was Alpha Co FY2024 revenue?','as_of':'2025-03-01'},{'id':'rd17','question':'What was Tesla FY2024 revenue?','as_of':'2025-06-30'}],
+                             {'alpha co':'cik:1'},[{'id':'q007','evidence_docs':['BBB_2024','CCC_2023']}],{'BBB_2024':2,'CCC_2023':3})
+    by={r['query_id']:r for r in rows}
+    assert all(r['development_only'] for r in rows) and by['v1:q007']['entity_ids']==['cik:2','cik:3'] and by['rd01']['entity_ids']==['cik:1'] and by['rd17']['entity_ids']==['unknown:tesla']
+    assert by['v1:q007']['template']=='v1_published'
+
+
+def test_precision_only_difference_is_not_restatement():
+    lly=[filing('EEE',5,2023,'2024-02-21',[(2023,'34124.1',R)]),filing('EEE',5,2024,'2025-02-19',[(2024,'45042.7',R),(2023,'34124.1',R)]),filing('EEE',5,2025,'2026-02-12',[(2025,'65179',R),(2024,'45043',R),(2023,'34124',R)])]
+    for f in lly:
+        for x in f['facts']:x['decimals']='-5' if '.' in x['value'] else '-6'
+    d=draft_pilot(FILINGS+lly,dict(SPEC,names=dict(SPEC['names'],EEE='Echo Co')))
+    probes=[r for r in d['references'] if r['template']=='restatement' and 'cik:5' in str(r['source_facts']) or (r['reference_status']=='restatement_conflict' and any(s['doc_id'].startswith('EEE') for s in r['source_facts']))]
+    assert probes==[]
+    _,r=ref(d,'What was Echo Co FY2024 revenue growth over FY2023?');assert r['answerable'] and r['value']=='32.00'
+    from evaluation.evidence_aware.pilot import Corpus
+    assert Corpus(FILINGS+lly).value('EEE',2023,'2026-04-01')[:2]==('ok',__import__('decimal').Decimal('34124.1'))
+    assert Corpus(FILINGS).value('BBB',2023,'2026-04-01')[0]=='restatement_conflict'

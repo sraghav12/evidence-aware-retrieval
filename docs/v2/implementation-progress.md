@@ -79,3 +79,23 @@ Task 10: Ruling: paired_cluster_summary gains explicit `treatment` and `metric` 
 Task 10: Ruling: frozen experiments run through experiment_runner, which refuses (FreezeMismatch) unless corpus, questions, source code, config, run order and manifest hash all match the freeze; strategy and scheduling arms use one shared BM25 unit set and one preloaded dense index — cost if wrong: any post-freeze change forces a new freeze version.
 Task 10: Ruling: correct abstention is paired separately on unanswerable rows (metric correct_decision), never mixed with answerable supported success — cost: none.
 Task 10: Ruling: freeze-guard test originally edited manifest fields, so the manifest-hash check masked the specific guards (3 mutations survived); rewritten to vary real inputs against an intact freeze; 7/7 mutations killed — cost: none.
+Final review 2: fresh subagent review of 7693235..e7b5639 (Tasks 8–9) → 1 Critical, 3 Important, 9 Minor; not ready to run. Extraction, lineage, regeneration and reference values verified sound by the reviewer.
+Final: re-graded minor 6 (implausible dei fiscal focus over date headers silently shifts every fiscal year) to Important by effect: wrong answers, not abstentions.
+Final: fixed v1 ancestry missing from the pilot split — test_v1_and_release_b_rows_are_development_only RED→GREEN; redrawn split has no locked test (2 informative eligible groups).
+Final: fixed rounding-only differences labeled restatements — test_precision_only_difference_is_not_restatement RED→GREEN; LLY/MCD rows relabeled, consistent with Release B rd16.
+Final: fixed freeze not bound to execution — test_stage_limits_and_per_arm_configs_come_from_config, test_manifest_hash_required_and_freeze_covers_scripts_and_lock RED→GREEN; executor also checks each arm's engine-config hash; references hash recorded at freeze.
+Final: fixed preregistration silent on arm-insensitive rows — test_arm_sensitivity_counts_parse_and_zero_cell_invariant_rows, test_report_adds_preregistered_arm_sensitive_subset, test_locked_test_requires_enough_informative_groups RED→GREEN.
+Final: fixed implausible fiscal-year focus accepted — test_implausible_fiscal_focus_rejected RED→GREEN; extractor bumped to html_ixbrl_tables_v2; across 150 filings only FCX_10K_2024 changed, 594 cells unchanged; Release B and development scheduling numbers reproduced exactly (real_dev_002, dev_sched2_*).
+Final: 8/8 targeted mutations of the review-2 fixes killed; suite 182/182.
+Final: Ruling: a locked test needs at least 4 informative groups per side; unknown-company singletons are not informative — they abstain identically in every arm — cost if wrong: a 2-group test would have been called infeasible.
+Final: Ruling: with v1 ancestry, no locked test exists; the pilot runs as development-only descriptive measurement rather than forcing a split (plan: "do not force a split") — cost: no held-out claim until new non-v1 companies are collected.
+Final: Ruling: precision-aware agreement applies to references only; inference keeps the exact-value conflict rule, so the system still abstains on presentation-precision pairs and those count as misses — cost: the known limitation stays measured rather than fixed.
+Final: Ruling: preregistration version 1 superseded before any run and preserved as a documented reason in version 2 — cost: none.
+Final: minor (deferred): raw-hash re-check against tracked source manifest on re-prepare (v1 metadata has no raw hashes).
+Final: minor (deferred): header duration words (Three Months Ended) not cross-checked; XBRL context duration already enforces annual facts.
+Final: minor (deferred): unit check uses unitRef ID string, not the xbrli:unit measure (Deere yields 0 cells); reference reader checks neither unit nor CIK.
+Final: minor (deferred): reference-reader regexes require double-quoted attributes and id-only context tags (fail closed).
+Final: minor (deferred): ranking ties — reference ties on rounded rate, executor on full precision.
+Final: minor (deferred): "late disclosure" means no 10-K in this corpus by the cutoff, not that results were unpublished (docs now say so).
+Final: minor (deferred): experiment config carries pilot_spec evaluation-design fields (not read by inference).
+Final: minor (deferred): annotation packet shows proposed values and split, which can anchor reviewers.

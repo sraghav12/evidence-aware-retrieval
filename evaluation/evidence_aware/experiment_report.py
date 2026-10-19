@@ -52,7 +52,9 @@ def build_experiment_report(result_dir,reference_path,manifest):
     rows=score_answers(traces,references,documents);trace_by={(t['query_id'],t['arm'],t['repeat']):t for t in traces}
     for r in rows:r['split']=references[r['query_id']].get('split','all')
     splits=sorted({r['split'] for r in rows});splits=splits+(['all'] if len(splits)>1 else [])
-    def in_split(r,s):return s=='all' or r['split']==s
+    sensitive=set((manifest.get('arm_sensitivity') or {}).get('arm_sensitive_ids',[]))
+    if sensitive:splits.append('arm_sensitive')
+    def in_split(r,s):return s=='all' or (r['query_id'] in sensitive if s=='arm_sensitive' else r['split']==s)
     arms={a:{s:arm_metrics([r for r in rows if r['arm']==a and in_split(r,s)],[trace_by[(r['query_id'],r['arm'],r['repeat'])] for r in rows if r['arm']==a and in_split(r,s)]) for s in splits} for a in sorted({r['arm'] for r in rows})}
     p=manifest['primary'];treatment=f"{p['treatment']}@{p['budget']}";comparator=f"{p['comparator']}@{p['budget']}"
     pairs=[('primary',treatment,comparator)]

@@ -18,12 +18,12 @@ The frozen v1 corpus stores normalized text only. Raw HTML exists solely as 150 
 
 Untracked artifacts are regenerated deterministically from the raw bytes; tests assert identical output and normalized hashes on repeated runs.
 
-## Extractor (`html_ixbrl_tables_v1`)
+## Extractor (`html_ixbrl_tables_v2`)
 
 Python standard-library `html.parser` (pinned by the 3.12.9 interpreter), so the offline core still runs under `python -S`. A candidate is a `ix:nonFraction` fact with a revenue concept (`us-gaap:Revenues`, `RevenueFromContractWithCustomerExcluding/IncludingAssessedTax`, `SalesRevenueNet`) inside a table cell. Facts whose context has a segment or scenario dimension are skipped as non-consolidated. Every remaining candidate must pass all checks or is rejected with a reason:
 
 1. Context exists, CIK matches the filing, unit is USD, number format is `num-dot-decimal`, scale maps to a supported unit.
-2. Duration of 350–380 days. Fiscal year comes from `dei:DocumentFiscalYearFocus` and its context, offset by whole years (±20 days tolerance for 52/53-week years).
+2. Duration of 350–380 days. Fiscal year comes from `dei:DocumentFiscalYearFocus` and its context, offset by whole years (±20 days tolerance for 52/53-week years). Version 2 adds a plausibility check: fiscal years ending June–December must carry their end year, and January–May year ends may use the end year or the year before. FCX_10K_2024 declares FY2023 for a period ending December 2024, so it is now rejected as `implausible_fiscal_year_focus`. Its cells were already rejected through year headers; with date headers they would have been mislabeled.
 3. Row label contains "revenue" or "sales" and not cost/expense/per-share/percent.
 4. Exactly one period header covers the cell's grid column (colspan-aware), and that header covers only one context period. A full date must equal the context end date; a bare year must equal the derived fiscal year. Swapping column headers therefore rejects the cell.
 5. A unit caption (`in thousands|millions|billions`) in the table header rows, or else in the 200 characters before the table, must agree with the XBRL scale.
@@ -33,28 +33,29 @@ Accepted cells become pipe rows (`revenue | unit | start | end | fiscal_year | r
 
 ## Results on all 150 v1 filings
 
-594 accepted revenue cells in 99 filings from 20 of 30 companies; 890 candidates rejected:
+594 accepted revenue cells in 99 filings from 20 of 30 companies. With extractor v2, 891 rejection records:
 
 | Reason | Count |
 |---|---|
 | missing_unit_header | 260 |
-| row_label_not_revenue | 242 |
+| row_label_not_revenue | 236 |
 | missing_period_header | 115 |
 | unsupported_unit (non-`usd` unitRef) | 114 |
 | non_annual_period | 77 |
 | ambiguous_period_header | 34 |
 | unsupported_rowspan | 33 |
-| period_header_mismatch | 11 |
+| missing_fiscal_year_focus | 16 |
 | unit_header_mismatch | 3 |
-| missing_fiscal_year_focus | 1 |
+| period_header_mismatch | 2 |
+| implausible_fiscal_year_focus | 1 (document-level) |
 
-No cells were accepted for BAC, BLK, COP, CVX, DE, GS, JPM, PFE, WFC or XOM. Banks label revenue "net of interest expense" (rejected by the label rule); others lack an in-range unit caption, use rowspan or a non-`usd` unit ID. One WFC filing has no fiscal-year focus fact. FCX_10K_2023 and FCX_10K_2024 both declare fiscal-year focus 2023. These are visible limitations, not repaired with references.
+No cells were accepted for BAC, BLK, COP, CVX, DE, GS, JPM, PFE, WFC or XOM. Banks label revenue "net of interest expense" (rejected by the label rule); others lack an in-range unit caption, use rowspan or a non-`usd` unit ID. One WFC filing has no fiscal-year focus fact. FCX_10K_2023 and FCX_10K_2024 both declare fiscal-year focus 2023; v2 rejects the second as implausible. These are visible limitations, not repaired with references.
 
 ## Real-development pilot
 
 10 companies (AAPL, AMD, CAT, GOOGL, JNJ, KO, LLY, META, NVDA, WMT), all 5 filings each: 50/50 prepared, 366 accepted cells, 191 rejected. 20 public questions in `data/release/v2/real_dev_questions.jsonl` (id, question, as-of only), written from the public grammar after inspecting extracted values across filings (to pick real late, conflicting, unknown and unsupported cases) but before any inference run. References are a separate file built from a direct inline-XBRL fact reader that does not use the table, header or caption logic.
 
-Run `results/evidence_v2/real_dev_001` at clean commit `4448255`, executor only, 0 provider calls, about 2 s of CPU for 20 questions:
+Run `results/evidence_v2/real_dev_001` at clean commit `4448255`, reproduced with identical outcomes as `real_dev_002` on the extractor v2 corpus,, executor only, 0 provider calls, about 2 s of CPU for 20 questions:
 
 | Outcome | Count |
 |---|---|

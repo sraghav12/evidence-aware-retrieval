@@ -7,7 +7,7 @@ from pipelines.evidence_aware.contracts import digest,load_question,RunTrace,Ans
 from pipelines.evidence_aware.calendar import build_fiscal_calendar
 from pipelines.evidence_aware.parser import parse_query,UnsupportedQuery
 from pipelines.evidence_aware.engine import run_spec
-from .experiment import planned_runs,source_hashes,validate_experiment,ROOT
+from .experiment import planned_runs,source_hashes,validate_experiment,engine_config,ROOT
 from .runner import build_backends,write_json
 
 
@@ -22,13 +22,6 @@ def check_freeze(manifest,config,documents,questions):
     if digest(planned_runs(questions,manifest['arms'],manifest['repeats'],manifest['seed']))!=manifest['run_order_sha256']:raise FreezeMismatch('run order differs from freeze')
     try:validate_experiment(manifest)
     except ValueError as e:raise FreezeMismatch(str(e)) from e
-
-
-def engine_config(config,arm):
-    limits=arm['stage_limits']
-    return {'input_mode':'raw_question','provider_enabled':False,'max_usd':0,'policy':arm['policy'],'max_context_tokens':arm['max_context_tokens'],'max_output_tokens':arm['max_output_tokens'],
-            'cheap_context_tokens':config.get('cheap_context_tokens',limits['stage_context_tokens']),'stage_context_tokens':limits['stage_context_tokens'],'retrieval_tokens_total':limits['retrieval_tokens_total'],
-            'verification_tokens_total':limits['verification_tokens_total'],'deadline_ms':limits['deadline_ms'],'max_packed_sections':limits['max_packed_sections']}
 
 
 def peak_memory():return resource.getrusage(resource.RUSAGE_SELF).ru_maxrss*(1 if sys.platform=='darwin' else 1024)
@@ -49,7 +42,8 @@ def run_experiment(manifest,config,documents,questions,rankers,output):
     by_id={q['id']:load_question(q) for q in questions};calendars={};rows=0;errors=0
     with open(output/'traces.jsonl','w',encoding='utf-8') as sink:
         for index,(qid,name,budget,repeat) in enumerate(planned_runs(questions,manifest['arms'],manifest['repeats'],manifest['seed'])):
-            arm=arms[(name,budget)];q=by_id[qid];cfg=engine_config(config,arm);start=perf_counter()
+            arm=arms[(name,budget)];q=by_id[qid];cfg=engine_config(arm);start=perf_counter()
+            if digest(cfg)!=arm['engine_config_sha256']:raise FreezeMismatch('arm engine config differs from freeze')
             calendar=calendars.setdefault(q.as_of,build_fiscal_calendar(documents,q.as_of))
             try:trace=run_spec(replace(parse_query(q.question,q.as_of,aliases,calendar),id=qid),backends[arm['backend']],documents,cfg,None)
             except UnsupportedQuery as e:trace=RunTrace(qid,q.question,q.as_of,'raw_question',digest(asdict(q)),digest(cfg),manifest['corpus_hash'],policy_version=arm['policy'],answer=AnswerRecord('abstained',reason=str(e)))

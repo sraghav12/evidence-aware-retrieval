@@ -28,6 +28,6 @@ The scheduling controls (always-cheap, evidence rule, complexity rule, always-ma
 | complexity_rule_v1 | 11 | 4 | 66,931 |
 | always_maximum_v1 | 11 | 4 | 158,257 |
 
-These are development observations, not evidence of a general advantage. A 114-question pilot, its locked 8-group test split and a matched experiment manifest are frozen and have not been run. Dense and hybrid arms are unavailable pending a model-download decision. See the [preregistration](preregistration.md) and [resource probe](resource_probe.md).
+These are development observations, not evidence of a general advantage. A 111-question pilot and a matched 16-arm experiment manifest are frozen (preregistration version 2). With v1 ancestry applied, no locked test exists on this corpus, so the pilot is development-only and descriptive. See the [preregistration](preregistration.md) and [resource probe](resource_probe.md).
 
 Use a new output directory per run. Reporting reads saved files and does not call a model. The core works with the Python standard library; pytest is needed for its tests, and the separate compatibility lock supports the historical v1 test suite.

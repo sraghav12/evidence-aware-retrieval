@@ -123,3 +123,10 @@ def test_no_reference_needed_for_extraction(tmp_path,monkeypatch):
     monkeypatch.setattr(builtins,'open',guarded)
     out=prepare_sources(tmp_path,[dict(DEVICES,raw_html_bytes=len(data))])
     assert out['manifest']['filings'][0]['revenue_spans']==2
+
+
+def test_implausible_fiscal_focus_rejected():
+    result=normalize_filing(raw('date_columns.html').replace(b'>2024</ix:nonNumeric>',b'>2023</ix:nonNumeric>'),DEVICES)
+    assert result['document']['fiscal_calendar']==[] and spans_of(result)==[] and 'implausible_fiscal_year_focus' in {f['reason'] for f in result['failures']}
+    retail=normalize_filing(raw('year_columns.html'),RETAIL)
+    assert retail['document']['fiscal_calendar'][0]['fiscal_year']==2025

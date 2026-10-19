@@ -38,20 +38,24 @@ def components(rows):
     return sorted(groups,key=lambda g:min(r['query_id'] for r in g['rows']))
 
 
-def build_pilot_manifest(rows,seed):
+def build_pilot_manifest(rows,seed,min_locked_groups=1):
     """Development vs locked-test split by independent component; never forced when components collapse."""
     rows=[dict(r) for r in rows]
     if len({r['query_id'] for r in rows})!=len(rows):raise ValueError('duplicate question')
     groups=components(rows);locked=[g for g in groups if not any(r['development_only'] for r in g['rows'])]
-    order=list(range(len(locked)));Random(seed).shuffle(order);test={id(locked[i]) for i in order[:len(locked)//2]} if len(locked)>=2 else set()
+    # Unknown-company singletons have no sources: always-correct abstentions that cannot separate arms.
+    informative=[g for g in locked if any(e.startswith('cik:') for r in g['rows'] for e in r['entity_ids'])]
+    order=list(range(len(informative)));Random(seed).shuffle(order)
+    test={id(informative[i]) for i in order[:len(informative)//2]} if len(informative)>=2*min_locked_groups else set()
     for g in groups:
         component=digest(sorted(r['query_id'] for r in g['rows']))[:12]
         for r in g['rows']:r.update(split='test' if id(g) in test else 'development',component=component)
     count=lambda s:len({r['component'] for r in rows if r['split']==s})
     templates={}
     for r in rows:templates[r['template']]=templates.get(r['template'],0)+1
-    m={'schema_version':2,'seed':seed,'rows':sorted(rows,key=lambda r:r['query_id']),'effective_groups':{'total':len(groups),'development':count('development'),'test':count('test')},
-       'grammar_overlap':templates,'locked_test':'feasible' if test else 'infeasible: fewer than 2 eligible independent groups',
+    m={'schema_version':2,'seed':seed,'rows':sorted(rows,key=lambda r:r['query_id']),'effective_groups':{'total':len(groups),'development':count('development'),'test':count('test'),'informative_eligible':len(informative)},
+       'grammar_overlap':templates,'min_locked_groups':min_locked_groups,
+       'locked_test':'feasible' if test else f'infeasible: {len(informative)} informative eligible independent groups, need at least {2*min_locked_groups}',
        'inference_status':'descriptive_only' if count('test')<12 else 'pilot_interval_not_confirmatory'}
     validate_manifest(m);return m
 

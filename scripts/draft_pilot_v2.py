@@ -3,23 +3,22 @@
 Reads raw inline-XBRL facts only; never runs inference or reads run outputs."""
 from collections import Counter
 from pathlib import Path
-import argparse,csv,json,sys
+import argparse,csv,gzip,json,sys
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT));sys.path.insert(0,str(ROOT/'scripts'))
 from prepare_evidence_v2 import v1_filings,write_jsonl
 from evaluation.evidence_aware.xbrl_reference import revenue_facts,fiscal_focus
-from evaluation.evidence_aware.pilot import draft_pilot
+from evaluation.evidence_aware.pilot import draft_pilot,development_lineage
 from evaluation.evidence_aware.dataset import build_pilot_manifest
 
 OUT=ROOT/'data/release/v2'
 
 
 def development_rows(aliases):
-    """Release B questions are development ancestry; their entities pull any overlapping pilot rows into development."""
-    rows=[]
-    for q in map(json.loads,(OUT/'real_dev_questions.jsonl').read_text().splitlines()):
-        text=q['question'].casefold();entities=sorted({c for a,c in aliases.items() if a in text}) or ['unknown:'+text.split()[2]]
-        rows.append(dict(query_id=q['id'],entity_ids=entities,source_ancestry=[],derivation_ancestry=[],template='release_b',development_only=True))
-    return rows
+    """Release B questions and all 43 published v1 questions are development-only ancestry."""
+    release_b=[json.loads(x) for x in (OUT/'real_dev_questions.jsonl').read_text().splitlines()]
+    v1=json.loads((ROOT/'data/release/v1/queries.json').read_text())
+    with gzip.open(ROOT/'data/release/v1/corpus_150.jsonl.gz','rt',encoding='utf-8') as f:ciks={r['doc_id']:int(r['metadata']['cik']) for r in map(json.loads,f)}
+    return development_lineage(release_b,aliases,[{'id':q['id'],'evidence_docs':q['evidence_docs']} for q in v1],ciks)
 
 
 def main():
@@ -31,7 +30,7 @@ def main():
         raw=(Path(a.source_raw_dir)/f'{f["doc_id"]}.html').read_bytes()
         summaries.append(dict(f,focus=fiscal_focus(raw),facts=revenue_facts(raw)))
     d=draft_pilot(summaries,dict(names=spec['names'],pairs=[tuple(x) for x in spec['pairs']],paraphrase=spec['paraphrase'],unknown=spec['unknown'],development_tickers=set(spec['development_tickers'])))
-    manifest=build_pilot_manifest(development_rows(config['aliases'])+d['lineage'],config['seed'])
+    manifest=build_pilot_manifest(development_rows(config['aliases'])+d['lineage'],config['seed'],min_locked_groups=spec['min_locked_groups'])
     split={r['query_id']:r for r in manifest['rows']}
     for r in d['references']:r['component']=split[r['query_id']]['component'];r['split']=split[r['query_id']]['split']
     write_jsonl(OUT/'pilot_questions.jsonl',d['questions']);write_jsonl(OUT/'references/pilot.jsonl',d['references'])

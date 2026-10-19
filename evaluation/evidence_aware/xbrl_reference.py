@@ -27,7 +27,7 @@ def revenue_facts(raw):
         value=re.sub(r'<[^>]+>','',html.unescape(m.group(2))).strip().replace(',','')
         if not re.fullmatch(r'\d+(\.\d+)?',value):continue
         start,end,cik=ctx[a['contextRef']]
-        facts.append({'concept':a['name'],'value':('-' if a.get('sign')=='-' else '')+value,'scale':a.get('scale','0'),'period_start':start,'period_end':end,'cik':cik,'fact_id':a.get('id'),'context_id':a['contextRef']})
+        facts.append({'concept':a['name'],'value':('-' if a.get('sign')=='-' else '')+value,'scale':a.get('scale','0'),'decimals':a.get('decimals'),'period_start':start,'period_end':end,'cik':cik,'fact_id':a.get('id'),'context_id':a['contextRef']})
     return facts
 
 

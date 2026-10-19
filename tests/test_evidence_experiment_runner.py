@@ -63,3 +63,14 @@ def test_report_separates_answerable_unanswerable_and_pairs_primary(tmp_path,fro
     assert all(c['inference_status']=='descriptive_only' for c in primary.values())
     assert r['timing_kind']=='fresh_local' and r['costs']['compute_cost_usd'] is None
     assert (out/'experiment_report.json').is_file() and (out/'quality_resource.svg').read_text().startswith('<svg')
+
+
+def test_report_adds_preregistered_arm_sensitive_subset(tmp_path):
+    from evaluation.evidence_aware.experiment import arm_sensitivity
+    questions=read_jsonl(f'{FIX}/queries.jsonl');refs={r['query_id']:r for r in read_jsonl(f'{FIX}/references.jsonl')}
+    d=documents();aliases={x['entity_id'].split(':')[-1].casefold():x['entity_id'] for x in d.values()}
+    m=build_experiment_manifest(CONFIG,d,questions,available_rankers={},attachments={'arm_sensitivity':arm_sensitivity(questions,d,aliases,refs)})
+    r=build_experiment_report(run_experiment(m,CONFIG,d,questions,{},tmp_path/'run'),f'{FIX}/references.jsonl',m)
+    sub=r['arms']['coverage_rule_v1@ctx8192']['arm_sensitive']
+    assert sub['questions']==6 and r['arms']['coverage_rule_v1@ctx8192']['all']['questions']==8
+    assert {(c['split'],c['metric']) for c in r['comparisons'] if c['name']=='primary'}>={('arm_sensitive','supported_correct')}

@@ -6,7 +6,7 @@ from pathlib import Path
 import hashlib,re
 from .extraction import HTML_HEADERS
 
-EXTRACTOR_VERSION='html_ixbrl_tables_v1'
+EXTRACTOR_VERSION='html_ixbrl_tables_v2'
 REVENUE_CONCEPTS={'us-gaap:Revenues','us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax','us-gaap:RevenueFromContractWithCustomerIncludingAssessedTax','us-gaap:SalesRevenueNet'}
 NUMBER_FORMATS={'ixt:num-dot-decimal','ixt:numdotdecimal'}
 UNITS={'0':'USD','3':'USD_thousand','6':'USD_million','9':'USD_billion'}
@@ -113,7 +113,10 @@ def normalize_filing(raw,meta):
     focus=p.focus;fc=p.contexts.get(focus[1]) if focus else None
     if focus and fc and re.fullmatch(r'\d{4}',focus[0]) and fc['startdate'] and fc['enddate'] and 350<=(date.fromisoformat(fc['enddate'])-date.fromisoformat(fc['startdate'])).days<=380:
         focus_year=int(focus[0]);focus_end=date.fromisoformat(fc['enddate'])
-        calendar=[{'fiscal_year':focus_year,'period_start':fc['startdate'],'period_end':fc['enddate']}]
+        # Years ending June-December are labeled by the end year; January-May year ends may use either convention.
+        if focus_year!=focus_end.year and (focus_end.month>=6 or focus_year!=focus_end.year-1):
+            failures.append({'doc_id':doc_id,'fact_id':None,'table_index':None,'row_index':None,'reason':'implausible_fiscal_year_focus'});focus_year=focus_end=None
+        else:calendar=[{'fiscal_year':focus_year,'period_start':fc['startdate'],'period_end':fc['enddate']}]
     else:failures.append({'doc_id':doc_id,'fact_id':None,'table_index':None,'row_index':None,'reason':'missing_fiscal_year_focus'})
     parts=[];segments=[];offset=0
     def emit(line):

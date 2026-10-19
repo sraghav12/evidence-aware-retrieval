@@ -83,7 +83,7 @@ def test_generic_grammar_does_not_connect_unrelated_cases():
 
 def test_collapsed_components_are_not_forced_into_test():
     m=build_pilot_manifest([row('a',['cik:1','cik:2'],'sum'),row('b',['cik:2','cik:3'],'sum'),row('c',['cik:3'],development_only=True)],11)
-    assert {r['split'] for r in m['rows']}=={'development'} and m['locked_test']=='infeasible: fewer than 2 eligible independent groups'
+    assert {r['split'] for r in m['rows']}=={'development'} and m['locked_test'].startswith('infeasible')
 
 
 def test_reference_reader_focus_allows_inner_markup():
@@ -96,3 +96,36 @@ def test_reference_reader_ignores_tables_and_dimensions():
     raw=(Path(__file__).parent/'fixtures/evidence_v2/html/date_columns.html').read_bytes()
     facts=revenue_facts(raw)
     assert sorted((f['period_end'],f['value']) for f in facts)==[('2023-09-30','100000'),('2024-09-28','120500')]
+
+
+def test_locked_test_requires_enough_informative_groups():
+    singles=[row(f'p{i}',[f'cik:{i}']) for i in range(1,4)]+[row(f'u{i}',[f'unknown:x{i}'],'unknown_company') for i in range(3)]
+    m=build_pilot_manifest(singles,11,min_locked_groups=2)
+    assert {r['split'] for r in m['rows']}=={'development'} and m['locked_test'].startswith('infeasible') and m['effective_groups']['informative_eligible']==3
+    m=build_pilot_manifest(singles+[row('p4',['cik:4'])],11,min_locked_groups=2)
+    assert m['locked_test']=='feasible' and m['effective_groups']['test']>=2
+
+
+def test_stage_limits_and_per_arm_configs_come_from_config():
+    m=manifest(stage_context_tokens=1024,cheap_context_tokens=64)
+    assert all(a['stage_limits']['stage_context_tokens']==1024 and a['stage_limits']['cheap_context_tokens']==64 for a in m['arms'])
+    from evaluation.evidence_aware.experiment import engine_config
+    from pipelines.evidence_aware.contracts import digest
+    assert all(a['engine_config_sha256']==digest(engine_config(a)) for a in m['arms'])
+    assert len({a['engine_config_sha256'] for a in m['arms'] if a['track']=='scheduling'})==8
+
+
+def test_manifest_hash_required_and_freeze_covers_scripts_and_lock():
+    m=manifest();bad=dict(m);bad.pop('manifest_sha256')
+    with pytest.raises(ValueError,match='manifest hash'):validate_experiment(bad)
+    assert {'scripts/run_evidence_v2.py','scripts/freeze_experiment_v2.py','scripts/run_experiment_v2.py','requirements-evidence-v2-compat.lock'}<=set(m['source_sha256'])
+
+
+def test_arm_sensitivity_counts_parse_and_zero_cell_invariant_rows():
+    from evaluation.evidence_aware.experiment import arm_sensitivity
+    from evaluation.evidence_aware.runner import read_jsonl
+    fix='tests/fixtures/evidence_v2';d=documents();qs=read_jsonl(f'{fix}/queries.jsonl');refs={r['query_id']:r for r in read_jsonl(f'{fix}/references.jsonl')}
+    aliases={x['entity_id'].split(':')[-1].casefold():x['entity_id'] for x in d.values()}
+    s=arm_sensitivity(qs,d,aliases,refs)
+    assert s['parse_invariant']=={'unknown_fiscal_calendar':1} and s['zero_cell_invariant']=={'unanswerable':1}
+    assert s['arm_sensitive']==6 and s['arm_sensitive_answerable']==3 and s['arm_sensitive_groups']==6

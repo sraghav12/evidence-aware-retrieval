@@ -16,36 +16,179 @@
   "seed": 11,
   "repeats": 1,
   "budget_profiles": [
-    {"name": "ctx4096", "max_context_tokens": 4096},
-    {"name": "ctx8192", "max_context_tokens": 8192}
+    {
+      "name": "ctx4096",
+      "max_context_tokens": 4096
+    },
+    {
+      "name": "ctx8192",
+      "max_context_tokens": 8192
+    }
   ],
-  "primary": {"treatment": "coverage_rule_v1", "comparator": "always_maximum_v1", "budget": "ctx8192"},
+  "primary": {
+    "treatment": "coverage_rule_v1",
+    "comparator": "always_maximum_v1",
+    "budget": "ctx8192"
+  },
   "documents": "data/processed/evidence_v2/pilot_documents.jsonl",
   "queries": "data/release/v2/pilot_questions.jsonl",
   "output": "results/evidence_v2/pilot_not_run",
   "aliases": {
-    "abbvie": "cik:1551152", "alphabet": "cik:1652044", "amd": "cik:2488", "apple": "cik:320193", "boeing": "cik:12927",
-    "caterpillar": "cik:18230", "chevron": "cik:93410", "coca-cola": "cik:21344", "conocophillips": "cik:1163165", "costco": "cik:909832",
-    "deere": "cik:315189", "eli lilly": "cik:59478", "exxon mobil": "cik:34088", "freeport-mcmoran": "cik:831259", "ge aerospace": "cik:40545",
-    "home depot": "cik:354950", "johnson & johnson": "cik:200406", "linde": "cik:1707925", "mcdonald's": "cik:63908", "meta": "cik:1326801",
-    "nvidia": "cik:1045810", "pfizer": "cik:78003", "procter & gamble": "cik:80424", "unitedhealth": "cik:731766", "walmart": "cik:104169"
+    "abbvie": "cik:1551152",
+    "alphabet": "cik:1652044",
+    "amd": "cik:2488",
+    "apple": "cik:320193",
+    "boeing": "cik:12927",
+    "caterpillar": "cik:18230",
+    "chevron": "cik:93410",
+    "coca-cola": "cik:21344",
+    "conocophillips": "cik:1163165",
+    "costco": "cik:909832",
+    "deere": "cik:315189",
+    "eli lilly": "cik:59478",
+    "exxon mobil": "cik:34088",
+    "freeport-mcmoran": "cik:831259",
+    "ge aerospace": "cik:40545",
+    "home depot": "cik:354950",
+    "johnson & johnson": "cik:200406",
+    "linde": "cik:1707925",
+    "mcdonald's": "cik:63908",
+    "meta": "cik:1326801",
+    "nvidia": "cik:1045810",
+    "pfizer": "cik:78003",
+    "procter & gamble": "cik:80424",
+    "unitedhealth": "cik:731766",
+    "walmart": "cik:104169"
   },
   "pilot_spec": {
     "names": {
-      "AAPL": "Apple", "ABBV": "AbbVie", "AMD": "AMD", "BA": "Boeing", "CAT": "Caterpillar", "COP": "ConocoPhillips", "COST": "Costco", "CVX": "Chevron",
-      "DE": "Deere", "FCX": "Freeport-McMoRan", "GE": "GE Aerospace", "GOOGL": "Alphabet", "HD": "Home Depot", "JNJ": "Johnson & Johnson", "KO": "Coca-Cola",
-      "LIN": "Linde", "LLY": "Eli Lilly", "MCD": "McDonald's", "META": "Meta", "NVDA": "NVIDIA", "PFE": "Pfizer", "PG": "Procter & Gamble", "UNH": "UnitedHealth",
-      "WMT": "Walmart", "XOM": "Exxon Mobil"
+      "AAPL": "Apple",
+      "ABBV": "AbbVie",
+      "AMD": "AMD",
+      "BA": "Boeing",
+      "CAT": "Caterpillar",
+      "COP": "ConocoPhillips",
+      "COST": "Costco",
+      "CVX": "Chevron",
+      "DE": "Deere",
+      "FCX": "Freeport-McMoRan",
+      "GE": "GE Aerospace",
+      "GOOGL": "Alphabet",
+      "HD": "Home Depot",
+      "JNJ": "Johnson & Johnson",
+      "KO": "Coca-Cola",
+      "LIN": "Linde",
+      "LLY": "Eli Lilly",
+      "MCD": "McDonald's",
+      "META": "Meta",
+      "NVDA": "NVIDIA",
+      "PFE": "Pfizer",
+      "PG": "Procter & Gamble",
+      "UNH": "UnitedHealth",
+      "WMT": "Walmart",
+      "XOM": "Exxon Mobil"
     },
-    "excluded_tickers": {"BAC": "bank revenue is reported net of interest expense; outside the reviewed revenue definition", "BLK": "asset manager; outside the reviewed revenue definition",
-                         "GS": "bank; outside the reviewed revenue definition", "JPM": "bank; outside the reviewed revenue definition", "WFC": "bank; outside the reviewed revenue definition"},
-    "pairs": [["AAPL", "KO"], ["AMD", "NVDA"], ["GOOGL", "META"], ["CAT", "WMT"], ["JNJ", "LLY"], ["ABBV", "PFE"], ["COP", "XOM"], ["COST", "HD"], ["BA", "GE"]],
-    "paraphrase": ["AAPL", "NVDA", "COST", "LIN", "UNH"],
-    "unknown": ["Microsoft", "Netflix", "Intel", "Oracle", "Nike"],
-    "development_tickers": ["AAPL", "AMD", "CAT", "GOOGL", "JNJ", "KO", "LLY", "META", "NVDA", "WMT"]
+    "excluded_tickers": {
+      "BAC": "bank revenue is reported net of interest expense; outside the reviewed revenue definition",
+      "BLK": "asset manager; outside the reviewed revenue definition",
+      "GS": "bank; outside the reviewed revenue definition",
+      "JPM": "bank; outside the reviewed revenue definition",
+      "WFC": "bank; outside the reviewed revenue definition"
+    },
+    "pairs": [
+      [
+        "AAPL",
+        "KO"
+      ],
+      [
+        "AMD",
+        "NVDA"
+      ],
+      [
+        "GOOGL",
+        "META"
+      ],
+      [
+        "CAT",
+        "WMT"
+      ],
+      [
+        "JNJ",
+        "LLY"
+      ],
+      [
+        "ABBV",
+        "PFE"
+      ],
+      [
+        "COP",
+        "XOM"
+      ],
+      [
+        "COST",
+        "HD"
+      ],
+      [
+        "BA",
+        "GE"
+      ]
+    ],
+    "paraphrase": [
+      "AAPL",
+      "NVDA",
+      "COST",
+      "LIN",
+      "UNH"
+    ],
+    "unknown": [
+      "Microsoft",
+      "Netflix",
+      "Intel",
+      "Oracle",
+      "Nike"
+    ],
+    "development_tickers": [
+      "AAPL",
+      "AMD",
+      "CAT",
+      "GOOGL",
+      "JNJ",
+      "KO",
+      "LLY",
+      "META",
+      "NVDA",
+      "WMT"
+    ],
+    "min_locked_groups": 4
   },
   "source_selection": {
-    "tickers": ["AAPL", "ABBV", "AMD", "BA", "CAT", "COP", "COST", "CVX", "DE", "FCX", "GE", "GOOGL", "HD", "JNJ", "KO", "LIN", "LLY", "MCD", "META", "NVDA", "PFE", "PG", "UNH", "WMT", "XOM"],
+    "tickers": [
+      "AAPL",
+      "ABBV",
+      "AMD",
+      "BA",
+      "CAT",
+      "COP",
+      "COST",
+      "CVX",
+      "DE",
+      "FCX",
+      "GE",
+      "GOOGL",
+      "HD",
+      "JNJ",
+      "KO",
+      "LIN",
+      "LLY",
+      "MCD",
+      "META",
+      "NVDA",
+      "PFE",
+      "PG",
+      "UNH",
+      "WMT",
+      "XOM"
+    ],
     "raw_copy_dir": null,
     "segments_output": "data/processed/evidence_v2/pilot_segments.jsonl",
     "failures_output": "data/processed/evidence_v2/pilot_extraction_failures.jsonl",

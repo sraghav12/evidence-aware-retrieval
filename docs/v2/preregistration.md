@@ -1,83 +1,97 @@
-# Release C preregistration (frozen before any pilot outcome)
+# Release C preregistration, version 2 (frozen before any pilot outcome)
 
-Frozen October 18, 2026 in `data/release/v2/experiment_manifest.json`. The SHA-256 is recorded in that file and checked by `validate_experiment`. No pilot question has been run. This is a feasibility pilot with AI-proposed, unreviewed references, not a confirmatory study.
+Frozen October 18, 2026 in `data/release/v2/experiment_manifest.json`. Its SHA-256 is recorded in that file. `scripts/run_experiment_v2.py` refuses to run if any of the following differ from the freeze:
+- the corpus, questions or config;
+- the source code, scripts or dependency lock;
+- the run order;
+- any arm's engine configuration;
+- the manifest hash itself.
 
-## Question
+No pilot question had been run when this was written. This is a **development-only, descriptive feasibility pilot** with AI-proposed, unreviewed references. It is not a held-out or confirmatory study.
 
-Does checking which numerical operands are still missing guide extra retrieval better than fixed or complexity-based schedules, at matched limits?
+## Why version 1 was superseded (before any run)
+
+A fresh review found three problems:
+1. **The locked test was invalid.** The split ignored the published v1 questions, which the spec makes development-only. Seven of its eight test groups involved v1 companies, and two test questions repeated v1 gold answers.
+2. **Rounding was labeled as restatement.** Presentation-precision differences (34,124.1 vs 34,124) were labeled as restatements, contradicting the Release B reference for the same figure.
+3. **The freeze was not bound to execution** and missed mutable inputs.
+
+All three are fixed with regression tests. In the redrawn split (seed 11), components touching any v1 or Release B company are development. Only 2 informative groups remained outside development, against a preregistered minimum of 4 per side, so **no locked test exists on this corpus**. The split is not forced.
 
 ## Data
 
-- **Pilot:** 114 questions in `data/release/v2/pilot_questions.jsonl` (id, question, as-of only). They come from 25 non-financial companies in the frozen v1 corpus plus five companies absent from it.
-- **References:** AI-proposed from a separate raw inline-XBRL fact reader (`evaluation/evidence_aware/xbrl_reference.py`), stored in `data/release/v2/references/pilot.jsonl`. Human reviewers so far: 0.
-- **Mix:** 76 answerable and 38 unanswerable.
+- **Pilot:** 111 questions in `data/release/v2/pilot_questions.jsonl` (id, question, as-of only), covering 25 non-financial companies in the frozen v1 corpus plus five companies absent from it.
+- **References:** proposed by a separate raw inline-XBRL fact reader that compares values at their stated XBRL precision. Stored in `data/release/v2/references/pilot.jsonl`. Human reviewers: 0.
+- **Mix:** 77 answerable and 34 unanswerable.
 
 | Template | Count |
 |---|---|
-| Single-company extraction | 41 |
+| Extraction | 41 |
 | Growth | 20 |
 | Two-company sums | 7 |
 | Two-company rankings | 6 |
-| Not-yet-disclosed fiscal years | 24 |
-| Reported/restated conflicts | 6 |
+| Not yet in a 10-K in this corpus by the cutoff | 24 |
+| Genuine reported/restated conflicts (GE, Johnson & Johnson) | 3 restatement probes, plus conflicting growth and ranking rows |
 | Out-of-grammar paraphrases | 5 |
 | Unknown companies | 5 |
 
-- **Exclusions:** 18 company-year templates were excluded with reasons. 16 are definition conflicts, where one filing tags two different dimensionless revenue figures (ConocoPhillips, Chevron, Pfizer, Walmart). 2 are FCX templates whose filings declare duplicate fiscal-year focus. Banks and an asset manager (BAC, BLK, GS, JPM, WFC) fall outside the reviewed revenue definition.
-- **Split:** company components, with shared sources and derivation ancestry, in `data/release/v2/pilot_split_manifest.json`. Public grammar templates never connect questions.
-  - Every component touching a Release B company is development.
-  - 22 independent groups: 14 development (75 questions) and 8 locked test (39 questions, 25 answerable).
-  - Fewer than 12 test groups, so **all test intervals are descriptive only**.
+- **Exclusions:** 18 templates, with reasons. 16 are definition conflicts (ConocoPhillips, Chevron, Pfizer, Walmart); 2 are FCX templates with duplicated fiscal focus. Banks and an asset manager (BAC, BLK, GS, JPM, WFC) fall outside the reviewed revenue definition.
+- **Split:** 13 independent components, all development (`data/release/v2/pilot_split_manifest.json`).
+
+## Which questions can separate arms (computed from parsing and extraction coverage only)
+
+| Rows identical in every arm | Count |
+|---|---|
+| Parse failures: no fiscal calendar yet | 24 |
+| Parse failures: out-of-grammar paraphrase | 5 |
+| Parse failures: unknown company | 5 |
+| Answerable, but a required company has no extracted cell (ConocoPhillips, Deere, Exxon Mobil, Pfizer, Chevron) | 8 |
+
+Arm-sensitive: **69 questions (64 answerable, 5 unanswerable) in 6 independent groups**. Results are reported for all 111 questions and for this preregistered 69-question subset.
 
 ## Arms (matched per budget profile)
 
-All arms share the following:
-- source units (`units_hash`);
-- the coverage gate (`audit_coverage_v2`);
-- the answer audit;
+Every arm shares:
+- source units;
+- the coverage gate and answer audit;
 - the Decimal executor (no model answerer);
-- stage limits: 8,192 per stage, 24,576 cumulative retrieval, 24,576 cumulative verification, 30,000 ms deadline, 12 packed sections;
+- stage limits from the config: 8,192 per stage, 8,192 cheap stage, 24,576 cumulative retrieval and 24,576 verification, 30,000 ms deadline, 12 packed sections;
 - 512 output tokens.
 
 Two context budgets are frozen: 4,096 and 8,192.
 
 | Track | Arms |
 |---|---|
-| Scheduling (BM25) | `always_cheap_v1`, `coverage_rule_v1` (treatment), `complexity_rule_v1` (≤2 operands cheap-only, otherwise all three stages; author-selected and frozen), `always_maximum_v1` (all three bounded stages) |
-| Strategy | `bm25` (same run as `coverage_rule_v1`). `dense`, `hybrid_rrf` and `hybrid_rrf_rerank` are **unavailable** (see [resource probe](resource_probe.md)) |
+| Scheduling (BM25) | `always_cheap_v1`, `coverage_rule_v1` (treatment), `complexity_rule_v1` (≤2 operands cheap-only; author-selected and frozen), `always_maximum_v1` (all three bounded stages) |
+| Strategy (evidence rule) | `bm25` (same run as `coverage_rule_v1`); `dense` (bge-small-en-v1.5@5c38ec7); `hybrid_rrf` (BM25 + dense, `k=60`); `hybrid_rrf_rerank` (+ ms-marco-MiniLM-L6-v2@233902d over the first 60 candidates) |
 
-Paired run order is a seeded shuffle (seed 11) of 912 runs (114 questions × 4 scheduling arms × 2 budgets, 1 repeat). The order hash is in the manifest. Provider requests: 0. Estimated cost: none (no provider).
+Paired run order: a seeded shuffle (seed 11) of 1,554 runs (111 questions × 7 distinct arms × 2 budgets, 1 repeat; the executor is deterministic). One dense index is built once and reused. Provider requests: 0.
 
-## Primary comparison, chosen on development only
+## Primary comparison (chosen on Release B development only)
 
-**Primary:** `coverage_rule_v1` versus `always_maximum_v1` at the 8,192 context budget.
+`coverage_rule_v1` versus `always_maximum_v1` at the 8,192 context budget, chosen before any pilot run. Release B results, reproduced on the regenerated corpus (extractor v2):
 
-It was chosen from the 20 Release B development questions, before any pilot run:
-
-| Arm (8,192) | Supported / 16 answerable | Correct abstentions / 4 | Retrieval stages | Inspected retrieval tokens |
+| Arm | Supported / 16 | Correct abstentions / 4 | Retrieval stages | Inspected retrieval tokens |
 |---|---|---|---|---|
 | always_cheap_v1 | 11 | 4 | 15 | 51,955 |
 | coverage_rule_v1 | 12 | 4 | 18 | 64,788 |
 | complexity_rule_v1 | 11 | 4 | 19 | 66,931 |
 | always_maximum_v1 | 11 | 4 | 45 | 158,257 |
 
-The 4,096 budget gave identical quality on development, so the plan's author default of 8,192 is the primary budget. 4,096 stays as a frozen exploratory profile.
-
-On development, `always_maximum_v1` lost one answer (Eli Lilly). Its extra retrieval reached a filing that presents 34,124.1 as 34,124, and the exact-value conflict rule abstained. `complexity_rule_v1` lost the two-operand sum that needs section search. These are development observations, not hypotheses confirmed.
+The 4,096 budget gave identical results.
 
 ## Endpoints and analysis
 
-- **Primary endpoint:** supported numerical success on answerable test questions. Success means correct value and unit, the reference requirements, source re-audit and citation audit.
-- **Co-primary:** correct abstention on unanswerable test questions.
+- **Primary endpoint:** supported numerical success on answerable questions (value and unit, reference requirements, source re-audit, citation audit).
+- **Co-primary:** correct abstention on unanswerable questions.
 - **Resource:** inspected retrieval and verification tokens. These are whitespace estimates, not billed tokens.
-- **Secondary:** retrieval stages, p50/p95 local wall time, peak memory.
-- **Paired difference:** treatment minus comparator per question, with a 95% component-cluster bootstrap (2,000 resamples, seed 11). Answerable and unanswerable rows are analyzed separately.
-- **Noninferiority margin (candidate):** 2 percentage points, with a 15% inspected-token reduction as the resource target. With 8 test groups and 25 answerable test questions, this pilot cannot establish noninferiority. A nonsignificant difference will be reported as inconclusive.
-- **Multiplicity:** one primary comparison. Every other arm and budget is exploratory.
-- **Failure policy:** errors and timeouts stay in denominators. Unavailable arms are reported, never substituted. No rerun because of an outcome. Bugs found after unlocking require a new protocol version and a fresh run.
+- **Secondary:** retrieval stages, p50/p95 local wall time, peak memory, dense indexing time, reranker pairs.
+- **Paired difference:** treatment minus comparator, with a 95% component-cluster bootstrap (2,000 resamples, seed 11). Reported on all 111 questions and on the arm-sensitive 69.
+- **Status of intervals:** with 13 (or 6) independent groups and no locked test, every interval is descriptive. No noninferiority, superiority or savings claim follows from this pilot. The 2-point margin and 15% inspected-token target are recorded for a future confirmatory design.
+- **Failure policy:** errors and timeouts stay in denominators; no rerun because of an outcome. Bugs found after the run require a new protocol version and a fresh run.
 
 ## Gates still open
 
-- Human review of the annotation packet (`data/release/v2/annotation/pilot_packet.csv`). 53 rows require a second reviewer, including every unanswerable and conflict row.
-- Download approval for dense and reranker weights.
-- Any model answerer: it needs a pinned model revision, prompt hash and decoding, plus separately authorized spend. Live execution is disabled.
+- **Independent test data.** A confirmatory study needs companies or filings outside the v1 and Release B ancestry. That means new SEC collection with a declared User-Agent and rate limits.
+- **Human review** of `data/release/v2/annotation/pilot_packet.csv`.
+- **Any model answerer:** it needs a pinned model revision, prompt hash and decoding, plus separately authorized spend. Live execution is disabled.

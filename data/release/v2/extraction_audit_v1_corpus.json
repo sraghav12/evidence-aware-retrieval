@@ -1,5 +1,5 @@
 {
-  "extractor_version": "html_ixbrl_tables_v1",
+  "extractor_version": "html_ixbrl_tables_v2",
   "filings_with_spans": 99,
   "per_filing": [
     {
@@ -638,11 +638,11 @@
     },
     {
       "doc_id": "FCX_10K_2024",
-      "fiscal_year_focus": 2023,
+      "fiscal_year_focus": null,
       "raw_sha256": "ea4d361dfcba8e5390799165f1deafdb8a46f7015456aea2d8c8b9d6e9bff840",
       "rejected": {
-        "period_header_mismatch": 9,
-        "row_label_not_revenue": 6
+        "implausible_fiscal_year_focus": 1,
+        "missing_fiscal_year_focus": 15
       },
       "revenue_candidates": 15,
       "revenue_spans": 0,
@@ -1659,12 +1659,13 @@
   ],
   "rejected": {
     "ambiguous_period_header": 34,
-    "missing_fiscal_year_focus": 1,
+    "implausible_fiscal_year_focus": 1,
+    "missing_fiscal_year_focus": 16,
     "missing_period_header": 115,
     "missing_unit_header": 260,
     "non_annual_period": 77,
-    "period_header_mismatch": 11,
-    "row_label_not_revenue": 242,
+    "period_header_mismatch": 2,
+    "row_label_not_revenue": 236,
     "unit_header_mismatch": 3,
     "unsupported_rowspan": 33,
     "unsupported_unit": 114
