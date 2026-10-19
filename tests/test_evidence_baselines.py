@@ -4,7 +4,7 @@ from evidence_helpers import documents,spec
 from pipelines.evidence_aware.contracts import BudgetState,CoverageResult,RoutingState
 from pipelines.evidence_aware.engine import run_spec
 from pipelines.evidence_aware.policy import decide,POLICIES
-from pipelines.evidence_aware.retrieval import BM25Backend,HybridBackend,RerankBackend,UnavailableBackend,ArmUnavailable,rrf_scores
+from pipelines.evidence_aware.retrieval import BM25Backend,DenseBackend,HybridBackend,RerankBackend,UnavailableBackend,ArmUnavailable,rrf_scores
 
 STAGES=('cheap_search','section_search','expanded_search')
 RANK='Rank RankAlpha and RankBeta by FY2024 revenue growth over FY2023.'
@@ -66,9 +66,10 @@ class ReverseRanker:
 
 
 def test_hybrid_and_rerank_share_bm25_units():
-    d=documents();base=BM25Backend(d);hybrid=HybridBackend(base,ReverseRanker());rerank=RerankBackend(hybrid,ReverseRanker(),pool=4)
-    assert hybrid.units is base.units and rerank.units is base.units
-    for b in (hybrid,rerank):
+    d=documents();base=BM25Backend(d);dense=DenseBackend(base,ReverseRanker());hybrid=HybridBackend(base,ReverseRanker());rerank=RerankBackend(hybrid,ReverseRanker(),pool=4)
+    assert dense.units is base.units and hybrid.units is base.units and rerank.units is base.units
+    assert [u.id for u in dense.rank(spec(),[])]==sorted((u.id for u in base.eligible(spec(),[])[0]),reverse=True)
+    for b in (dense,hybrid,rerank):
         out=b.retrieve(spec(),[],8192)
         assert any(s.value=='120' for s in out) and {u.id for u in b.selected}<= {u.id for u in base.units}
 

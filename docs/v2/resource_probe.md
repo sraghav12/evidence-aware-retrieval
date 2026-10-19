@@ -26,13 +26,34 @@ ONNX Runtime plus `tokenizers` can run the candidates below on CPU without insta
 
 Author recommendation if downloads are approved: the preferred dense model and the preferred reranker, about 224 MB total, CPU-only. The larger reranker is ten times the size and is not needed for a feasibility study.
 
-## Status in the frozen experiment
+## Download (user-approved, October 18, 2026)
 
-`dense`, `hybrid_rrf` and `hybrid_rrf_rerank` are **unavailable arms** in `data/release/v2/experiment_manifest.json`. The reason recorded is: no pinned local model installed, download not authorized. They are never replaced by BM25.
+The user approved downloading the two preferred models. Only the files each pinned revision needs were fetched into ignored `.cache/models/`: the ONNX weights, tokenizer, configs and model card (225.6 MB). Per-file SHA-256 values are in `data/release/v2/model_assets.json`:
 
-The adapters `HybridBackend` (RRF, `k=60`, ranks from 1) and `RerankBackend` exist and are tested with a deterministic test-only ranker. Enabling them requires all of the following:
+| Model | ONNX SHA-256 |
+|---|---|
+| bge-small-en-v1.5 | `828e1496d7fa…` |
+| ms-marco-MiniLM-L6-v2 | `5d3e70fd0c9f…` |
 
-1. Explicit user approval to download the pinned weights.
-2. A recorded SHA-256 for each downloaded file.
-3. A measured local index time and peak memory over the 125-filing pilot corpus.
-4. A re-freeze of the experiment manifest. The manifest hash changes; the frozen primary comparison does not.
+`pipelines/evidence_aware/onnx_rankers.py` verifies every hash before loading. A missing or altered file leaves the arm unavailable. The module is imported only for model-backed arms, so the offline core and `python -S` runs never load ONNX Runtime.
+
+Implementation details:
+- **Dense:** CLS pooling, L2 normalization, the bge query instruction on queries only, truncation at 512 tokens.
+- **Indexing:** units are embedded once, in sorted-ID batches. Embeddings are batch-invariant (maximum difference 0.0 in a check), so rankings do not depend on question order.
+- **Reranker:** scores (question, unit) pairs over the first 60 hybrid candidates.
+
+## Measured cost (20 Release B development questions, 50 filings, CPU)
+
+| Run | Wall time | Process high-water memory |
+|---|---|---|
+| BM25 | 1.7 s | 270 MB |
+| Dense indexing: 2,668 units, 1.37M tokens | 115 s | 2.3 GB |
+| Full hybrid + rerank run | 139 s | — |
+
+The 125-filing pilot corpus is about 2.5× larger, so Task 10 loads the rankers once and reuses one index across arms.
+
+On terse numeric table text, bge-small separates poorly. For "What was Apple FY2024 revenue?" it scored a lease-maturity table (0.535) above the revenue table (0.504). On equivalent prose the revenue sentence clearly wins (0.776 vs 0.547). This is a qualitative observation the strategy track will measure, not a result.
+
+## Status in the experiment
+
+The adapters (`DenseBackend`, `HybridBackend` with RRF `k=60` and ranks from 1, `RerankBackend`) reuse BM25's units, cutoff, entity and section eligibility, and selection rule. With verified assets, all 16 arms are available. The manifest is re-frozen after the Tasks 8–9 review fixes and before any pilot run; the primary comparison is unchanged.

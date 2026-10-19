@@ -90,6 +90,13 @@ class HybridBackend:
     def inspected_tokens(self):return self.bm25.inspected_tokens
 
 
+class DenseBackend(HybridBackend):
+    """Injected dense ranking alone, over the same cutoff/entity/section-eligible units as BM25."""
+    def rank(self,spec,missing_ids,exclude_unit_ids=()):
+        units,_=self.bm25.eligible(spec,missing_ids,exclude_unit_ids);by_id={u.id:u for u in units}
+        return [by_id[i] for i in self.dense.rank(spec.question,units) if i in by_id]
+
+
 class RerankBackend:
     """Injected cross-encoder reorders only the first `pool` candidates of a base ranking."""
     def __init__(self,base,reranker,pool=60):self.base=base;self.reranker=reranker;self.pool=pool;self.units=base.units

@@ -41,7 +41,7 @@ def build_experiment_manifest(config,documents,questions,available_rankers,attac
         for name,needs in STRATEGY.items():
             missing=[n for n in needs if n not in available_rankers]
             arms.append(dict(common,name=name,track='strategy',policy='coverage_rule_v1',backend=name,status='unavailable' if missing else 'available',
-                             reason=f'no pinned local {" and ".join(missing)} model installed; download not authorized' if missing else '',
+                             reason=f'no hash-verified pinned local {" and ".join(missing)} model' if missing else '',
                              ranker_revisions={n:available_rankers[n] for n in needs if n in available_rankers},same_run_as='coverage_rule_v1' if name=='bm25' else None))
         for policy in sorted(POLICIES):
             arms.append(dict(common,name=policy,track='scheduling',policy=policy,backend='bm25',status='available',reason='',ranker_revisions={},same_run_as=None))
