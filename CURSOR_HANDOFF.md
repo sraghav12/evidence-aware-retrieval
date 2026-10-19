@@ -10,7 +10,7 @@ The user approved the written design/plan and native sequential implementation w
 
 ## Start here
 
-- Repository: this folder, `beyond-vector-search`.
+- Repository: this folder, `beyond-vector-search`. Public v2 repo (user-approved, October 18): https://github.com/sraghav12/evidence-aware-retrieval, remote `evidence`, local `feat/evidence-aware-v2` tracks `evidence/main`. `origin` is still the original v1 repo and has not received v2.
 - Branch: `feat/evidence-aware-v2`; seven implementation commits after baseline.
 - Baseline: `675733109b30e80ce40c0a796bc0dd89e616c4ef`.
 - Latest implementation commit before this handoff: `c37d5c9`.
