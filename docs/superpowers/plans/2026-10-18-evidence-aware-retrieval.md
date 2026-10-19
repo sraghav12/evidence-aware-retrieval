@@ -12,7 +12,7 @@
 
 ## Execution checkpoint — October 18, 2026
 
-Tasks 1–7 implemented and tested: 94 total tests pass. Task 8 has been read but no HTML implementation has started. Fresh whole-branch review remains pending; do it before proceeding. See [Cursor handoff](../../../CURSOR_HANDOFF.md) and [durable progress](../../v2/implementation-progress.md). The live CLI arm is explicitly unavailable: no provider integration or paid budget exists.
+Tasks 1–8 implemented and tested: 122 total tests pass. Fresh whole-branch review of Tasks 1–7 completed (0 Critical, 8 Important, all fixed with regressions in 7693235). Task 8 real-filings pilot committed; Task 8 has had no independent review yet. Next: Task 9. See [Cursor handoff](../../../CURSOR_HANDOFF.md) and [durable progress](../../v2/implementation-progress.md). The live CLI arm is explicitly unavailable: no provider integration or paid budget exists.
 
 ## Global Constraints
 
@@ -182,10 +182,10 @@ def paired_cluster_summary(rows: list[dict], cluster_key: str, seed: int) -> dic
 
 **Consumes:** local raw HTML copied explicitly into ignored v2 working data, with original accession/CIK lineage; no references in the inference stage. **Produces:** reproducible normalized source/table map and 12–20 development cases, at least four company groups if feasible.
 
-- [ ] Inspect raw HTML paths without accessing `.env`; map them to frozen corpus metadata and hash original bytes before copying. Record missing sources. Add a compact redistributable or synthetic equivalent of each supported layout; full filings require source/terms documentation. Never pretend the clone included untracked HTML.
-- [ ] Write failing tests: `test_html_cell_links_row_period_and_units`, `test_ambiguous_merged_header_abstains`, `test_html_missing_fails_closed`, `test_raw_to_normalized_lineage`, `test_reported_restated_conflict`, `test_no_reference_needed_for_extraction`. For a known cell assert original HTML locator, real normalized quote slice and raw hash; swapping column years must invalidate support. Run `python -m pytest tests/test_evidence_html.py -q`; expect failure.
-- [ ] Implement pinned conservative HTML table extraction, raw-to-normalized segment mapping and origin locators. Handle supported layouts only. Build real development questions independently of model outcomes; keep raw text/as-of public and references separate. Include answerable cases and known missing/late/conflicting cases. If fewer than 12 cases or four groups are feasible, report actual counts and narrower scope rather than fabricate coverage.
-- [ ] Run real-source preparation and inference with config `configs/evidence_v2_real_dev.json`, then regenerate the report from saved traces. Require source-hash validation and no gold input; disclose parser success, extractor failures, unsupported grammar and abstentions. Commit portable fixtures/provenance/docs; mark B as an engineering pilot, with actual review status and no independent accuracy claim without human labels.
+- [x] Inspect raw HTML paths without accessing `.env`; map them to frozen corpus metadata and hash original bytes before copying. Record missing sources. Add a compact redistributable or synthetic equivalent of each supported layout; full filings require source/terms documentation. Never pretend the clone included untracked HTML.
+- [x] Write failing tests: `test_html_cell_links_row_period_and_units`, `test_ambiguous_merged_header_abstains`, `test_html_missing_fails_closed`, `test_raw_to_normalized_lineage`, `test_reported_restated_conflict`, `test_no_reference_needed_for_extraction`. For a known cell assert original HTML locator, real normalized quote slice and raw hash; swapping column years must invalidate support. Run `python -m pytest tests/test_evidence_html.py -q`; expect failure.
+- [x] Implement pinned conservative HTML table extraction, raw-to-normalized segment mapping and origin locators. Handle supported layouts only. Build real development questions independently of model outcomes; keep raw text/as-of public and references separate. Include answerable cases and known missing/late/conflicting cases. If fewer than 12 cases or four groups are feasible, report actual counts and narrower scope rather than fabricate coverage.
+- [x] Run real-source preparation and inference with config `configs/evidence_v2_real_dev.json`, then regenerate the report from saved traces. Require source-hash validation and no gold input; disclose parser success, extractor failures, unsupported grammar and abstentions. Commit portable fixtures/provenance/docs; mark B as an engineering pilot, with actual review status and no independent accuracy claim without human labels.
 
 ## Release C and conditional research
 

@@ -32,19 +32,21 @@ Tasks 1–7 are implemented and tested:
 6. Zero-budget runner, retained failures, reservations, usage/source/environment manifests, immutable output directories.
 7. Separate offline evaluation, reference/source audits, paired cluster bootstrap helpers and HTML/JSON reports.
 
-Fresh verification immediately before handoff: **94 tests passed in 1.40 seconds**, including the 23 historical tests. **All 26 published v1 release-file hashes unchanged.** The original dirty checkout is untouched. No model/provider inference, training, model downloads or publishing occurred. Free Python package dependencies were installed only in this repository's environment.
+Fresh verification at the original handoff: 94 tests passed, including the 23 historical tests. All 24 tracked v1 release-file hashes unchanged (an earlier "26" counted two gitignored source-only files; see `docs/v2/baseline.md`). The original dirty checkout is untouched. No model/provider inference, training, model downloads or publishing occurred. Free Python package dependencies were installed only in this repository's environment.
 
 The eight synthetic cases yielded three supported answers and five correct abstentions, no query errors. One ranking case recovers two missing Beta operands via section search. This is functional validation, not real-data accuracy, human validation or a savings result.
 
+## Cursor session, October 18, 2026 evening
+
+- **Review of Tasks 1–7 done.** A fresh reviewer read `6757331..c37d5c9`: 0 Critical, 8 Important, 15 Minor. All Important findings, plus two minors re-graded by effect, are fixed in `7693235`, each with a failing-first regression in `tests/test_evidence_review_regressions.py`. 18/18 mutations of the fixed or previously untested checks are caught. Deferred minors and rulings are in `docs/v2/implementation-progress.md`.
+- **Task 8 done (`4448255`, docs after).** Stdlib inline-XBRL table extraction with lineage (`pipelines/evidence_aware/html_source.py`), `scripts/prepare_evidence_v2.py`, `configs/evidence_v2_real_dev.json`, 20 public questions over 10 companies, separate AI-authored unreviewed references, source manifest and a 150-filing extraction audit. Run `results/evidence_v2/real_dev_001` (ignored): 12/16 answerable supported and reference-verified, 4/4 correct abstentions, 0 errors, 0 provider calls. Failures and limitations: `docs/v2/extraction_audit.md`.
+- Verification: 122 tests pass; 24/24 v1 hashes unchanged; report regenerates byte-identically; source checkout status unchanged.
+
 ## Exact next action
 
-**Fresh whole-branch review is pending.** Review the range `6757331..c37d5c9` against Tasks 1–7, with tests first. Fix material findings through failing regressions, then a passing full suite. This checkpoint is implemented/tested but has not had independent code review; do not describe it as fully reviewed or merged.
+**Task 9**: strong controls (always-cheap, always-maximum, complexity rule; dense/RRF/reranker only after a resource probe, missing backends marked unavailable), locked-split and experiment manifests, frozen arms. Live provider runs stay disabled at `max_usd=0`. Task 8 itself has not had an independent review; include `7693235..HEAD` in the next whole-branch review. The unresolved three-company ranking miss (rd06) is the first thing the stronger retrieval arms should be tested against.
 
-Pay particular attention to strict nested input validation; inference/evaluation separation; table/period entailment; cumulative verification work and packing; end-to-end deadlines; reservation/failure accounting; source/config/trace integrity checks in reports; and whether statistics preserve paired independent units. The existing passing tests do not prove these areas are exhaustive.
-
-Then continue **Task 8**, which has only been read, not implemented: raw SEC HTML extraction, provenance mapping, and a real development pilot of 12–20 questions over at least four company groups where feasible. Keep failures/unsupported layouts visible. Then Tasks 9–10 add strong controls and evidence packaging, with all resource/annotation gates retained. No product files for Tasks 8–10 exist yet.
-
-Do not redo Tasks 1–7 or create another repository. Inspect current git status and ledger first. There are no known uncommitted product-code changes at this checkpoint; handoff/documentation updates are committed separately.
+Do not redo Tasks 1–8 or create another repository. Inspect git status and the ledger first.
 
 ## Run and inspect
 
@@ -69,7 +71,7 @@ Existing ignored local artifacts:
 
 - `provider_enabled=false`, `max_usd=0`. CLI live mode intentionally fails as unavailable without submitting a call. No funded provider adapter exists; injected test answerers are not live model experiments.
 - Eight fixtures use a 64-whitespace-token cheap-stage cap to force one controlled recovery. The ordinary per-stage cap is 8192, final context 8192, output 512, cumulative retrieval/verification each 24576, deadline 30000 ms. Do not infer real savings from the fixture cap.
-- Only controlled source-table text is supported so far. There is no real SEC HTML extractor yet.
+- Real SEC HTML is supported only for consolidated inline-XBRL revenue cells that pass header, caption and label cross-checks; everything else is rejected with a recorded reason.
 - Runtime questions have exactly id/question/as_of; human/reference requirements never feed the raw-question path. Structured specs are diagnostic only.
 - Human review count for v2 is zero. AI-authored references retain that label. V1's 43 questions and derivatives stay development-only.
 - All numerical results require entity, metric, fiscal dates, units, basis, source hash, quote slice and eligible disclosure. Conflicts and unsupported calculations abstain.
@@ -80,7 +82,7 @@ Existing ignored local artifacts:
 
 Machine: Apple M4 Pro, 24 GiB. Default shell Python is 3.14; use `.venv/bin/python` (3.12.9).
 
-Original source checkout is at `/Users/sragh/Downloads/GenAI/LLM_Research/beyond-vector-search`. It has 150 untracked raw HTML files under `data/raw/`, with frozen normalized metadata in `data/release/v1/corpus_150.jsonl.gz`. Raw files did not come through the new clone. Read/hash/copy only the required HTML into ignored new working data. Do not copy credentials, `.env`, caches, old result directories or the source checkout's unrelated changes. Source has a modified cost report and untracked legacy results/builder; leave them intact.
+Original source checkout is at `/Users/sragh/Downloads/GenAI/LLM_Research/beyond-vector-search`. It has 150 untracked raw HTML files under `data/raw/`, with frozen normalized metadata in `data/release/v1/corpus_150.jsonl.gz`. Raw files did not come through the new clone. All 150 match v1 metadata; the 50 pilot filings are copied and hashed in ignored `data/raw/evidence_v2/`. Do not copy credentials, `.env`, caches, old result directories or the source checkout's unrelated changes. Source has a modified cost report and untracked legacy results/builder; leave them intact.
 
 ## Workflow continuity
 

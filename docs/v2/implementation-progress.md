@@ -46,3 +46,12 @@ Final: minor (deferred): canonical re-extraction scans the whole corpus on every
 Final: minor (deferred): dense multi-statement lines reduce readability.
 Final: minor (deferred): evidence tests need tests/ on sys.path.
 Final: minor (deferred): RetrievalBackend relies on undeclared selected/inspected_tokens attributes.
+Task 8: Ruling: Python stdlib html.parser is the pinned HTML parser (Python 3.12.9) — keeps the offline core stdlib-only and runnable under -S — cost if wrong: ~30 s for 150 filings, slower than lxml.
+Task 8: Ruling: inline-XBRL context is the authority for period, entity, unit and scale; visible period header, unit caption and row label must agree or the cell is rejected — conservative per spec — cost if wrong: 890/1484 candidates rejected on the v1 corpus, mainly missing captions and non-revenue labels.
+Task 8: Ruling: raw HTML parsing lives in new pipelines/evidence_aware/html_source.py; units.py is unchanged and extraction.py only gains the 10-column row header — normalized documents reuse SECTION units — cost if wrong: none to interfaces.
+Task 8: Ruling: questions are data/release/v2/real_dev_questions.jsonl (plan said .json) to reuse the runner's JSONL loader — cost: file name differs from plan.
+Task 8: Ruling: fiscal calendar entries come only from each filing's own dei focus year — direct evidence, no inference of prior-year calendars — cost: comparative-only years (rd19 Coca-Cola FY2020) abstain.
+Task 8: Ruling: references built from an independent raw ix-fact reader (no table/header/caption logic); Walmart, Eli Lilly, out-of-grammar and comparative-only cases are labeled answerable so system abstentions count as misses — cost if wrong: success rate understated.
+Task 8: Ruling: full normalized documents, segments and failure rows stay untracked (regenerable from raw filings); manifest, 150-filing audit, questions, references and two synthetic layout fixtures are tracked — cost: reproduction needs the source checkout's raw HTML.
+Task 8: Observation (not changed): queries do not include fiscal-year tokens, and three-company ranking (rd06) loses BM25 slots to one company — left visible rather than tuned on development outcomes; Task 9 strong retrieval controls are the place to test it.
+Task 8: Observation: a trial run on these questions exposed cutoff-unfiltered retrieval and repeated escalation; both were fixed in the review fix pass (7693235) with synthetic regressions before the recorded run real_dev_001 at 4448255.
